@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import Swal from 'sweetalert2';
 const RequestQuoteMain = () => {
   const [formData, setFormData] = useState({
     first_name: '',
@@ -11,12 +11,56 @@ const RequestQuoteMain = () => {
     company: '',
     message: ''
   });
-  console.log(formData);
   
+   async function handleSubmit(event) {
+      event.preventDefault();
+  
+      const data = new FormData();
+      data.append('first_name', formData.first_name);
+      data.append('last_name',formData.last_name)
+      data.append('email', formData.email);
+      data.append('number', formData.number);
+      data.append('company/organization', formData.company);
+      data.append('message', formData.message);
+      data.append('access_key', process.env.NEXT_PUBLIC_FORM_ACCESS_KEY);
+      const object = Object.fromEntries(data);
+      const json = JSON.stringify(object);
+  
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: json,
+        });
+  
+        const result = await response.json();
+        if (result.success) {
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Quote Sent Successfully',
+            icon: 'success',
+          });
+          setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+          });
+        } else {
+          Swal.fire('Oops!', 'Something went wrong.', 'error');
+        }
+      } catch (error) {
+        console.error(error);
+        Swal.fire('Network Error', 'Please try again later.', 'error');
+      }
+    }
   return (
     <div className="request-quote__area section-padding">
       <div className="container">
-        <form action="#">
+        <form onSubmit={handleSubmit}>
           <div className="request-quote__area-inputs">
             <div className="request-quote__area-input-field">
               <label htmlFor="first-name">First Name *</label>

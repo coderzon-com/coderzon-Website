@@ -4,13 +4,46 @@ import ctaBg from "../../../public/assets/img/subscribe/subscribe-one-shape-1.pn
 import footerBg from "../../../public/assets/img/shape/footer-two-bg.png";
 import servicesData from "@/components/data/services-data";
 import { useState } from "react";
+import Swal from 'sweetalert2';
 
 const FooterOne = () => {
 	const [email,setEmail]=useState({
 		email:''
 	})
-	console.log(email);
-	
+ async function handleSubmit(event) {
+	  event.preventDefault();
+	  const data = new FormData();
+	  data.append('News Letter Subscription email', email.email);
+	  data.append('access_key', process.env.NEXT_PUBLIC_FORM_ACCESS_KEY);
+	  const object = Object.fromEntries(data);
+	  const json = JSON.stringify(object); 
+	  try {
+		const response = await fetch('https://api.web3forms.com/submit', {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		  },
+		  body: json,
+		});
+		const result = await response.json();
+		if (result.success) {
+		  Swal.fire({
+			title: 'Good job!',
+			text: 'Subscribed Successfully',
+			icon: 'success',
+		  });
+		  setEmail({
+			email: '',
+		  });
+		} else {
+		  Swal.fire('Oops!', 'Something went wrong.', 'error');
+		}
+	  } catch (error) {
+		console.error(error);
+		Swal.fire('Network Error', 'Please try again later.', 'error');
+	  }
+	}
     return (
         <>
         <div className="subscribe__one">
@@ -20,7 +53,7 @@ const FooterOne = () => {
                         <div className="subscribe__one-title">
                             <h3>Subscribe Our newsletter</h3>
                         </div>
-                        <form action="#" className="subscribe__one-form">
+                        <form onSubmit={handleSubmit} className="subscribe__one-form">
                             <input type="email" placeholder="Enter Your Email" value={email.email} onChange={(e)=>setEmail({email:e.target.value})} />
                             <button className="btn-two" type="submit">subscribe now</button>
                         </form>

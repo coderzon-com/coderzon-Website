@@ -10,7 +10,7 @@
         width: 100%;
         box-shadow: var(--box-shadow-1) !important;
         animation: header_sticky 1.1s;
-        background: var(--bg-white);
+         background-color: #1b2943;
         display: block;
     }
 
@@ -38,6 +38,8 @@
     padding: 0 30px;
     position: relative;
     z-index: 999;
+    background-color: #1b2943
+    ;
     &-menubar {
         display: flex;
         justify-content: space-between;

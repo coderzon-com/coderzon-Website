@@ -4,7 +4,6 @@ import about2 from "../../../public/assets/img/about/about-2.png";
 import Link from "next/link";
 import Count from "../common/count";
 import WorkArea from "../homes/home/work";
-import Testimonial from "../homes/home/testimonial";
 
 
 const AboutMain = () => {
@@ -19,7 +18,7 @@ const AboutMain = () => {
                                 <i className="flaticon-consultant"></i>
                                 <div className="experience-bar-right">
                                     <div className="experience-bar-counter">
-                                        <h4 className="counter"><Count number={25}/></h4>
+                                        <h4 className="counter"><Count /></h4>
                                         <span>+</span>
                                     </div>
                                     <span>Years Experience</span>

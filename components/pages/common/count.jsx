@@ -1,10 +1,10 @@
 import React from 'react';
 import CountUp from 'react-countup';
 
-const Count = ({ number }) => {
+const Count = () => {
     return (
         <>
-            <CountUp end={number} enableScrollSpy />
+            <CountUp end={20} enableScrollSpy />
         </>
     );
 };

@@ -34,7 +34,7 @@ const HeaderOne = ({variant}) => {
                     </div>
                     <div className="col-xl-5 col-md-5">
                         <div className="top__bar-right">
-                            <Link href="https://www.google.com/maps"><i className="fas fa-map-marker-alt"></i>AKL Heights, Seaport Road, Near Bharathmatha College Kochi, Kerala - 682021</Link>
+                            <Link href="https://www.google.com/maps"><i className="fas fa-map-marker-alt"></i>AKL Heights, Seaport Road, Kakkanad, Kerala - 682021</Link>
                         </div>
                     </div>
                 </div>
@@ -55,13 +55,7 @@ const HeaderOne = ({variant}) => {
                     </div>
                     <div className="header__area-menubar-right">
                         <div className="header__area-menubar-right-box">
-                            <div className="header__area-menubar-right-box-search">
-                                <div className="search">	
-                                    <span className="header__area-menubar-right-box-search-icon open" onClick={() => setSearch(true)}>
-                                        <i className="flaticon-loupe"></i>
-                                    </span>
-                                </div>
-                            </div>
+                           
                             <div className="header__area-menubar-right-box-sidebar">
                                 <div className="header__area-menubar-right-box-sidebar-popup-icon" onClick={() => setSidebarOpen(true)}>
                                     <span className="bar-1"></span>

@@ -85,7 +85,7 @@ const FooterOne = () => {
 											<i className="flaticon-mail"></i>
 										</div>
 										<div className="footer__two-widget-about-location-item-info">
-											<span>Phone Number</span>
+											<span>Email</span>
 											<Link href="mailto:contact@coderzon.com">contact@coderzon.com</Link>
 										</div>
 									</div>
@@ -140,12 +140,11 @@ const FooterOne = () => {
 					<div className="row justify-content-between copyright__one-container-area">
 						<div className="col-xl-5 col-lg-6"> 
 							<div className="copyright__one-left">
-								<p>© ThemeOri 2024 | All Rights Reserved</p>
+								<p>© CODERZON Technologies Pvt Ltd | All Rights Reserved</p>
 							</div>
 						</div>
 						<div className="col-xl-5 col-lg-6">
 							<div className="copyright__one-right">
-								<Link href="/about">Privacy Policy</Link>
 								<Link href="/contact">Contact Us</Link>
 							</div>
 						</div>

@@ -9,9 +9,9 @@ const MainMenu = () => {
                     <ul className=' sub-menu ' >
                         <li><Link href="/services/Data-Analytics-Consulting">Data Analytics Consulting</Link></li>
                         <li><Link href="/services/Web-App-Developments">Web App Developments</Link></li>
-                        <li><Link href="/services/MVP-Development">MVP Development</Link></li>
                         <li><Link href="/services/cloud-computing">Cloud Computing</Link></li>
-                        <li><Link href="/services/Mobile-App-Developments">Mobile App Developments</Link></li>
+                        <li><Link href="/services/AI-Software-Development">AI Software Development</Link></li>
+                        <li><Link href="/services/Legacy-Software-Modernization">Legacy Software Modernization</Link></li>
                         <li><Link href="/services">View more services</Link></li>
                     </ul>
                 </li>

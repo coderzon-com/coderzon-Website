@@ -1,4 +1,4 @@
-
+'use client'
 import HeaderOne from "@/components/layout/headers/header/header-one";
 import BreadCrumb from "../common/breadcrumb";
 import PricingPlansMain from "./pricing-plans";

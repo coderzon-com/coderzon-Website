@@ -16,11 +16,11 @@ const ResponsiveMenu = () => {
           <Link href="/">Home</Link>
         </li>
         <li className="menu-item-has-children">
-          <Link href="#">Services</Link>
+          <Link href="#">Consult</Link>
           <ul className="sub-menu" style={activeSubMenu("services")}>
             <li>
               <Link href="/services/Data-Analytics-Consulting">
-                Data Analytics Consulting
+                Data Analytics
               </Link>
             </li>
             <li>
@@ -50,6 +50,7 @@ const ResponsiveMenu = () => {
             onClick={() => active("services")}
           ></a>
         </li>
+           <li ><Link href="https://codiin.com/" target='_blank' >Training</Link></li>
         <li>
           <Link href="/blog">Blogs</Link>
         </li>

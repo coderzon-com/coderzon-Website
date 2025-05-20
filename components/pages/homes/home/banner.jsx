@@ -11,7 +11,7 @@ const BannerOne = () => {
                     <div className="shape banner-shape-2"></div>
                     <div className="shape banner-shape-3"></div>
                     <div className="shape banner-shape-4"></div>
-                    <img className="shape banner-shape-5" src={bannerShape.src} alt="image" />
+                    <img className="shape banner-shape-5 bac" src={bannerShape.src} alt="image" />
                     <div className="shape banner-shape-7"></div>
                     <div className="shape banner-shape-6"></div>
                 </div>

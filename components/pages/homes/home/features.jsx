@@ -21,7 +21,7 @@ const Features = () => {
                                     </div>
                                     <div className="services__one-single-service-content">
                                         <h4>Cloud Solutions Management</h4>
-                                        <p>IT infrastructure including network installation</p>
+                                        <p>Seamless deployment, scaling, and monitoring of cloud infrastructure to ensure business continuity and agility.</p>
                                     </div>
                                 </div>
                             </div>
@@ -31,18 +31,20 @@ const Features = () => {
                                         <i className="flaticon-mobile-phone-1"></i>
                                     </div>
                                     <div className="services__one-single-service-content">
-                                        <h4>Analytics Business Intelligence</h4>
-                                        <p>Comprehensive analytics services providing</p>
+                                        <h4>Analytics & Business Intelligence</h4>
+                                        <p>Transform data into actionable insights with advanced analytics, dashboards, and data-driven decision-making tools.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div className="col-xl-6 col-lg-7">
                         <div className="services-image-wrapper">
-                            <img src={image.src} alt="image" />
+                            <img src={image.src} alt="IT Services" />
                         </div>
                     </div>
+
                     <div className="col-xl-3">
                         <div className="row">
                             <div className="col-xl-12 col-md-6">
@@ -52,7 +54,7 @@ const Features = () => {
                                     </div>
                                     <div className="services__one-single-service-content">
                                         <h4>Custom Software Development</h4>
-                                        <p>Our services build reliable, scalable, and innovative</p>
+                                        <p>Designing scalable, secure, and tailored software solutions that drive innovation and business efficiency.</p>
                                     </div>
                                 </div>
                             </div>
@@ -63,12 +65,13 @@ const Features = () => {
                                     </div>
                                     <div className="services__one-single-service-content">
                                         <h4>Machine Learning Implementation</h4>
-                                        <p>Harnessing the power of artificial intelligence</p>
+                                        <p>Deploy intelligent systems that automate processes, enhance accuracy, and unlock predictive capabilities.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

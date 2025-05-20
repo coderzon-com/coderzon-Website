@@ -33,28 +33,34 @@ const About = () => {
                             <h2>Transform Business to Technology</h2>
                             <p>IT Technology is a broad category encompassing all aspec information technology and the application of technology in various industries. It includes areas such as software development</p>
                             <div className="about__one-content-service">
+                                
                                 <div className="service">
                                     <i className="far fa-check-circle"></i>
                                     <span>Data Management Experts</span>
                                 </div>
-                                <div className="service">
-                                    <i className="far fa-check-circle"></i>
-                                    <span>Mobile App Developments</span>
-                                </div>
+                                
                                 <div className="service">
                                     <i className="far fa-check-circle"></i>
                                     <span>IT Infrastructure Solutions</span>
+                                </div>
+                                   <div className="service">
+                                    <i className="far fa-check-circle"></i>
+                                    <span>Web App Developments</span>
                                 </div>
                                 <div className="service">
                                     <i className="far fa-check-circle"></i>
                                     <span>Data Analytics Consulting</span>
                                 </div>
-                                 <div className="service">
+                                  <div className="service">
                                     <i className="far fa-check-circle"></i>
-                                    <span>Web App Developments</span>
+                                    <span>AI Software Development</span>
+                                </div>
+                                  <div className="service">
+                                    <i className="far fa-check-circle"></i>
+                                    <span>Mobile  App Development</span>
                                 </div>
                             </div>
-                            <Link href="/about" className="btn-one">Discover More<i className="fas fa-arrow-right"></i></Link>
+                            <Link href="/services" className="btn-one">Discover More<i className="fas fa-arrow-right"></i></Link>
                         </div>
                     </div>
                 </div>

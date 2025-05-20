@@ -1,4 +1,5 @@
-'use client'
+"use client"
+import SEO from "@/components/data/seo";
 import HeaderOne from "@/components/layout/headers/header/header-one";
 import BreadCrumb from "../common/breadcrumb";
 import FooterOne from "@/components/layout/footers/footer-one";
@@ -7,7 +8,8 @@ import FormArea from "./form";
 
 const ContactUs = () => {
     return (
-        <>      
+        <>
+            <SEO pageTitle="Contact Us" />        
             <HeaderOne />
             <BreadCrumb title="Contact Us" innerTitle="Contact Us" />
             <div className="contact__two section-padding">

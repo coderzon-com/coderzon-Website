@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 const SEO = ({  }) => {
   useEffect(() => {
-    document.title ="Coderzon Technology Pvt Ltd ";
+    document.title ="Coderzon Technology Pvt Ltd";
   }, []);
 };
 

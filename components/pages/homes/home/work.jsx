@@ -15,9 +15,7 @@ const WorkArea = () => {
                         </div>
                     </div>
                     <div className="col-xl-4 offset-xl-1 col-lg-4 offset-lg-1">
-                        <div className="work-process-area__one-content-right">
-                            <p>Discuss strategies for reducing energy consumption in data centers, personal devices, and reduce power usage</p>
-                        </div>
+                    
                     </div>
                 </div>
                 <div className="row justify-content-center gy-4">

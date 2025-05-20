@@ -1,13 +1,8 @@
-import Link from 'next/link';
-import Social from '@/components/data/social';
+
 import BlogSidebar from '../blog-sidebar/blog-sidebar';
 import { format } from 'date-fns';
 import { PortableText } from '@portabletext/react';
-import icon from '../../../../public/assets/img/icon/blog-details-quote.png';
-import image from '../../../../public/assets/img/blog/blog-details.png';
-import avatar1 from '../../../../public/assets/img/avatar/avatar-1.jpg';
-import avatar2 from '../../../../public/assets/img/avatar/avatar-2.jpg';
-import avatar3 from '../../../../public/assets/img/avatar/avatar-3.jpg';
+
 
 const BlogSingleMain = ({ singleData }) => {
   const createdAt = singleData?._createdAt;

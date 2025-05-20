@@ -1,4 +1,4 @@
-
+'use client'
 import about1 from "../../../public/assets/img/about/about-1.png";
 import about2 from "../../../public/assets/img/about/about-2.png";
 import Link from "next/link";
@@ -57,7 +57,7 @@ const AboutMain = () => {
                                     <span>Web App Developments</span>
                                 </div>
                             </div>
-                            <Link href="/about" className="btn-one">Discover More<i className="fas fa-arrow-right"></i></Link>
+                            <Link href="/services" className="btn-one">Discover More<i className="fas fa-arrow-right"></i></Link>
                         </div>
                     </div>
                 </div>

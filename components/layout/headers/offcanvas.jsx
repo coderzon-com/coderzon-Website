@@ -38,7 +38,7 @@ const SideBar = ({ isOpen, setIsOpen }) => {
 						</div>
 						<div className="header__area-menubar-right-sidebar-popup-contact-item-content">
 							<span>Office Address</span>
-							<h6><Link href="https://google.com/maps" target="_blank">CODERZON Technologies Pvt Ltd  AKL Heights, Seaport Road, Near Bharathmatha College, Kochi, Kerala -682021</Link></h6>
+							<h6><Link href="https://google.com/maps" target="_blank">CODERZON, Technologies Pvt Ltd  kakkanad, Kochi, Kerala - 682021</Link></h6>
 						</div>
 					</div>
 				</div>

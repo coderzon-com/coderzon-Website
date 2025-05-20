@@ -86,7 +86,7 @@ const FooterOne = () => {
 										</div>
 										<div className="footer__two-widget-about-location-item-info">
 											<span>Email</span>
-											<Link href="mailto:contact@coderzon.com">contact@coderzon.com</Link>
+											<Link href="mailto:contact@coderzon.com" >contact@coderzon.com</Link>
 										</div>
 									</div>
 								</div>

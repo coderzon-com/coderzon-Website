@@ -1,5 +1,4 @@
 "use client";
-import SEO from "@/components/data/seo";
 import ScrollToTop from "../../common/scroll/scroll-to-top";
 import HeaderOne from "@/components/layout/headers/header/header-one";
 import BannerOne from "./banner";
@@ -15,7 +14,6 @@ import Testimonial from "./testimonial";
 const HomeOne = () => {
     return (
         <div>
-            <SEO pageTitle='Technology' />
             <HeaderOne />
             <BannerOne />
             <About />

@@ -1,5 +1,4 @@
-"use client"
-import SEO from "@/components/data/seo";
+'use client'
 import HeaderOne from "@/components/layout/headers/header/header-one";
 import BreadCrumb from "../../common/breadcrumb";
 import ServicesMain from "./services";
@@ -10,7 +9,6 @@ import ScrollToTop from "../../common/scroll/scroll-to-top";
 const ServicePage = () => {
     return (
         <>
-            <SEO pageTitle="Our Services" />
             <HeaderOne />
             <BreadCrumb title="Our Services" innerTitle="Our Services" />
             <ServicesMain />

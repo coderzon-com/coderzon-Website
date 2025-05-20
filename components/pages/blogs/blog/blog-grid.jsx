@@ -3,7 +3,6 @@ import { createClient } from 'next-sanity';
 import React, { useState,useEffect } from 'react';
 import BlogItem from './blog-item';
 import Pagination from './pagination';
-import blogData from '../../../data/blog-data';
 import { format } from 'date-fns';
 
 const client = createClient({

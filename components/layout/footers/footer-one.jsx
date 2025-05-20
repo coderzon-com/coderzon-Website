@@ -1,3 +1,4 @@
+'use client'
 import Social from "@/components/data/social";
 import Link from "next/link";
 import ctaBg from "../../../public/assets/img/subscribe/subscribe-one-shape-1.png";
@@ -98,7 +99,7 @@ const FooterOne = () => {
 							<h4>Quick Link</h4>
 							<div className="footer__two-widget-solution">
 								<ul>
-									<li><Link href="services"><i className="far fa-chevron-double-right"></i>Service</Link></li>
+									<li><Link href="/services"><i className="far fa-chevron-double-right"></i>Service</Link></li>
 									<li><Link href="faq"><i className="far fa-chevron-double-right"></i>FAQ</Link></li>
 									<li><Link href="about"><i className="far fa-chevron-double-right"></i>About Us</Link></li>
 								</ul>

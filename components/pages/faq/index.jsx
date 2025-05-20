@@ -1,5 +1,4 @@
-"use client"
-import SEO from "@/components/data/seo";
+'use client'
 import HeaderOne from "@/components/layout/headers/header/header-one";
 import BreadCrumb from "../common/breadcrumb";
 import FaqPage from "./faq-page";
@@ -9,7 +8,6 @@ import ScrollToTop from "../common/scroll/scroll-to-top";
 const Faq = () => {
     return (
         <>        
-            <SEO pageTitle='FAQ' />
             <HeaderOne />
             <BreadCrumb title='Question & Ans.' innerTitle="FAQ's" />
             <FaqPage />

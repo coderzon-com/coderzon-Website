@@ -1,4 +1,4 @@
-
+'use client'
 import HeaderOne from "@/components/layout/headers/header-one";
 import BreadCrumb from "../../common/breadcrumb";
 import FooterOne from "@/components/layout/footers/footer-one";

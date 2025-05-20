@@ -1,3 +1,4 @@
+'use client'
 import { createClient } from 'next-sanity';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';

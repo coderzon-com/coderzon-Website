@@ -5,12 +5,9 @@ import BannerOne from "./banner";
 import About from "./about";
 import ChooseUs from "./choose-us";
 import Features from "./features";
-import Portfolio from "./portfolio";
 import WorkArea from "./work";
 import FooterOne from "@/components/layout/footers/footer-one";
 import Blog from "./blog";
-import Testimonial from "./testimonial";
-
 const HomeOne = () => {
     return (
         <div>
@@ -19,9 +16,7 @@ const HomeOne = () => {
             <About />
             <ChooseUs />
             <Features />
-            {/* <Portfolio /> */}
             <WorkArea />
-            {/* <Testimonial /> */}
             <Blog />
             <FooterOne />
             <ScrollToTop />

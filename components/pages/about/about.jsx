@@ -3,8 +3,6 @@ import about2 from "../../../public/assets/img/about/about-2.png";
 import Link from "next/link";
 import Count from "../common/count";
 import WorkArea from "../homes/home/work";
-
-
 const AboutMain = () => {
     return (
         <>

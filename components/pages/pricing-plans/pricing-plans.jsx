@@ -1,13 +1,13 @@
-import Link from 'next/link';
-import React from 'react';
-import Pricing from '../homes/home/pricing';
+// import Link from 'next/link';
+// import React from 'react';
+// import Pricing from '../homes/home/pricing';
 
-const PricingPlansMain = () => {
-	return (
-		<>
-		<Pricing />
-		</>
-	);
-};
+// const PricingPlansMain = () => {
+// 	return (
+// 		<>
+// 		<Pricing />
+// 		</>
+// 	);
+// };
 
-export default PricingPlansMain;
+// export default PricingPlansMain;

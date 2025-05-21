@@ -1,5 +1,10 @@
 {
   "/page": "app/page.js",
   "/blog/[id]/page": "app/blog/[id]/page.js",
-  "/blog/page": "app/blog/page.js"
+  "/services/page": "app/services/page.js",
+  "/request-quote/page": "app/request-quote/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/services/[id]/page": "app/services/[id]/page.js",
+  "/faq/page": "app/faq/page.js",
+  "/about/page": "app/about/page.js"
 }

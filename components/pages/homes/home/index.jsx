@@ -39,9 +39,7 @@ const HomeOne = () => {
             <About />
             <ChooseUs />
             <Features />
-            {/* <Portfolio /> */}
             <WorkArea />
-            {/* <Testimonial /> */}
             <Blog />
             <FooterOne />
             <ScrollToTop />

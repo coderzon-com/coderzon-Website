@@ -8,22 +8,7 @@ export const metadata = {
   title: "About Us",
   description:
     "Learn more about Coderzon Technology Pvt Ltd, our mission, vision, and innovative IT solutions.",
-  keywords: "About Coderzon, software company, AI services, web development",
-  openGraph: {
-    title: "About Coderzon Technology Pvt Ltd",
-    description:
-      "Discover our story and expertise in AI-driven software solutions.",
-    url: "https://coderzon-website-2463.vercel.app/about",
-    images: [
-      {
-        url: "/img/aboutPageImage.webp",
-        width: 1200,
-        height: 630,
-        alt: "About Coderzon Technology",
-      },
-    ],
-    type: "article",
-  },
+  keywords: "About Coderzon, software company, AI services, web development,Cloud Solutions",
 };
 
 const AboutUs = () => {

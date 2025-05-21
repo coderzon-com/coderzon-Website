@@ -1,4 +1,3 @@
-'use client'
 import about1 from "../../../public/assets/img/about/about-1.png";
 import about2 from "../../../public/assets/img/about/about-2.png";
 import Link from "next/link";

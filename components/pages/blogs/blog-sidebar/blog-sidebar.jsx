@@ -1,3 +1,4 @@
+'use client'
 import { createClient } from 'next-sanity';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -16,7 +17,6 @@ const BlogSidebar = () => {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    // Fetch the blogs client-side after the component mounts
     const fetchBlogs = async () => {
       try {
         const data = await client.fetch(`
@@ -27,21 +27,17 @@ const BlogSidebar = () => {
             content,
             "imageUrl": image.asset->url
           }`);
-        setBlogs(data); // Set blogs data into state
+        setBlogs(data); 
       } catch (err) {
-        console.log('Failed to load blogs', err); // Handle errors
+        console.log('Failed to load blogs', err); 
       }
     };
 
     fetchBlogs(); 
   }, []);
-
-  // Filter the blogs based on search text
   const filteredBlogs = searchText
     ? blogs.filter((blog) => blog.blogName.toLowerCase().includes(searchText.toLowerCase()))
     : blogs;
-
-  // Get the first 3 blog posts
   const blogPost = filteredBlogs.slice(0, 3);
 
   return (

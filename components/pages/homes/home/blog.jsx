@@ -1,7 +1,7 @@
 import { createClient } from 'next-sanity';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -10,44 +10,23 @@ const client = createClient({
   apiVersion: '2023-05-14',
 });
 
-const Blog = () => {
-  const [blogs, setBlogs] = useState([]); // State to store the blogs
-  const [loading, setLoading] = useState(true); // State to track loading status
-  const [error, setError] = useState(null); // State to track any errors during fetch
+export default async function BlogPage() {
+  let blogs = [];
 
-  useEffect(() => {
-    // Fetch the blogs client-side after the component mounts
-    const fetchBlogs = async () => {
-      try {
-        const data = await client.fetch(`
-          *[_type == 'blogs'] | order(_createdAt desc) {
-            _id,
-            blogName,
-            _createdAt,
-            content,
-            "imageUrl": image.asset->url
-          }`);
-        setBlogs(data); // Set blogs data into state
-      } catch (err) {
-        setError('Failed to load blogs'); // Set error if fetch fails
-      } finally {
-        setLoading(false); // Set loading to false once fetch is done
+  try {
+    blogs = await client.fetch(`
+      *[_type == 'blogs'] | order(_createdAt desc) {
+        _id,
+        blogName,
+        _createdAt,
+        content,
+        "imageUrl": image.asset->url
       }
-    };
-
-    fetchBlogs(); // Call the function to fetch blogs
-  }, []); // Empty dependency array means this effect runs once when the component mounts
-
-  // Render loading or error message while data is being fetched
-  if (loading) {
-    return <div>Loading...</div>;
+    `);
+  } catch (err) {
+    return <div className="text-center py-10 text-red-500">Failed to load blogs</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  // Once data is loaded, render the blogs
   return (
     <div className="blog__one section-padding">
       <div className="container">
@@ -66,7 +45,13 @@ const Blog = () => {
                 <div className="blog__one-single-blog">
                   <div className="blog__one-single-blog-image">
                     <Link href={`/blog/${data._id}`}>
-                      <img src={data.imageUrl} alt="blog"/>
+                      <Image
+                        src={data.imageUrl}
+                        alt="blog"
+                        width={400}
+                        height={250}
+                        style={{ width: '100%', height: 'auto' }}
+                      />
                     </Link>
                   </div>
                   <div className="blog__one-single-blog-date">
@@ -91,6 +76,4 @@ const Blog = () => {
       </div>
     </div>
   );
-};
-
-export default Blog;
+}

@@ -1,13 +1,11 @@
-"use client";
-import SEO from '@/components/data/seo';
-import Error from './error';
+import Error from './error'; 
+
+export const metadata = {
+  title: '404 - Page Not Found',
+  description: 'The page you are looking for does not exist.',
+}
 const ErrorPage = () => {
-    return (
-        <>
-            <SEO pageTitle='Not Found' />
-            <Error />
-        </>
-    );
+  return <Error />;
 };
 
 export default ErrorPage;

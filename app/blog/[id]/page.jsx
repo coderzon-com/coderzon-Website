@@ -1,8 +1,4 @@
-'use client'; // Add this line to mark the component as a Client Component
-
-import { useParams, useRouter } from "next/navigation";
 import { createClient } from 'next-sanity';
-import { useState, useEffect } from "react";
 import BlogDetails from '@/components/pages/blogs/blog-details';
 
 const client = createClient({
@@ -12,38 +8,58 @@ const client = createClient({
   apiVersion: '2023-05-14',
 });
 
-const BlogDetail = () => {
-    const [blogs, setBlogs] = useState([]);
-    const params = useParams();
-    const router = useRouter();
+export async function generateMetadata({ params }) {
+  const blog = await client.fetch(
+    `*[_type == "blogs" && _id == $id][0]{
+      blogName,
+      content,
+      "imageUrl": image.asset->url
+    }`,
+    { id: params.id }
+  );
 
-    useEffect(() => {
-        const fetchBlogs = async () => {
-            try {
-                const data = await client.fetch(`
-                  *[_type == 'blogs'] | order(_createdAt desc) {
-                    _id,
-                    blogName,
-                    _createdAt,
-                    content,
-                    "imageUrl": image.asset->url
-                  }`);
-                setBlogs(data); // State is updated after the component renders
-            } catch (err) {
-                console.log('Failed to load blogs'); 
-            }
-        };
+  if (!blog) {
+    return {
+      title: 'Blog Not Found - Coderzon',
+      description: 'This blog post could not be found.',
+    };
+  }
 
-        fetchBlogs(); // Fetch blogs when component mounts
-    }, []); // This ensures it runs once when the component is mounted
-    const singleData = blogs?.find((blog) => blog._id === params.id);
+  return {
+    title: `${blog.blogName} | Coderzon Technologies Pvt Ltd`,
+    description: blog.content?.slice(0, 150) ?? 'Read the latest insights from Coderzon.',
+    openGraph: {
+      title: blog.blogName,
+      description: blog.content?.slice(0, 150),
+      images: [
+        {
+          url: blog.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: blog.blogName,
+        },
+      ],
+    },
+  };
+}
 
-    return (
-        <>
-            {/* Pass singleData as a prop to BlogDetails */}
-            <BlogDetails singleData={singleData} />
-        </>
-    );
+const BlogDetailPage = async ({ params }) => {
+  const blog = await client.fetch(
+    `*[_type == "blogs" && _id == $id][0]{
+      _id,
+      blogName,
+      _createdAt,
+      content,
+      "imageUrl": image.asset->url
+    }`,
+    { id: params.id }
+  );
+
+  if (!blog) {
+    return <div className="p-10 text-center">Blog post not found.</div>;
+  }
+
+  return <BlogDetails singleData={blog} />;
 };
 
-export default BlogDetail;
+export default BlogDetailPage;

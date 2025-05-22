@@ -177,7 +177,7 @@ const servicesData = [
      {
     id: 'AI-Software-Development',
     icon: <i className="flaticon-data-scientist"></i>,
-    title: 'AI Software Development: Smarter, Adaptive Systems',
+    title: 'Artificial Intelligence Solutions: Smarter, Adaptive Systems',
     p1: 'Integrate AI to automate, predict, and optimize operations. Artificial intelligence is revolutionizing industries by enabling smarter decision-making and automating processes. Our AI software development services help you implement cutting-edge AI solutions to enhance your business operations.',
     h3: 'Harness the Power of Artificial Intelligence',
     p2: 'From machine learning algorithms to natural language processing, we provide AI solutions tailored to your business needs. Whether you want to automate repetitive tasks, gain predictive insights, or enhance user experiences, our AI expertise will help you transform your operations.',

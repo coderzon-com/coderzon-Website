@@ -12,10 +12,7 @@ const client = createClient({
 const blogItemShow = 6;
 
 const BlogGridMain = async ({ searchParams }) => {
-  // Get currentPage from query params, fallback to 0
   const currentPage = parseInt(searchParams?.page || '0', 10);
-
-  // Fetch blogs on server
   const blogs = await client.fetch(`
     *[_type == 'blogs'] | order(_createdAt desc) {
       _id,
@@ -30,8 +27,6 @@ const BlogGridMain = async ({ searchParams }) => {
   const startIndex = currentPage * blogItemShow;
   const endIndex = startIndex + blogItemShow;
   const currentBlogItems = blogs.slice(startIndex, endIndex);
-
-  // Handlers can't work on server, so remove or replace with links in Pagination component
 
   return (
     <div className="blog__two section-padding">

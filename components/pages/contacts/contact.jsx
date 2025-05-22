@@ -4,11 +4,6 @@ import FooterOne from "@/components/layout/footers/footer-one";
 import ScrollToTop from "../common/scroll/scroll-to-top";
 import FormArea from "./form";
 
-export const metadata = {
-  title: "Contact Us | Coderzon",
-  description:
-    "Get in touch with Coderzon Technologies for your car-related inquiries, advice, repairs, and maintenance.",
-  }
 const ContactUs = () => {
   return (
     <>

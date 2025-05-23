@@ -18,32 +18,12 @@ const ResponsiveMenu = () => {
         <li className="menu-item-has-children">
           <Link href="#">Consult</Link>
           <ul className="sub-menu" style={activeSubMenu("services")}>
-            <li>
-              <Link href="/services/Data-Analytics-Consulting">
-                Data Analytics
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/Web-App-Developments">
-                Web App Developments
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/cloud-computing">Cloud Computing</Link>
-            </li>
-            <li>
-              <Link href="/services/AI-Software-Development">
-                AI Software Development
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/Legacy-Software-Modernization">
-                Legacy Software Modernization
-              </Link>
-            </li>
-            <li>
-              <Link href="/services">View more services</Link>
-            </li>
+           <li><Link href="/services/data-analytics-consulting-services">Data Analytics & Business Intelligence</Link></li>
+  <li><Link href="/services/web-development-services">Custom Web Application Development</Link></li>
+  <li><Link href="/services/cloud-computing">Cloud Infrastructure & Solutions</Link></li>
+  <li><Link href="/services/machine-learning-app-development-services">AI & Machine Learning Solutions</Link></li>
+  <li><Link href="/services/software-modernization">Enterprise Software Modernization</Link></li>
+  <li><Link href="/services">Explore All Services</Link></li>
           </ul>
           <a
             className={`mean-expand ${activeIcon("services")}`}

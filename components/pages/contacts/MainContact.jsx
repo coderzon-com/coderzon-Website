@@ -1,15 +1,9 @@
-import HeaderOne from "@/components/layout/headers/header/header-one";
-import BreadCrumb from "../common/breadcrumb";
-import FooterOne from "@/components/layout/footers/footer-one";
-import ScrollToTop from "../common/scroll/scroll-to-top";
-import FormArea from "./form";
+import React from 'react';
+import FormArea from './form';
 
-const ContactUs = () => {
+const MainContact = () => {
   return (
-    <>
-      <HeaderOne />
-      <BreadCrumb title="Contact Us" innerTitle="Contact Us" />
-      <div className="contact__two section-padding">
+        <div className="contact__two section-padding">
         <div className="container">
           <div className="row gy-4 align-items-center">
             <div className="col-xl-6">
@@ -18,7 +12,7 @@ const ContactUs = () => {
                   <span className="subtitle-one">Contact us</span>
                   <h2>Do you have any question?</h2>
                   <p>
-                   Got a tech challenge? We’re here to solve it. From expert advice to end-to-end solutions, you can count on us to keep your digital world running smoothly — feel free to reach out anytime!
+                    Got a tech challenge? We’re here to solve it. From expert advice to end-to-end solutions, you can count on us to keep your digital world running smoothly — feel free to reach out anytime!
                   </p>
                 </div>
                 <div className="contact__two-form">
@@ -73,10 +67,7 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-      <FooterOne />
-      <ScrollToTop />
-    </>
   );
-};
+}
 
-export default ContactUs;
+export default MainContact;

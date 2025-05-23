@@ -3,6 +3,7 @@ import BreadCrumb from "../common/breadcrumb";
 import FaqPage from "./faq-page";
 import FooterOne from "@/components/layout/footers/footer-one";
 import ScrollToTop from "../common/scroll/scroll-to-top";
+import MainContact from "../contacts/MainContact";
 
 
 const Faq = () => {
@@ -11,6 +12,7 @@ const Faq = () => {
       <HeaderOne />
       <BreadCrumb title="Question & Ans." innerTitle="FAQ's" />
       <FaqPage />
+      <MainContact/>
       <FooterOne />
       <ScrollToTop />
     </>

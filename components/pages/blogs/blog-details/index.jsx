@@ -3,6 +3,7 @@ import BreadCrumb from "../../common/breadcrumb";
 import BlogSingleMain from "./blog-details";
 import FooterOne from "@/components/layout/footers/footer-one";
 import ScrollToTop from "../../common/scroll/scroll-to-top";
+import MainContact from "../../contacts/MainContact";
 
 
 const BlogDetails = ({ singleData }) => {
@@ -13,6 +14,7 @@ const BlogDetails = ({ singleData }) => {
       <HeaderOne />
       <BreadCrumb title={firstThreeWords} innerTitle={singleData?.blogName} />
       <BlogSingleMain singleData={singleData} />
+      <MainContact/>
       <FooterOne />
       <ScrollToTop />
     </>

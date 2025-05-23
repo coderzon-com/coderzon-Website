@@ -9,15 +9,16 @@ const client = createClient({
 });
 
 export async function generateMetadata({ params }) {
+  const slug = decodeURIComponent(params.slug); 
   const blog = await client.fetch(
-    `*[_type == "blogs" && _id == $id][0]{
+    `*[_type == "blogs" && slug.current == $slug][0]{
       blogName,
+      "slug":slug.current,
       content,
       "imageUrl": image.asset->url
     }`,
-    { id: params.id }
+    { slug}
   );
-
   if (!blog) {
     return {
       title: 'Blog Not Found - Coderzon',
@@ -44,15 +45,17 @@ export async function generateMetadata({ params }) {
 }
 
 const BlogDetailPage = async ({ params }) => {
+  const slug = decodeURIComponent(params.slug)
   const blog = await client.fetch(
-    `*[_type == "blogs" && _id == $id][0]{
+    `*[_type == "blogs" && slug.current == $slug][0]{
       _id,
+      "slug":slug.current,
       blogName,
       _createdAt,
       content,
       "imageUrl": image.asset->url
     }`,
-    { id: params.id }
+    {slug}
   );
 
   if (!blog) {

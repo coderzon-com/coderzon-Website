@@ -14,7 +14,7 @@ const BlogItem = ({ currentBlogItems }) => {
                 <div className="blog__two-single-blog-date">
                   <span className="date">{formattedDate}</span>
                 </div>
-                <Link href={`/blog/${data._id}`}>
+                <Link href={`/blog/${data.slug}`}>
                   <img className='blog__one-single-blog-image' src={data.imageUrl} alt="blog" />
                 </Link> 
               </div>
@@ -23,12 +23,12 @@ const BlogItem = ({ currentBlogItems }) => {
                   <span><i className="far fa-user"></i>by Admin</span>
                 </div>
                 <Link
-                  href={`/blog/${data._id}`}
+                  href={`/blog/${data.slug}`}
                   className="blog__two-single-blog-content-title"
                 >
                   {data.blogName}
                 </Link>
-                <Link className="btn-three" href={`/blog/${data._id}`}>
+                <Link className="btn-three" href={`/blog/${data.slug}`}>
                   Read More<i className="fas fa-chevron-right"></i>
                 </Link>
               </div>

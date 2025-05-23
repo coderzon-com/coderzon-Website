@@ -16,6 +16,7 @@ const BlogGridMain = async ({ searchParams }) => {
   const blogs = await client.fetch(`
     *[_type == 'blogs'] | order(_createdAt desc) {
       _id,
+      "slug": slug.current,
       blogName,
       _createdAt,
       content,

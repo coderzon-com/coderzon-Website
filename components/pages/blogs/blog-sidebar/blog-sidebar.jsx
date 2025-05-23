@@ -22,6 +22,7 @@ const BlogSidebar = () => {
         const data = await client.fetch(`
           *[_type == 'blogs'] | order(_createdAt desc) {
             _id,
+            "slug":slug.current,
             blogName,
             _createdAt,
             content,
@@ -69,13 +70,13 @@ const BlogSidebar = () => {
               return (
                 <div className="post__item" key={id}>
                   <div className="post__item-image">
-                    <Link href={`/blog/${data._id}`}>
+                    <Link href={`/blog/${data.slug}`}>
                       <img src={data.imageUrl} alt={data.blogName} className='rounded'/>
                     </Link>
                   </div>
                   <div className="post__item-title">
                     <h6>
-                      <Link href={`/blog/${data._id}`}>{data.blogName}</Link>
+                      <Link href={`/blog/${data.slug}`}>{data.blogName}</Link>
                     </h6>
                     <span>
                       <i className="far fa-calendar-alt"></i>{formattedDate}

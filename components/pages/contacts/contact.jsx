@@ -18,9 +18,7 @@ const ContactUs = () => {
                   <span className="subtitle-one">Contact us</span>
                   <h2>Do you have any question?</h2>
                   <p>
-                    For your car we will do everything — advice, repairs and
-                    maintenance. We are the preferred choice by many car owners
-                    because...
+                   Got a tech challenge? We’re here to solve it. From expert advice to end-to-end solutions, you can count on us to keep your digital world running smoothly — feel free to reach out anytime!
                   </p>
                 </div>
                 <div className="contact__two-form">

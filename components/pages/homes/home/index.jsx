@@ -7,6 +7,9 @@ import Features from "./features";
 import WorkArea from "./work";
 import FooterOne from "@/components/layout/footers/footer-one";
 import Blog from "./blog";
+import ContactUs from "../../contacts/contact";
+import ContactPage from "@/app/contact/page";
+import MainContact from "../../contacts/MainContact";
 
 const HomeOne = () => {
     return (
@@ -18,6 +21,7 @@ const HomeOne = () => {
             <Features />
             <WorkArea />
             <Blog />
+            <MainContact/>
             <FooterOne />
             <ScrollToTop />
         </div>

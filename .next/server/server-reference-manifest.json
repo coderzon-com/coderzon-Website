@@ -2,47 +2,29 @@
   "node": {
     "9b57b19416ee7e1a29cee117cae807ecd1a3dd0b": {
       "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/[slug]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%5D&__client_imported__=true!"
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/page": "action-browser",
-        "app/blog/[id]/page": "action-browser",
-        "app/blog/page": "action-browser",
-        "app/blog/[slug]/page": "action-browser"
+        "app/page": "action-browser"
       }
     },
     "a2e723d6fb0a2a7b85d4e6588651e359c7abe391": {
       "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/[slug]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%5D&__client_imported__=true!"
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/page": "action-browser",
-        "app/blog/[id]/page": "action-browser",
-        "app/blog/page": "action-browser",
-        "app/blog/[slug]/page": "action-browser"
+        "app/page": "action-browser"
       }
     },
     "c6476274da6bf601456912346015704ce821c3de": {
       "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/[id]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!",
-        "app/blog/[slug]/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%5D&__client_imported__=true!"
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5C%40sanity%5C%5Cnext-loader%5C%5Cdist%5C%5Cserver-actions.js%22%2C%5B%22setPerspectiveCookie%22%2C%22revalidateSyncTags%22%5D%5D%2C%5B%22D%3A%5C%5CCoderZone%5C%5CComapny%20website%5C%5Cnode_modules%5C%5Cnext-sanity%5C%5Cdist%5C%5Cvisual-editing%5C%5Cserver-actions.js%22%2C%5B%22revalidateRootLayout%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/page": "action-browser",
-        "app/blog/[id]/page": "action-browser",
-        "app/blog/page": "action-browser",
-        "app/blog/[slug]/page": "action-browser"
+        "app/page": "action-browser"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "zLvZ7cBAIaMHHUEn4QwDQHCkiPxAOByCEkQnI/9Ogeg="
+  "encryptionKey": "1VoXwLbn7kEjbhdcs6nNkPxYA6TR2EO2YmIrgtLyEZg="
 }

@@ -30,9 +30,10 @@ const AboutMain = () => {
                     <div className="col-xl-6 col-lg-7 col-md-9">
                         <div className="about__one-content">
                             <span className="subtitle-one">About us</span>
-                            <h2>Transform Business to Technology</h2>
-                            <p>At Coderzon Technologies, IT isn’t just information technology — it’s innovation and transformation. We specialize in delivering cutting-edge software solutions, AI integration, cloud services, and intelligent automation tailored to diverse industries. Our expertise spans the full spectrum of digital transformation, helping businesses modernize, scale, and thrive in an increasingly tech-driven world.</p>
-                            <div className="about__one-content-service">
+                            <h2>Empower businesses through technology, innovation, and excellence</h2>
+                            <p>we specialize in delivering cutting-edge technology consulting services that drive innovation and business success. With a team of highly experienced software architects and engineers, we help organizations across the globe build scalable, secure, and future-ready digital solutions.
+From enterprise web and mobile app development to AI, data engineering, cloud computing, blockchain, and system integration, we bring deep technical expertise and industry insights to every project. Whether you're a startup looking to accelerate growth or an enterprise aiming to modernize your tech stack, Coderzon is your trusted technology partner.</p>
+                            {/* <div className="about__one-content-service">
                                 <div className="service">
                                     <i className="far fa-check-circle"></i>
                                     <span>Data Management Experts</span>
@@ -53,7 +54,7 @@ const AboutMain = () => {
                                     <i className="far fa-check-circle"></i>
                                     <span>Web App Developments</span>
                                 </div>
-                            </div>
+                            </div> */}
                             <Link href="/services" className="btn-one">Discover More<i className="fas fa-arrow-right"></i></Link>
                         </div>
                     </div>

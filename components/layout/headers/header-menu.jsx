@@ -15,6 +15,17 @@ const MainMenu = () => {
   <li><Link href="/services">Explore All Services</Link></li>
                     </ul>
                 </li> 
+     <li className="menu-item-has-children"><Link href="#">Products and Platforms<i className="fas fa-angle-down"></i></Link>
+                    <ul className=' sub-menu ' >
+  <li><Link href="/product-platforms/Microsoft-BI">Microsoft BI</Link></li>
+  <li><Link href="/product-platforms/Open-Source-BI">Open Source BI</Link></li>
+  <li><Link href="/product-platforms/Amazon-Web-Services">Amazon Web Services</Link></li>
+  <li><Link href="/product-platforms/Microsoft-Azure">Microsoft Azure</Link></li>
+  <li><Link href="/product-platforms/Google-Cloud">Google Cloud</Link></li>
+  <li><Link href="/product-platforms/shopify">Shopify</Link></li>
+  <li><Link href="/product-platforms/WordPress">WordPress</Link></li>
+                    </ul>
+                </li> 
                  <li ><Link href="https://codiin.com/" target='_blank' >Training</Link></li>
                 <li className="menu-item-has-children"><Link href="/blog">Blogs</Link></li>
                 <li><Link href="/about">About us</Link></li>

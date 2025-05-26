@@ -1,5 +1,7 @@
 import { createClient } from 'next-sanity';
 import servicesData from '../components/data/services-data'
+import data from '@/components/data/product_platform-data';
+
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -32,12 +34,18 @@ export default async function sitemap() {
  const services=servicesData.map(({id})=>({
     url:`${baseUrl}/services/${id}`
   }))
+
+  const products=data.map(({id})=>({
+    url:`${baseUrl}/product-platforms/${id}`
+  }))
+
  const static_pages=staticPages.map((page)=>({
      url:`${baseUrl}/${page}`
  })) 
   return [
     ...blogEntries,
     ...services,
-    ...static_pages
+    ...static_pages,
+    ...products
   ];
 }

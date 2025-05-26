@@ -30,6 +30,22 @@ const ResponsiveMenu = () => {
             onClick={() => active("services")}
           ></a>
         </li>
+        <li className="menu-item-has-children">
+          <Link href="#">Products and Platforms</Link>
+          <ul className="sub-menu" style={activeSubMenu("Product")}>
+    <li><Link href="/product-platforms/Microsoft-BI">Microsoft BI</Link></li>
+    <li><Link href="/product-platforms/Open-Source-BI">Open Source BI</Link></li>
+    <li><Link href="/product-platforms/Amazon-Web-Services">Amazon Web Services</Link></li>
+    <li><Link href="/product-platforms/Microsoft-Azure">Microsoft Azure</Link></li>
+    <li><Link href="/product-platforms/Google-Cloud">Google Cloud</Link></li>
+    <li><Link href="/product-platforms/shopify">Shopify</Link></li>
+    <li><Link href="/product-platforms/WordPress">WordPress</Link></li>
+          </ul>
+          <a
+            className={`mean-expand ${activeIcon("Product")}`}
+            onClick={() => active("Product")}
+          ></a>
+        </li>
            <li ><Link href="https://codiin.com/" target='_blank' >Training</Link></li>
         <li>
           <Link href="/blog">Blogs</Link>

@@ -12,10 +12,10 @@ export async function generateMetadata({ params }) {
   }
   return {
     title: service.title,
-    description: service.description || 'Service details page',
+    description: service.p1 || 'Service details page',
     openGraph: {
       title: service.title,
-      description: service.description || 'Service details page',
+      description: service.p1 || 'Service details page',
     },
   };
 }

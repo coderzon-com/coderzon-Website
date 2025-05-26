@@ -27,7 +27,7 @@ const MainContact = () => {
 
                 <div className="contact__two-single-info">
                   <div >
-                     <Image src='/assets/img/vijeesh_sir.jpg' width={150} height={150} className='rounded-full'/>
+                     <Image src='/assets/img/vijeesh_sir.jpg' width={150} height={150} />
                   </div>
                   <div className="contact__two-single-info-content">
                     <h4>Vijeesh Tp</h4>

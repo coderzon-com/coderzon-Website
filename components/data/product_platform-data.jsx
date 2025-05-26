@@ -509,136 +509,137 @@ const data = [
   },
 },
 {
-  id: "Google-Cloud",
-  title: "Google Cloud Development Company",
-  p1: "With 25+ years in software development and a partnership with Google Cloud, CoderZon ensures your applications run latest versions, data stays secure, incidents are managed efficiently, and systems operate smoothly 24/7.",
+  "id": "Google-Cloud",
+  "title": "Google Cloud Consulting Services",
+  "p1": "Unlock the full potential of Google Cloud with CoderZon. With over two decades of software development experience, we deliver robust Google Cloud solutions that ensure your applications are modern, secure, cost-effective, and always available. From strategy to execution, we support your cloud transformation end-to-end.",
 
-  h3: "We’ll guide and support you during your Google Cloud journey",
-  p2: "CoderZon cloud experts free your workforce to focus on core business tasks while controlling cloud costs. We develop agile, scalable cloud strategies optimized for your needs, managing updates, security, performance, and availability to keep you ahead.",
+  "h3": "Your journey to Google Cloud success, simplified",
+  "p2": "Strategize: We help you shape an adaptive, cost-efficient cloud plan aligned with your business priorities. Execute: Launch confidently with expert guidance on infrastructure setup, cloud-native development, and secure integration. Operate: Optimize performance, reduce risks, and scale seamlessly with 24/7 support and proactive management.",
 
-  h4_1: "Google Cloud Consulting Services",
-  p4: "Our certified cloud experts support you through every step of your Google Cloud transformation, helping you tackle cloud challenges in design, build, operation, and management. We offer expert consulting and advanced engineering services.",
-
-  list: [
-    "Expertise across a vast technology stack and best practices",
-    "Current state audits to optimize spending and boost flexibility",
-    "Testable, high-level cloud solutions",
+  "h4_1": "Google Cloud consulting and development",
+  "p4": "We design and build scalable, agile, and secure cloud architectures leveraging the latest Google Cloud services. Whether you're modernizing legacy systems or launching new cloud-native products, we ensure smooth transitions and optimized operations.",
+  "list": [
+    "25+ years of engineering experience across major cloud technologies",
+    "End-to-end Google Cloud consulting, migration, and development",
+    "Ongoing performance, security, and cost optimization",
+    "Custom-fit cloud strategies based on business goals",
+    "Comprehensive post-deployment support"
   ],
 
-  h4_2: "Cloud Services with CoderZon",
-  p5: "We provide comprehensive Google Cloud services: consulting, migration, cloud-to-cloud integration, optimization, native development, DevOps, and managed services.",
+  "h4_2": "Managed Google Cloud services",
+  "p5": "Our managed services reduce operational overhead while enhancing cloud performance, compliance, and security. We monitor, troubleshoot, and continuously improve your environment, freeing your team to focus on core business goals.",
 
-  p6: "Explore Google Cloud’s capabilities tailored to your business",
-  
-  Workflow: [
+  "p6": "Maintain stable, scalable, and secure cloud operations with expert-managed Google Cloud services.",
+
+  "Workflow": [
     {
-      title: "Cloud Strategy and Migration",
-      items: [
-        "Tailored cloud strategies matching your size and goals",
-        "Seamless database migration and synchronization minimizing downtime",
-        "Access to enterprise-grade, scalable Google Cloud technology",
-      ],
+      "title": "Cloud Strategy and Migration",
+      "items": [
+        "Custom cloud strategies aligned with your business model",
+        "Minimal-downtime data migration and syncing",
+        "Access to scalable, enterprise-grade Google Cloud infrastructure"
+      ]
     },
     {
-      title: "Operational Agility",
-      items: [
-        "Scale cloud resources on demand",
-        "Enhance data accessibility and protection",
-        "Rapid data recovery and leak prevention",
-      ],
+      "title": "Operational Agility",
+      "items": [
+        "On-demand resource scaling",
+        "Secure, fast data access",
+        "Business continuity with rapid disaster recovery"
+      ]
     },
     {
-      title: "Cloud Optimization",
-      items: [
-        "Holistic cloud deployment monitoring",
-        "Identify and remove performance bottlenecks",
-        "Rightsize resources to maximize ROI",
-      ],
+      "title": "Cloud Optimization",
+      "items": [
+        "Comprehensive performance and usage monitoring",
+        "Cost and resource optimization",
+        "Bottleneck identification and resolution"
+      ]
     },
     {
-      title: "Cloud-Native Development",
-      items: [
-        "Accelerate time to market with serverless, containers, and microservices",
-        "Leverage open source tech to avoid vendor lock-in",
-        "Real-time automated deployment policy checks",
-      ],
+      "title": "Cloud-Native Development",
+      "items": [
+        "Accelerated go-to-market with serverless and containers",
+        "Microservices architecture with open-source flexibility",
+        "Real-time deployment governance and policy checks"
+      ]
     },
     {
-      title: "Data Storage and Analytics",
-      items: [
-        "Modernize data warehouses or lakes without full rebuild",
-        "Build scalable, cloud-native data storage",
-        "Speed up actionable insights",
-      ],
+      "title": "Data Storage and Analytics",
+      "items": [
+        "Modernized data lakes and warehouses",
+        "Cloud-native, scalable storage architecture",
+        "Accelerated data insights and analytics"
+      ]
     },
     {
-      title: "AI and Machine Learning",
-      items: [
-        "Utilize Google Cloud’s ML models and custom tools",
-        "Improve decision-making with AI/ML solutions",
-        "Maximize compute efficiency with CoderZon expertise",
-      ],
-    },
+      "title": "AI and Machine Learning",
+      "items": [
+        "Pre-built and custom AI/ML solutions",
+        "Smarter business decisions with data intelligence",
+        "Optimized ML performance with scalable infrastructure"
+      ]
+    }
   ],
 
-  useCases: {
-    DigitalProductEngineering: [
-      "Robust and agile solutions for complex challenges",
-      "End-to-end software development lifecycle support",
+  "useCases": {
+    "DigitalProductEngineering": [
+      "Agile, full-cycle development for modern product needs",
+      "Complex architecture handled with reliability and speed"
     ],
-    SaaSDevelopment: [
-      "Scalable SaaS solutions built for flexibility",
-      "Cloud-native design and deployment",
+    "SaaSDevelopment": [
+      "Scalable and secure cloud-native SaaS solutions",
+      "Elastic infrastructure for rapid growth"
     ],
-    MVPDevelopment: [
-      "Fast prototyping and iteration",
-      "Cost-effective proof of concept builds",
-    ],
+    "MVPDevelopment": [
+      "Quick MVP builds to validate ideas",
+      "Cost-effective prototypes ready for market testing"
+    ]
   },
 
-  mobileAndEmbeddedBenefits: {
-    mobile: "Cross-platform mobile access to Google Cloud applications for on-the-go management and decision-making.",
-    embedded: "Seamless integration of cloud services into existing business systems for enhanced internal capabilities.",
+  "mobileAndEmbeddedBenefits": {
+    "mobile": "Cross-platform mobile access to manage and monitor Google Cloud environments on the go.",
+    "embedded": "Native integration of cloud services into enterprise systems for enhanced business workflows."
   },
 
-  predictiveAndAdvancedAnalytics: {
-    capabilities: [
-      "Data forecasting and AI-driven insights",
-      "Custom ML models integrated with business processes",
-      "Advanced analytics via Google Cloud AI tools",
+  "predictiveAndAdvancedAnalytics": {
+    "capabilities": [
+      "AI-powered forecasting and predictive modeling",
+      "Custom machine learning integrations",
+      "Advanced insights using Google Cloud’s data tools"
     ],
-    platforms: [
+    "platforms": [
       "Google Cloud AI Platform",
       "BigQuery ML",
-      "Vertex AI",
-    ],
+      "Vertex AI"
+    ]
   },
 
-  realTimeAnalytics: {
-    description: "Enable real-time data streaming and analytics with Google Cloud tools like Pub/Sub, Dataflow, and BigQuery to support instant insights and rapid response.",
-    components: [
-      "Google Pub/Sub for data ingestion",
-      "Google Dataflow for stream processing",
-      "BigQuery for analytics and visualization",
-    ],
+  "realTimeAnalytics": {
+    "description": "Get instant insights from live data using Google Cloud’s real-time analytics tools. Streamline decisions and responses with real-time dashboards and data processing.",
+    "components": [
+      "Pub/Sub for live data ingestion",
+      "Dataflow for stream processing",
+      "BigQuery for analytics and dashboards"
+    ]
   },
 
-  dataArchitecture: {
-    dataTypes: [
+  "dataArchitecture": {
+    "dataTypes": [
       "Structured: BigQuery, Cloud SQL",
       "Semi-Structured: Firestore, JSON",
       "Unstructured: Cloud Storage, Data Lakes",
-      "Streaming: Pub/Sub, IoT Core",
+      "Streaming: Pub/Sub, IoT Core"
     ],
-    flow: [
-      "Ingest: Cloud Pub/Sub, Dataflow",
+    "flow": [
+      "Ingest: Pub/Sub, Dataflow",
       "Store: Cloud Storage, BigQuery",
       "Process: Dataproc, Dataflow, AI Platform",
-      "Serve: Looker, Data Studio, custom dashboards",
-    ],
-  },
-},
-
+      "Serve: Looker, Data Studio, custom dashboards"
+    ]
+  }
+}
+,
 {
   "id": "shopify",
   "title": "Shopify Development Company",

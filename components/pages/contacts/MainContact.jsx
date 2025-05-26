@@ -18,15 +18,7 @@ const MainContact = () => {
                   </p>
                 </div>
                 <div className="contact__two-form">
-                  <FormArea />
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-6">
-              <div className="contact__two-contact-info">
-
-
-                <div className="contact__two-single-info">
+                   <div className="contact__two-single-info">
                   <div >
                      <Image src='/assets/img/vijeesh_sir.jpg' width={150} height={150} />
                   </div>
@@ -35,7 +27,14 @@ const MainContact = () => {
                     <span>Head of Sales & Account Executive</span>
                     <Link  href='https://www.linkedin.com/in/vijeesh-tp-91268015a/' target='_blank'><i className="fab fa-linkedin-in"></i></Link>
                   </div>
-                </div>                   
+                </div>
+              
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-6">
+              <div className="contact__two-contact-info">
+                          <FormArea />            
               </div>
             </div>
           </div>

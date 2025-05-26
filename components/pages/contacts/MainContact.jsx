@@ -1,6 +1,7 @@
 import React from 'react';
 import FormArea from './form';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const MainContact = () => {
   return (
@@ -32,6 +33,7 @@ const MainContact = () => {
                   <div className="contact__two-single-info-content">
                     <h4>Vijeesh Tp</h4>
                     <span>Head of Sales & Account Executive</span>
+                    <Link  href='https://www.linkedin.com/in/vijeesh-tp-91268015a/' target='_blank'><i className="fab fa-linkedin-in"></i></Link>
                   </div>
                 </div>                   
               </div>

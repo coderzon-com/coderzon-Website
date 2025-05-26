@@ -252,10 +252,10 @@ const data = [
 {
   "id": "Amazon-Web-Services",
   "title": "AWS Cloud Consulting Services: Strategy, Migration, Optimization",
-  "p1": "Whatever AWS cloud initiatives you are considering, we will guide you from ideation to a fully shaped vision. As an established AWS consulting company, we cover a full spectrum of AWS cloud consulting services on AWS cloud migration, development, and optimization. With our clients at the heart of all processes, our AWS consultants dive deep into your needs to devise a cloud computing strategy tailored to a tee.",
+  "p1": "Whatever AWS cloud initiatives you are considering, we will guide you from ideation to a fully shaped vision. As an experienced AWS cloud consulting provider, we cover a full spectrum of AWS cloud services for migration, development, and optimization. With our clients at the heart of all processes, our AWS consultants dive deep into your needs to devise a cloud computing strategy tailored to a tee.",
 
   "h3": "Expert-Led AWS Strategy, Migration, and Modernization",
-  "p2": "Moving to the cloud mandates solid cloud expertise paired with business analysis and security proficiency. As a certified partner of AWS, coderzon helps to make the most of your cloud strategy. Our AWS advanced cloud consulting provides a full suite of professional services that help you plan, audit, and optimize your AWS resources.",
+  "p2": "Moving to the cloud mandates solid cloud expertise paired with business analysis and security proficiency. Leveraging deep knowledge of AWS best practices, CoderZon helps you maximize your cloud strategy. Our advanced AWS cloud consulting provides a full suite of professional services that help you plan, audit, and optimize your AWS resources.",
 
   "h4_1": "Comprehensive AWS Cloud Services",
   "p3": "From creating resilient AWS cloud strategies to cost optimization and full-scale migration, our AWS consultants are equipped to streamline your cloud transformation journey. We handle everything from infrastructure assessment to compliance auditing and security best practices.",
@@ -270,7 +270,7 @@ const data = [
   ],
 
   "h4_2": "Secure, Scalable, and Efficient Cloud Transformation",
-  "p4": "With a decade of experience and certified AWS architects, coderzon crafts cloud environments that meet your unique business requirements. From risk-mitigated migrations to serverless architectures and scalable microservices, we ensure seamless adoption with high ROI and minimal downtime.",
+  "p4": "With a decade of experience and a team of seasoned AWS architects, CoderZon crafts cloud environments that meet your unique business requirements. From risk-mitigated migrations to serverless architectures and scalable microservices, we ensure seamless adoption with high ROI and minimal downtime.",
 
   "p5": "Our AWS Cloud Consulting Workflow",
 
@@ -359,7 +359,7 @@ const data = [
   },
 
   "realTimeAnalytics": {
-    "description": "Through tools like AWS CloudWatch and Amazon Kinesis, coderzon enables real-time monitoring and analytics for your AWS environment, ensuring proactive management and insights.",
+    "description": "Through tools like AWS CloudWatch and Amazon Kinesis, CoderZon enables real-time monitoring and analytics for your AWS environment, ensuring proactive management and insights.",
     "components": [
       "Amazon CloudWatch",
       "Amazon Kinesis Data Streams",
@@ -383,17 +383,17 @@ const data = [
   }
 },
 {
-  id: "Microsoft-Azure",
-  title: "Microsoft Azure Consulting Services",
-  p1: "Transform Azure capabilities into the business results you want. We are a team of Microsoft technology experts delivering a wide scope of Azure consulting services to help you get the best of your cloud investment and drive cloud agility. CoderZon guides global companies through Azure platform adoption, deployment, and customization.",
+  "id": "Microsoft-Azure",
+  "title": "Microsoft Azure Consulting Services",
+  "p1": "Transform Azure capabilities into the business results you want. We are a team of seasoned Microsoft technology professionals delivering a wide scope of Azure consulting services to help you get the best of your cloud investment and drive cloud agility. CoderZon guides global companies through Azure platform adoption, deployment, and customization.",
 
-  h3: "Three steps to Microsoft Azure cloud excellence",
-  p2: "Strategize: Our team enables you to create a holistic cloud strategy based on business needs, current capabilities, expected TCO, and ROI. Create a solution architecture tailored to your business requirements with optimal cloud tools and plans. Launch: We guide your first steps in the cloud by activating Azure accounts, configuring instances, setting security, and unifying infrastructure.",
+  "h3": "Three steps to Microsoft Azure cloud excellence",
+  "p2": "Strategize: Our team enables you to create a holistic cloud strategy based on business needs, current capabilities, expected TCO, and ROI. Create a solution architecture tailored to your business requirements with optimal cloud tools and plans. Launch: We guide your first steps in the cloud by activating Azure accounts, configuring instances, setting security, and unifying infrastructure.",
 
-  h4_1: "Azure-based development and migration",
-  p4: "CoderZon helps modernize legacy apps or build cloud-native solutions using the full Azure ecosystem including Management, Governance, Storage, Security, DevOps, Analytics, and PaaS/SaaS products. For migration, we define a clear strategy, migrate iteratively from on-premises, and provide post-migration support with continuous improvement plans.",
-  list: [
-    "Microsoft Certified Partner with 15+ years of Microsoft tech stack experience",
+  "h4_1": "Azure-based development and migration",
+  "p4": "CoderZon helps modernize legacy apps or build cloud-native solutions using the full Azure ecosystem including Management, Governance, Storage, Security, DevOps, Analytics, and PaaS/SaaS products. For migration, we define a clear strategy, migrate iteratively from on-premises, and provide post-migration support with continuous improvement plans.",
+  "list": [
+    "Over 15 years of experience with the Microsoft technology stack",
     "End-to-end cloud solutions from consulting to managed services",
     "Comprehensive Azure migration and development assistance",
     "Post-migration support and continuous improvement",
@@ -401,112 +401,112 @@ const data = [
     "Tailored cloud architecture planning for scalability and performance"
   ],
 
-  h4_2: "Microsoft Azure cloud managed services",
-  p5: "Our managed services save time and reduce operational costs by automating infrastructure management, deploying augmented teams, enhancing security, and ensuring compliance without full-time hiring commitments.",
+  "h4_2": "Microsoft Azure cloud managed services",
+  "p5": "Our managed services save time and reduce operational costs by automating infrastructure management, deploying augmented teams, enhancing security, and ensuring compliance without full-time hiring commitments.",
   
-  p6: "Azure Managed Services ensure stable, compliant, and efficient cloud operations.",
+  "p6": "Azure Managed Services ensure stable, compliant, and efficient cloud operations.",
 
-  Workflow: [
+  "Workflow": [
     {
-      title: "Infrastructure Management",
-      items: [
+      "title": "Infrastructure Management",
+      "items": [
         "Setup, configuration, and monitoring of cloud environments",
         "Provisioning resources to maintain service levels and application stability"
-      ],
+      ]
     },
     {
-      title: "Service Management",
-      items: [
+      "title": "Service Management",
+      "items": [
         "Managing deployments and hosted services",
         "Handling access control, troubleshooting, and monitoring"
-      ],
+      ]
     },
     {
-      title: "Risk and Compliance",
-      items: [
+      "title": "Risk and Compliance",
+      "items": [
         "Maintaining regulatory standards like HIPAA, GDPR, ISO 27001, PCI DSS",
         "Daily security monitoring, access control, vulnerability detection"
-      ],
+      ]
     },
     {
-      title: "Optimization and Cost Management",
-      items: [
+      "title": "Optimization and Cost Management",
+      "items": [
         "Auditing cloud resource consumption",
         "Creating actionable plans to reduce costs and optimize resource usage"
-      ],
+      ]
     },
     {
-      title: "Protection and Disaster Recovery",
-      items: [
+      "title": "Protection and Disaster Recovery",
+      "items": [
         "Deploying and maintaining enterprise backup solutions",
         "Ensuring 24/7 monitoring and business continuity"
-      ],
+      ]
     },
     {
-      title: "Automation",
-      items: [
+      "title": "Automation",
+      "items": [
         "Setting up automated environments for deployments and patch management",
         "Reducing manual errors and operational costs through full-throttle automation"
-      ],
-    },
+      ]
+    }
   ],
 
-  useCases: {
-    ERP: [
+  "useCases": {
+    "ERP": [
       "Consolidation of enterprise cloud data and applications",
       "Improved finance, operations, and supply chain cloud visibility"
     ],
-    CRM: [
+    "CRM": [
       "Cloud-based sales pipeline and campaign analytics",
       "Customer segmentation and engagement through Azure services"
     ],
-    HRMS: [
+    "HRMS": [
       "Cloud analytics for employee performance and retention",
       "Workforce metrics and hiring analysis leveraging Azure tools"
-    ],
+    ]
   },
 
-  mobileAndEmbeddedBenefits: {
-    mobile: "Enable cross-platform mobile access to Azure dashboards and cloud management tools for real-time decision-making on the go.",
-    embedded: "Integrate Azure cloud services and dashboards into existing business systems for seamless internal access without additional licensing.",
+  "mobileAndEmbeddedBenefits": {
+    "mobile": "Enable cross-platform mobile access to Azure dashboards and cloud management tools for real-time decision-making on the go.",
+    "embedded": "Integrate Azure cloud services and dashboards into existing business systems for seamless internal access without additional licensing."
   },
 
-  predictiveAndAdvancedAnalytics: {
-    capabilities: [
+  "predictiveAndAdvancedAnalytics": {
+    "capabilities": [
       "Advanced analytics leveraging Azure Analytics and AI services",
       "Integration with Azure Machine Learning and cognitive services",
       "Customizable analytics workflows with Azure Synapse and Power BI"
     ],
-    platforms: [
+    "platforms": [
       "Azure Synapse Analytics",
       "Azure Machine Learning Studio",
-      "Power BI with embedded analytics",
-    ],
+      "Power BI with embedded analytics"
+    ]
   },
 
-  realTimeAnalytics: {
-    description: "Azure supports streaming and real-time analytics through services like Azure Event Hubs, Stream Analytics, and Event Grid, enabling instant insights from data streams and user interactions.",
-    components: [
+  "realTimeAnalytics": {
+    "description": "Azure supports streaming and real-time analytics through services like Azure Event Hubs, Stream Analytics, and Event Grid, enabling instant insights from data streams and user interactions.",
+    "components": [
       "Azure Event Hubs for ingestion",
       "Azure Stream Analytics for real-time processing",
-      "Power BI and custom dashboards for visualization",
-    ],
+      "Power BI and custom dashboards for visualization"
+    ]
   },
 
-  dataArchitecture: {
-    dataTypes: [
+  "dataArchitecture": {
+    "dataTypes": [
       "Structured: Azure SQL Database, Azure Data Warehouse",
       "Semi-Structured: Azure Cosmos DB, JSON, XML",
       "Unstructured: Blob Storage, Data Lakes",
-      "Streaming: IoT Hub telemetry, Event Grid messages",
+      "Streaming: IoT Hub telemetry, Event Grid messages"
     ],
-    flow: [
+    "flow": [
       "Ingest: Azure Data Factory, Event Hubs",
       "Store: Azure Blob Storage, Azure SQL, Cosmos DB",
       "Process: Azure Databricks, Synapse Analytics, Azure Functions",
-      "Serve: Power BI, Azure Analysis Services, custom APIs",
-    ],
-  },
+      "Serve: Power BI, Azure Analysis Services, custom APIs"
+    ]
+  }
 },
 {
   "id": "Google-Cloud",

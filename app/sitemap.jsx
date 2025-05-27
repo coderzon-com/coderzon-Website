@@ -26,7 +26,7 @@ export default async function sitemap() {
     }
   `);
 
-  const baseUrl = 'https://coderzon-website-2463.vercel.app';
+  const baseUrl = 'https://www.coderzon.com';
 
   const blogEntries = blogs.map(({ slug }) => ({
     url: `${baseUrl}/blog/${slug}`,

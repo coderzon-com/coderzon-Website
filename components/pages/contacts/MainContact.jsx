@@ -24,7 +24,6 @@ const MainContact = () => {
                   </div>
                   <div className="contact__two-single-info-content">
                     <h4>Vijeesh TP</h4>
-                    <span>Head of Sales & Account Executive</span>
                     <Link  href='https://www.linkedin.com/in/vijeesh-tp-91268015a/' target='_blank'><i className="fab fa-linkedin-in"></i></Link>
                   </div>
                 </div>

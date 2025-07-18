@@ -1,4 +1,3 @@
-import banner1 from "../../../../public/assets/img/banner/banner-right-img.png";
 import bannerShape from "../../../../public/assets/img/shape/banner-shape.png";
 import RoboHand from "../../../../public/assets/img/banner/rb.png"
 import Link from "next/link";

@@ -1,5 +1,6 @@
 import banner1 from "../../../../public/assets/img/banner/banner-right-img.png";
 import bannerShape from "../../../../public/assets/img/shape/banner-shape.png";
+import RoboHand from "../../../../public/assets/img/banner/rb.png"
 import Link from "next/link";
 
 const BannerOne = () => {
@@ -33,7 +34,7 @@ const BannerOne = () => {
                                         <div className="shape shape-1"></div>
                                         <div className="shape shape-2"></div>
                                     </div>
-                                    <img src={banner1.src} alt="banner-image"/>
+                                    <img src={RoboHand.src} alt="banner-image"/>
                                 </div>
                             </div>
                         </div>

@@ -28,8 +28,15 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_FORM_ACCESS_KEY=your_web3forms_access_key
 ```
 
-The site still builds without these — the blog renders empty and the forms
-show a configuration message rather than crashing.
+The site builds without these — the blog renders empty, `/studio` shows a
+setup hint, and the forms report a configuration message instead of crashing.
+Everything else deploys normally.
+
+**When deploying (Vercel, Netlify, etc.) you must set these in the host's
+environment-variable settings.** `.env` is gitignored, so it never reaches the
+deploy. Without `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`
+the blog and sitemap will be empty; without `NEXT_PUBLIC_FORM_ACCESS_KEY` the
+contact, quote and newsletter forms cannot submit.
 
 ## Project structure
 

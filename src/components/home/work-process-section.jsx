@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 import { workProcessSection } from "@/data/home-content";
-import { Counter } from "@/components/ui/counter";
 
 /**
  * How we work.
@@ -19,8 +18,7 @@ import { Counter } from "@/components/ui/counter";
 export function WorkProcessSection() {
   const reduceMotion = useReducedMotion();
   const railRef = useRef(null);
-  const { eyebrow, title, description, steps, yearsExperience } =
-    workProcessSection;
+  const { eyebrow, title, description, steps } = workProcessSection;
 
   const { scrollYProgress } = useScroll({
     target: railRef,
@@ -108,20 +106,6 @@ export function WorkProcessSection() {
             >
               {description}
             </motion.p>
-
-            <motion.div
-              variants={rise}
-              className="mt-10 inline-flex items-baseline gap-3 border-t border-console-line pt-6"
-            >
-              <span className="text-4xl font-bold tabular-nums text-white">
-                <Counter to={yearsExperience} />
-              </span>
-              <span className="font-mono text-[10px] uppercase leading-tight tracking-label text-white/70">
-                Years of
-                <br />
-                delivery
-              </span>
-            </motion.div>
           </div>
 
           {/* The sequence */}

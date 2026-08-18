@@ -7,6 +7,9 @@ export const siteConfig = {
   legalName: "Coderzon Technologies Pvt Ltd",
   url: "https://www.coderzon.com",
   logo: "/images/logo.webp",
+  // Single source of truth for the experience claim. It was previously
+  // stated twice with two different numbers.
+  yearsExperience: 20,
   description:
     "At CODERZON, we provide top-tier technology consulting and recruitment services, helping businesses thrive with tailored digital solutions and access to the industry's best tech talent.",
   contact: {

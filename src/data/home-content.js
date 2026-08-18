@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { services } from "./services";
 import { platforms } from "./platforms";
 
@@ -34,7 +35,7 @@ export const aboutSection = {
     { label: "Based", value: "Kochi, India \u2014 working globally" },
   ],
   cta: { label: "Discover more", href: "/services" },
-  yearsExperience: 25,
+  yearsExperience: siteConfig.yearsExperience,
   image: "/images/about-primary.png",
   imageCaption: "Building for what comes next",
 };
@@ -123,7 +124,6 @@ export const workProcessSection = {
   title: "Sustainable and responsible computing",
   description:
     "Three stages, in order. Each one has to close before the next begins, so nothing is built on an assumption nobody checked.",
-  yearsExperience: 20,
   steps: [
     {
       number: "01",

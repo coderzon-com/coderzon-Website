@@ -27,7 +27,13 @@ export default function PlatformDetailPage({ params }) {
 
   return (
     <>
-      <PageHero title={platform.navLabel} breadcrumb={platform.shortTitle} />
+      <PageHero
+        eyebrow="Platform"
+        title={platform.navLabel}
+        breadcrumb={platform.navLabel}
+        description={platform.shortTitle}
+        trail={[{ label: "Platforms", href: "/platforms" }]}
+      />
       <PlatformDetail platform={platform} />
       <ContactCta />
     </>

@@ -14,7 +14,12 @@ export const metadata = buildMetadata({
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="About Us" breadcrumb="Company About" />
+      <PageHero
+        eyebrow="About Coderzon"
+        title="A technology partner, not a staffing supplier"
+        breadcrumb="About"
+        description="Software architects and senior engineers building systems that outlast the engagement."
+      />
       <AboutSection />
       <WorkProcessSection />
       <ContactCta />

@@ -28,9 +28,20 @@ module.exports = {
           surface: "#F4F7FB", // light section background
         },
         body: "#343434", // default body copy
+        // Navigation "console" surface — deeper than navy so the bar reads as
+        // instrument chrome sitting above the page rather than part of it.
+        console: {
+          DEFAULT: "#03102A",
+          raised: "#071A3A",
+          line: "rgba(255,255,255,0.08)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
+      },
+      letterSpacing: {
+        label: "0.14em",
       },
       boxShadow: {
         card: "0px 25px 70px rgba(0, 0, 0, 0.08)",

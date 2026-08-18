@@ -2,7 +2,8 @@
 
 Marketing website for **Coderzon Technologies Pvt Ltd**, built with
 [Next.js 14](https://nextjs.org) (App Router), [Tailwind CSS](https://tailwindcss.com)
-and [Sanity](https://sanity.io) as the blog CMS.
+and [Motion](https://motion.dev) for animation. All content lives in plain JS
+data files — there is no CMS.
 
 ## Getting started
 
@@ -23,70 +24,58 @@ npm run dev          # http://localhost:3000
 Create a `.env` file in the project root:
 
 ```bash
-NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
-NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_FORM_ACCESS_KEY=your_web3forms_access_key
 ```
 
-The site builds without these — the blog renders empty, `/studio` shows a
-setup hint, and the forms report a configuration message instead of crashing.
-Everything else deploys normally.
+This is the only variable the site needs. Without it the contact, quote and
+newsletter forms report a configuration message instead of submitting;
+everything else builds and runs normally.
 
-**When deploying (Vercel, Netlify, etc.) you must set these in the host's
-environment-variable settings.** `.env` is gitignored, so it never reaches the
-deploy. Without `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`
-the blog and sitemap will be empty; without `NEXT_PUBLIC_FORM_ACCESS_KEY` the
-contact, quote and newsletter forms cannot submit.
+**When deploying (Vercel, Netlify, etc.) set this in the host's own
+environment-variable settings** — `.env` is gitignored and never reaches the
+deploy.
 
 ## Project structure
 
 ```
 src/
 ├── app/                        # Routes (App Router)
-│   ├── layout.jsx              # Document shell + font only
-│   ├── globals.css             # Tailwind directives + blog prose styles
+│   ├── layout.jsx              # Document shell + fonts
+│   ├── globals.css             # Tailwind directives
 │   ├── not-found.jsx           # Global 404
 │   ├── robots.js               # Generates /robots.txt
 │   ├── sitemap.js              # Generates /sitemap.xml
-│   │
-│   ├── (site)/                 # Public pages — share header + footer
-│   │   ├── layout.jsx          # Header, footer, scroll-to-top
-│   │   ├── page.jsx            # Homepage
-│   │   ├── about/
-│   │   ├── services/           # + [slug] detail pages
-│   │   ├── platforms/          # + [slug] detail pages
-│   │   ├── blog/               # + [slug] post pages
-│   │   ├── contact/
-│   │   ├── faq/
-│   │   └── request-quote/
-│   │
-│   └── studio/[[...tool]]/     # Sanity Studio at /studio (no site chrome)
+│   └── (site)/                 # Public pages — share header + footer
+│       ├── layout.jsx          # Header, footer, scroll-to-top
+│       ├── page.jsx            # Homepage
+│       ├── about/
+│       ├── services/           # + [slug] detail pages
+│       ├── platforms/          # + [slug] detail pages
+│       ├── contact/
+│       ├── faq/
+│       └── request-quote/
 │
 ├── components/
-│   ├── ui/                     # Reusable primitives (Button, Section, Icon…)
-│   ├── layout/                 # Header, navigation, footer, newsletter
+│   ├── ui/                     # Reusable primitives (Button, Icon, …)
+│   ├── layout/                 # Header, console nav, mega panel, footer
 │   ├── home/                   # One file per homepage section
 │   ├── services/               # Service card + detail blocks
 │   ├── platforms/              # Platform detail page
-│   ├── blog/                   # Cards, sidebar, search, pagination
-│   └── contact/                # Contact form, quote form, contact CTA
+│   └── contact/                # Contact form, quote form, closing CTA
 │
 ├── config/
 │   ├── site.js                 # Company details + shared SEO metadata
-│   └── navigation.js           # Header/footer menus, social links
+│   └── navigation.js           # Menus, capability groups, social links
 │
-├── data/                       # Page content as plain JS
+├── data/                       # All page content as plain JS
 │   ├── services.js             # 14 services
 │   ├── platforms.js            # 7 products & platforms
 │   ├── faqs.js
 │   └── home-content.js
 │
-├── lib/
-│   ├── sanity/                 # Sanity client + all GROQ queries
-│   ├── use-contact-form.js     # Shared form submission hook
-│   └── utils.js                # cn(), formatDate(), excerpt helpers
-│
-└── sanity/                     # Studio schema, structure, env
+└── lib/
+    ├── use-contact-form.js     # Shared form submission hook
+    └── utils.js                # cn() class merge helper
 ```
 
 ### Where to change things
@@ -99,8 +88,8 @@ src/
 | Add a product/platform              | `src/data/platforms.js`                     |
 | Edit homepage copy                  | `src/data/home-content.js`                  |
 | Add an FAQ                          | `src/data/faqs.js`                          |
+| Regroup the nav mega-menu           | `src/config/navigation.js`                  |
 | Change brand colours or fonts       | `tailwind.config.js`                        |
-| Write a blog post                   | Sanity Studio at `/studio`                  |
 
 Adding an entry to `services.js` or `platforms.js` is all that's needed —
 the detail page, the nav dropdown, and the sitemap entry are generated
@@ -121,9 +110,16 @@ All styling is Tailwind utility classes. The theme lives in
 | `muted`        | `#737373` | Secondary text                  |
 | `muted-surface`| `#F4F7FB` | Light section backgrounds       |
 
-Icons come from [lucide-react](https://lucide.dev). Brand logos
-(LinkedIn, Facebook, …) are inline SVG in
-`src/components/ui/social-icon.jsx`, because lucide removed brand icons in v1.
+Two typefaces: **Space Grotesk** for display and body, **JetBrains Mono** for
+small uppercase labels and counts — the monospace register is what gives the
+navigation and section headers their instrument feel.
+
+Icons come from [lucide-react](https://lucide.dev). Brand logos (LinkedIn,
+Facebook, …) are inline SVG in `src/components/ui/social-icon.jsx`, because
+lucide removed brand icons in v1.
+
+Animation uses [Motion](https://motion.dev). Every animated component honours
+`prefers-reduced-motion`.
 
 ## Forms
 
@@ -132,10 +128,3 @@ The contact, quote and newsletter forms all post to
 `useContactForm` hook in `src/lib/use-contact-form.js`. Submissions are
 emailed to the address registered against `NEXT_PUBLIC_FORM_ACCESS_KEY`;
 there is no database.
-
-## Blog
-
-Posts are authored in Sanity Studio at `/studio` and read through
-`src/lib/sanity/queries.js`. Posts are addressed by **slug**, never by
-document ID. Existing posts are pre-rendered at build time; new ones are
-rendered on first request.

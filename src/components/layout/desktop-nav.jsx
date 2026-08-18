@@ -1,135 +1,119 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { motion } from "motion/react";
+import { Plus } from "lucide-react";
 
 /**
- * Horizontal navigation for large screens.
+ * Console navigation.
  *
- * Dropdowns are state-driven rather than CSS-only. A CSS `:focus-within`
- * dropdown stays stuck open after a click, because the trigger keeps focus
- * and nothing listens for a second click. Here the open menu is tracked in
- * state and closed on: a second click, mouse leave, outside click, Escape,
- * and route change.
+ * Labels are set in the monospace utility face, uppercase and widely
+ * tracked — the register of an instrument, not a marketing bar. A single
+ * cursor block snaps between items with a stiff spring, so the movement
+ * reads mechanical rather than the soft glide every SaaS nav uses.
+ *
+ * The current page is marked with a small ring in the brand's accent
+ * yellow, echoing the power mark in the logo.
  */
-export function DesktopNav({ items }) {
+export function DesktopNav({
+  items,
+  openMenu,
+  onOpen,
+  onHoverLeave,
+  onToggle,
+}) {
   const pathname = usePathname();
-  const [openLabel, setOpenLabel] = useState(null);
-  const navRef = useRef(null);
+  const [hovered, setHovered] = useState(null);
 
-  // Close whenever the user navigates to a new page.
-  useEffect(() => {
-    setOpenLabel(null);
-  }, [pathname]);
+  const isCurrent = (href) =>
+    Boolean(href) &&
+    (href === pathname || (href !== "/" && pathname.startsWith(`${href}/`)));
 
-  // Close on outside click or Escape while a menu is open.
-  useEffect(() => {
-    if (!openLabel) return;
-
-    const onPointerDown = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setOpenLabel(null);
-      }
-    };
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") setOpenLabel(null);
-    };
-
-    document.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [openLabel]);
+  const currentLabel =
+    items.find((item) => isCurrent(item.href))?.label ?? null;
+  const cursorOn = hovered ?? openMenu ?? currentLabel;
 
   return (
-    <nav ref={navRef} aria-label="Main navigation" className="hidden xl:block">
-      <ul className="flex items-center gap-7">
+    <nav
+      aria-label="Main"
+      onMouseLeave={() => setHovered(null)}
+      className="hidden xl:block"
+    >
+      <ul className="flex items-center gap-1">
         {items.map((item) => {
-          if (!item.children) {
-            const isCurrent =
-              pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+          const onPage = isCurrent(item.href);
+          const menuOpen = Boolean(item.menu) && openMenu === item.label;
+          const lit = cursorOn === item.label;
 
-            return (
-              <li key={item.label}>
-                <Link
-                  href={item.href}
-                  {...(item.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  aria-current={isCurrent ? "page" : undefined}
-                  className={`text-sm font-medium transition-colors hover:text-brand ${
-                    isCurrent ? "text-brand" : "text-navy"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            );
-          }
-
-          const isOpen = openLabel === item.label;
-          const hasCurrentChild = item.children.some(
-            (child) => child.href === pathname,
-          );
+          const shared =
+            "relative flex items-center gap-2 rounded-md px-3 py-2 font-mono text-xs font-medium uppercase tracking-label transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-light";
+          const tone = lit || menuOpen ? "text-white" : "text-white/80";
 
           return (
             <li
               key={item.label}
               className="relative"
-              onMouseEnter={() => setOpenLabel(item.label)}
-              onMouseLeave={() => setOpenLabel(null)}
+              onMouseEnter={() => {
+                setHovered(item.label);
+                if (item.menu) onOpen(item.label);
+              }}
+              onMouseLeave={item.menu ? onHoverLeave : undefined}
             >
-              <button
-                type="button"
-                onClick={() => setOpenLabel(isOpen ? null : item.label)}
-                aria-expanded={isOpen}
-                aria-haspopup="true"
-                className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand ${
-                  isOpen || hasCurrentChild ? "text-brand" : "text-navy"
-                }`}
-              >
-                {item.label}
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
+              {lit && (
+                <motion.span
+                  layoutId="nav-cursor"
+                  aria-hidden="true"
+                  transition={{ type: "spring", stiffness: 700, damping: 32 }}
+                  className="absolute inset-0 rounded-md bg-white/[0.09]"
                 />
-              </button>
+              )}
 
-              <ul
-                className={`absolute left-0 top-full z-50 w-72 rounded-xl border border-gray-100 bg-white p-2 shadow-card transition-all duration-200 ${
-                  isOpen
-                    ? "visible translate-y-0 opacity-100"
-                    : "invisible -translate-y-1 opacity-0"
-                }`}
-              >
-                {item.children.map((child) => (
-                  <li key={child.href}>
-                    <Link
-                      href={child.href}
-                      tabIndex={isOpen ? undefined : -1}
-                      onClick={() => setOpenLabel(null)}
-                      aria-current={
-                        pathname === child.href ? "page" : undefined
-                      }
-                      className={`block rounded-lg px-4 py-2.5 text-sm transition-colors hover:bg-muted-surface hover:text-brand ${
-                        pathname === child.href ? "text-brand" : "text-body"
-                      }`}
-                    >
-                      {child.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {item.menu ? (
+                <button
+                  type="button"
+                  onClick={() => onToggle(item.label)}
+                  aria-expanded={menuOpen}
+                  aria-haspopup="true"
+                  className={`${shared} ${tone}`}
+                >
+                  {onPage && <ActiveRing />}
+                  {item.label}
+                  {/* A plus that becomes a minus: the console expands. */}
+                  <Plus
+                    className={`h-3 w-3 transition-transform duration-300 ${
+                      menuOpen ? "rotate-45" : ""
+                    } ${lit || menuOpen ? "text-brand-light" : "text-white/55"}`}
+                  />
+                </button>
+              ) : (
+                <Link
+                  href={item.href}
+                  {...(item.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  aria-current={onPage ? "page" : undefined}
+                  className={`${shared} ${tone}`}
+                >
+                  {onPage && <ActiveRing />}
+                  {item.label}
+                </Link>
+              )}
             </li>
           );
         })}
       </ul>
     </nav>
+  );
+}
+
+/** "You are here" marker — a ring, after the power symbol in the logo. */
+function ActiveRing() {
+  return (
+    <span
+      aria-hidden="true"
+      className="relative block h-[7px] w-[7px] shrink-0 rounded-full border-[1.5px] border-accent"
+    />
   );
 }

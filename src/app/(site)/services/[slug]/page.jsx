@@ -27,7 +27,12 @@ export default function ServiceDetailPage({ params }) {
 
   return (
     <>
-      <PageHero title={service.shortTitle} breadcrumb={service.title} />
+      <PageHero
+        eyebrow="Service"
+        title={service.shortTitle}
+        breadcrumb={service.shortTitle}
+        trail={[{ label: "Services", href: "/services" }]}
+      />
       <ServiceDetail service={service} />
       <ContactCta />
     </>

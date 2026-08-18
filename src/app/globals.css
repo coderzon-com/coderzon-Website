@@ -23,33 +23,3 @@
   }
 }
 
-@layer components {
-  /* Rich text coming from Sanity, where we do not control the markup. */
-  .prose-blog :where(p) {
-    @apply mb-5 leading-relaxed text-body;
-  }
-
-  .prose-blog :where(h2) {
-    @apply mb-4 mt-10 text-2xl;
-  }
-
-  .prose-blog :where(h3) {
-    @apply mb-3 mt-8 text-xl;
-  }
-
-  .prose-blog :where(ul) {
-    @apply mb-5 list-disc space-y-2 pl-6;
-  }
-
-  .prose-blog :where(ol) {
-    @apply mb-5 list-decimal space-y-2 pl-6;
-  }
-
-  .prose-blog :where(a) {
-    @apply text-brand underline underline-offset-4;
-  }
-
-  .prose-blog :where(blockquote) {
-    @apply my-6 border-l-4 border-brand bg-muted-surface p-5 italic;
-  }
-}

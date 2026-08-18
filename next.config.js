@@ -1,15 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        // Blog images served from Sanity's CDN.
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-        pathname: "/images/**",
-      },
-    ],
-  },
+  // Defaults to .next. Override it (NEXT_DIST_DIR=.next-verify next build) to
+  // run a production build without disturbing a dev server using .next.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
 
   async redirects() {
     return [

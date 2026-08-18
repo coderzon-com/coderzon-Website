@@ -1,18 +1,16 @@
 import { siteConfig } from "@/config/site";
 import { services } from "@/data/services";
 import { platforms } from "@/data/platforms";
-import { getAllPosts } from "@/lib/sanity/queries";
 
 /**
  * Next.js serves this at /sitemap.xml automatically — no hand-written XML.
  */
-export default async function sitemap() {
+export default function sitemap() {
   const staticRoutes = [
     "",
     "/about",
     "/services",
     "/platforms",
-    "/blog",
     "/faq",
     "/contact",
     "/request-quote",
@@ -37,13 +35,5 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  const posts = await getAllPosts();
-  const postRoutes = posts.map((post) => ({
-    url: `${siteConfig.url}/blog/${post.slug}`,
-    lastModified: new Date(post._createdAt),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
-
-  return [...staticRoutes, ...serviceRoutes, ...platformRoutes, ...postRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...platformRoutes];
 }

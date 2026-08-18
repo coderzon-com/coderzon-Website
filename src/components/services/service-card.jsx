@@ -1,35 +1,38 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Icon } from "@/components/ui/icon";
 
-/** Grid tile linking to a single service. */
+/**
+ * Catalogue tile for one service.
+ *
+ * The whole tile is the link, with the slug printed in monospace beneath the
+ * name — for a technical buyer the URL is part of the identity, and it makes
+ * the catalogue feel like a real index rather than marketing tiles.
+ */
 export function ServiceCard({ service }) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-5 shadow-card transition-shadow hover:shadow-card-hover sm:p-7">
-      <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-brand-50 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
-        <Icon name={service.icon} className="h-7 w-7" />
+    <Link
+      href={`/services/${service.slug}`}
+      className="group relative flex h-full flex-col rounded-lg bg-white p-6 ring-1 ring-navy/10 transition-all duration-200 hover:-translate-y-0.5 hover:ring-brand/40 hover:shadow-[0_24px_48px_-32px_rgba(5,22,52,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-muted-surface text-brand ring-1 ring-navy/10 transition-colors duration-200 group-hover:bg-brand group-hover:text-white group-hover:ring-brand">
+          <Icon name={service.icon} className="h-5 w-5" />
+        </span>
+        <ArrowUpRight className="h-4 w-4 shrink-0 text-muted transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
       </div>
 
-      <h3 className="text-lg leading-snug">
-        <Link
-          href={`/services/${service.slug}`}
-          className="transition-colors hover:text-brand"
-        >
-          {service.shortTitle}
-        </Link>
+      <h3 className="mt-5 text-[17px] font-semibold leading-snug text-navy transition-colors duration-200 group-hover:text-brand">
+        {service.shortTitle}
       </h3>
 
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
         {service.overview.heading}
       </p>
 
-      <Link
-        href={`/services/${service.slug}`}
-        className="mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-brand transition-colors hover:text-brand-dark"
-      >
-        Read More
-        <ArrowRight className="h-4 w-4" />
-      </Link>
-    </article>
+      <span className="mt-5 block truncate font-mono text-[10px] text-muted/70">
+        /services/{service.slug}
+      </span>
+    </Link>
   );
 }

@@ -3,7 +3,6 @@ import { AboutSection } from "@/components/home/about-section";
 import { WhyChooseUsSection } from "@/components/home/why-choose-us-section";
 import { FeaturesSection } from "@/components/home/features-section";
 import { WorkProcessSection } from "@/components/home/work-process-section";
-import { LatestPostsSection } from "@/components/home/latest-posts-section";
 import { ContactCta } from "@/components/contact/contact-cta";
 
 export default function HomePage() {
@@ -14,7 +13,6 @@ export default function HomePage() {
       <WhyChooseUsSection />
       <FeaturesSection />
       <WorkProcessSection />
-      <LatestPostsSection />
       <ContactCta />
     </>
   );

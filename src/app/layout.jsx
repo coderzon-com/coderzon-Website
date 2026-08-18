@@ -1,11 +1,21 @@
-import { Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { siteConfig, buildMetadata } from "@/config/site";
 import "./globals.css";
 
+// Display and body face — the brand's geometric, technical character.
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+// Utility face, used only for small uppercase labels and counts. The
+// monospace register belongs to an engineering consultancy's own world.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -18,14 +28,17 @@ export const metadata = {
 };
 
 /**
- * Root layout — only the document shell and the font.
+ * Root layout — the document shell and the fonts.
  *
- * The marketing header and footer live in (site)/layout.jsx so that
- * /studio can render Sanity Studio full-screen without them.
+ * The header and footer live in (site)/layout.jsx, which keeps this file free
+ * to host any route that should render without the marketing chrome.
  */
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={spaceGrotesk.variable}>
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

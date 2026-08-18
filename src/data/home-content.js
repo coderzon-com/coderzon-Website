@@ -1,120 +1,159 @@
+import { services } from "./services";
+import { platforms } from "./platforms";
+
 /**
  * Copy for the homepage sections. Kept out of the components so marketing
  * text can be edited without touching JSX.
  */
 
 export const hero = {
-  titleStart: "Transforming Business with",
+  // Mono spec line — real discipline and location, not a tagline.
+  spec: ["Technology consulting", "Kochi, India"],
+  titleStart: "Transforming business with",
   titleHighlight: "Innovation",
   description:
-    "At CODERZON, we provide top-tier technology consulting and recruitment services, helping businesses thrive with tailored digital solutions and access to the industry's best tech talent.",
-  cta: { label: "Find Solutions", href: "/services" },
-  image: "/images/hero-robot-hand.png",
+    "We build the data platforms, cloud systems and AI that businesses run on \u2014 from first architecture to the team that keeps it running.",
+  primaryCta: { label: "Find solutions", href: "/services" },
+  secondaryCta: { label: "Talk to an expert", href: "/contact" },
+  image: "/images/hero-ai.webp",
 };
 
 export const aboutSection = {
-  eyebrow: "About us",
-  title: "Empower businesses through technology, innovation, and excellence",
-  body: "We specialize in delivering cutting-edge technology consulting services that drive innovation and business success. With a team of highly experienced software architects and engineers, we help organizations across the globe build scalable, secure, and future-ready digital solutions. From enterprise web and mobile app development to AI, data engineering, cloud computing, blockchain, and system integration, we bring deep technical expertise and industry insights to every project. Whether you're a startup looking to accelerate growth or an enterprise aiming to modernize your tech stack, Coderzon is your trusted technology partner.",
-  cta: { label: "Discover More", href: "/services" },
+  eyebrow: "About Coderzon",
+  title: "A technology partner, not a staffing supplier",
+  lead: "We deliver consulting that drives innovation and business success. Our software architects and engineers help organisations build digital systems that are scalable, secure and ready for what comes next.",
+  body: "From enterprise web and mobile to AI, data engineering, cloud and system integration, we bring deep technical expertise to every engagement \u2014 whether you are a startup racing to product-market fit or a larger company upgrading systems it already runs.",
+  // Drawn from the description above; every row is a fact we can stand behind.
+  spec: [
+    { label: "Disciplines", value: "Data engineering, cloud, AI and product" },
+    {
+      label: "Engagements",
+      value: "New products, and upgrades to systems you already run",
+    },
+    { label: "Team", value: "Software architects and senior engineers" },
+    { label: "Based", value: "Kochi, India \u2014 working globally" },
+  ],
+  cta: { label: "Discover more", href: "/services" },
   yearsExperience: 25,
-  images: {
-    primary: "/images/about-primary.png",
-    secondary: "/images/about-secondary.png",
-  },
+  image: "/images/about-primary.png",
+  imageCaption: "Building for what comes next",
 };
 
 export const featureSection = {
-  eyebrow: "Core Features",
-  title: "Innovative IT Strategies and Solutions",
-  image: "/images/services-overview.png",
+  eyebrow: "Core capability",
+  title: "Innovative IT strategies and solutions",
+  description:
+    "Four disciplines carry most of what we are asked for. Each one links through to how we actually run the work.",
+  // Each row points at the service it belongs to — previously these were
+  // headings with nowhere to go.
   features: [
     {
       icon: "Globe",
-      title: "Cloud Solutions Management",
+      title: "Cloud solutions management",
       description:
-        "Seamless deployment, scaling, and monitoring of cloud infrastructure to ensure business continuity and agility.",
+        "Deployment, scaling and monitoring of cloud infrastructure that keeps the business running and able to move.",
+      href: "/services/cloud-computing",
     },
     {
       icon: "ChartColumnBig",
-      title: "Analytics & Business Intelligence",
+      title: "Analytics and business intelligence",
       description:
-        "Transform data into actionable insights with advanced analytics, dashboards, and data-driven decision-making tools.",
+        "Turning data into decisions with advanced analytics, dashboards and reporting people actually use.",
+      href: "/services/data-analytics-consulting-services",
     },
     {
       icon: "CodeXml",
-      title: "Custom Software Development",
+      title: "Custom software development",
       description:
-        "Designing scalable, secure, and tailored software solutions that drive innovation and business efficiency.",
+        "Scalable, secure systems designed around your operation rather than bent to fit a product licence.",
+      href: "/services/web-development-services",
     },
     {
       icon: "Bot",
-      title: "Machine Learning Implementation",
+      title: "Machine learning implementation",
       description:
-        "Deploy intelligent systems that automate processes, enhance accuracy, and unlock predictive capabilities.",
+        "Intelligent systems that automate process, improve accuracy and put prediction within reach.",
+      href: "/services/machine-learning-app-development-services",
     },
   ],
 };
 
 export const whyChooseUsSection = {
   eyebrow: "Why Choose Us",
-  title: "Tailored IT Strategies for Your Business",
+  title: "One team, from architecture to uptime",
   description:
-    "Craft personalized action plans harnessing the latest IT innovations to support your business objectives, driving growth and advantage.",
+    "We plan the system, build it, and stay on to run it. The people who designed your platform are the people who answer when it needs attention.",
   image: "/images/why-choose-us.png",
+  imageCaption: "Senior engineers, in-house",
+  // Each tag is a fact drawn from the service and platform catalogues.
   reasons: [
     {
       icon: "Wrench",
-      title: "Innovative Tech Leader",
+      tag: "Architecture-led",
+      title: "Innovative tech leadership",
       description:
-        "Harnessing ingenuity and foresight, we consistently pioneer advanced solutions that set the industry standard.",
+        "Harnessing ingenuity and foresight, we pioneer advanced solutions that set the standard rather than follow it.",
     },
     {
       icon: "LifeBuoy",
-      title: "Reliable Global Support",
+      tag: "Around the clock",
+      title: "Reliable global support",
       description:
-        "Day or night, our global support team stands ready, providing reliable assistance and technical expertise.",
+        "Day or night, our support team stands ready with reliable assistance and deep technical expertise.",
+    },
+    {
+      icon: "CloudCog",
+      tag: `${platforms.length} platforms`,
+      title: "Vendor-neutral by design",
+      description:
+        "Microsoft, AWS, Google Cloud and open-source stacks. We recommend what fits the problem, not a licence quota.",
+    },
+    {
+      icon: "CodeXml",
+      tag: `${services.length} services`,
+      title: "Owned end to end",
+      description:
+        "Discovery, delivery, modernisation and long-term maintenance sit under one roof and one accountable team.",
     },
   ],
 };
 
 export const workProcessSection = {
-  eyebrow: "Work Process",
-  title: "Sustainable and Responsible Computing",
+  eyebrow: "How we work",
+  title: "Sustainable and responsible computing",
+  description:
+    "Three stages, in order. Each one has to close before the next begins, so nothing is built on an assumption nobody checked.",
   yearsExperience: 20,
-  images: {
-    primary: "/images/work-process-1.png",
-    secondary: "/images/work-process-2.png",
-  },
   steps: [
     {
       number: "01",
-      title: "Assess Requirements Precisely",
+      title: "Assess requirements precisely",
       description:
-        "Begin by comprehensively understanding your business needs to ensure a perfect fit for tech solutions.",
+        "We start by understanding the business need in full, so the solution fits the problem rather than the other way round.",
     },
     {
       number: "02",
-      title: "Develop Custom Solutions",
+      title: "Develop custom solutions",
       description:
-        "Engage in crafting tailor-made software designed meticulously to align with your specific targets.",
+        "Software designed against your specific targets, built by the architects who scoped it.",
     },
     {
       number: "03",
-      title: "Implement and Support",
+      title: "Implement and support",
       description:
-        "Seamlessly integrate the new systems into your framework with ongoing support for continual optimization.",
+        "New systems integrated into your framework, with ongoing support and continual optimisation.",
     },
   ],
 };
 
 export const contactSection = {
-  eyebrow: "Contact us",
-  title: "Do you have any question?",
+  eyebrow: "Start a conversation",
+  title: "Tell us what you are trying to build",
   description:
-    "Got a tech challenge? We're here to solve it. From expert advice to end-to-end solutions, you can count on us to keep your digital world running smoothly — feel free to reach out anytime!",
+    "Send the problem rather than a spec. We will tell you what it takes, who would work on it, and whether we are the right people for it.",
   person: {
     name: "Vijeesh TP",
+    role: "Founder",
     photo: "/images/vijeesh-tp.jpg",
     linkedIn: "https://www.linkedin.com/in/vijeesh-tp-91268015a/",
   },

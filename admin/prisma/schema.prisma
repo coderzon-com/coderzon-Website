@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  country   String
+  message   String
+  subject   String?
+  company   String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([email])
+  @@map("messages")
+}
+
+model Quote {
+  id        String   @id @default(uuid())
+  firstName String   @map("first_name")
+  lastName  String   @map("last_name")
+  email     String
+  phone     String
+  company   String
+  country   String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([email])
+  @@map("quotes")
+}

@@ -1,0 +1,42 @@
+// Prisma 7's generator. `output` must match the import in src/lib/prisma.js.
+generator client {
+  provider = "prisma-client"
+  output   = "../src/lib/generated/prisma"
+}
+
+// Prisma 7 no longer accepts `url` here. The connection string for Migrate
+// lives in prisma.config.ts; the runtime client gets a driver adapter.
+datasource db {
+  provider = "postgresql"
+}
+
+
+
+model Message {
+  id String @id @default(uuid())
+  name    String
+  email   String
+  country String
+  message String 
+  subject String?
+  company String?
+  createdAt DateTime @default(now())
+  @@index([createdAt(sort: Desc)])
+  @@index([email])
+  @@map("messages")
+}
+
+model Quote {
+  id String @id @default(uuid())
+  firstName String @map("first_name")
+  lastName  String @map("last_name")
+  email     String
+  phone     String
+  company   String
+  country   String
+  message   String 
+  createdAt DateTime @default(now())
+  @@index([createdAt(sort: Desc)])
+  @@index([email])
+  @@map("quotes")
+}

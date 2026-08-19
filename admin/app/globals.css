@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/*
+ * Tailwind v4 is configured here rather than in a JS file. These tokens are
+ * the same palette the public site uses, so the admin reads as part of it.
+ */
+@theme {
+  --color-brand: #0e59f2;
+  --color-brand-dark: #0b46bf;
+  --color-brand-light: #406aff;
+  --color-brand-50: #eef4fe;
+
+  --color-navy: #051634;
+  --color-accent: #f8e559;
+  --color-muted: #737373;
+  --color-surface: #f4f7fb;
+  --color-ink: #343434;
+
+  /* Navigation and chrome sit on a deeper blue than the page. */
+  --color-console: #03102a;
+  --color-console-line: rgba(255, 255, 255, 0.08);
+
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --tracking-label: 0.14em;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    color: var(--color-navy);
+  }
+}

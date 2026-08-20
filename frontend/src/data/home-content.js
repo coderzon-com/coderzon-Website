@@ -12,11 +12,11 @@ export const hero = {
   spec: ["Technology consulting", "Kochi, India"],
   titleStart: "Transforming business with",
   titleHighlight: "Innovation",
+  titleEnd: "",
   description:
     "We build the data platforms, cloud systems and AI that businesses run on \u2014 from first architecture to the team that keeps it running.",
   primaryCta: { label: "Find solutions", href: "/services" },
   secondaryCta: { label: "Talk to an expert", href: "/contact" },
-  image: "/images/hero-ai.webp",
 };
 
 export const aboutSection = {
@@ -38,45 +38,6 @@ export const aboutSection = {
   yearsExperience: siteConfig.yearsExperience,
   image: "/images/about-primary.png",
   imageCaption: "Building for what comes next",
-};
-
-export const featureSection = {
-  eyebrow: "Core capability",
-  title: "Innovative IT strategies and solutions",
-  description:
-    "Four disciplines carry most of what we are asked for. Each one links through to how we actually run the work.",
-  // Each row points at the service it belongs to — previously these were
-  // headings with nowhere to go.
-  features: [
-    {
-      icon: "Globe",
-      title: "Cloud solutions management",
-      description:
-        "Deployment, scaling and monitoring of cloud infrastructure that keeps the business running and able to move.",
-      href: "/services/cloud-computing",
-    },
-    {
-      icon: "ChartColumnBig",
-      title: "Analytics and business intelligence",
-      description:
-        "Turning data into decisions with advanced analytics, dashboards and reporting people actually use.",
-      href: "/services/data-analytics-consulting-services",
-    },
-    {
-      icon: "CodeXml",
-      title: "Custom software development",
-      description:
-        "Scalable, secure systems designed around your operation rather than bent to fit a product licence.",
-      href: "/services/web-development-services",
-    },
-    {
-      icon: "Bot",
-      title: "Machine learning implementation",
-      description:
-        "Intelligent systems that automate process, improve accuracy and put prediction within reach.",
-      href: "/services/machine-learning-app-development-services",
-    },
-  ],
 };
 
 export const whyChooseUsSection = {

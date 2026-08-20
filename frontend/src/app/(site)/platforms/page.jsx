@@ -23,39 +23,29 @@ export default function PlatformsPage() {
         description="We are not tied to one vendor. These are the stacks we implement, migrate and support in production."
       />
 
-      <section className="relative overflow-hidden bg-white py-16 lg:py-24">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(5,22,52,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(5,22,52,0.045) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-            maskImage:
-              "linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent)",
-          }}
-        />
-
-        <div className="container relative space-y-14">
+      <section className="px-x-default py-y-default bg-white text-black">
+        <div className="space-y-20">
           {platformGroups.map((group) => (
             <div key={group.label}>
-              <div className="flex items-baseline justify-between gap-4 border-b border-navy/12 pb-4">
-                <h2 className="border-l-2 border-brand pl-2.5 font-mono text-[11px] uppercase tracking-label text-navy">
+              <div className="flex items-baseline justify-between gap-4">
+                <h2 className="font-mono text-[10px] uppercase tracking-label text-black/40">
                   {group.label}
                 </h2>
-                <span className="font-mono text-[10px] uppercase tracking-label text-muted">
+                <span className="font-mono text-[10px] tabular-nums text-black/30">
                   {String(group.items.length).padStart(2, "0")}
                 </span>
               </div>
 
-              <RevealGrid className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <RevealGrid className="mt-8 border-t border-black/10">
                 {group.items
                   .map((entry) => getPlatformBySlug(entry.slug))
                   .filter(Boolean)
-                  .map((platform) => (
-                    <PlatformCard key={platform.slug} platform={platform} />
+                  .map((platform, index) => (
+                    <PlatformCard
+                      key={platform.slug}
+                      platform={platform}
+                      index={index}
+                    />
                   ))}
               </RevealGrid>
             </div>

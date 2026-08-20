@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { FormField, FormStatus, SelectField } from "@/components/ui/form-field";
 import { countries } from "@/data/countries";
 import { useContactForm } from "@/lib/use-contact-form";
@@ -43,8 +42,8 @@ export function QuoteForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="grid gap-8 sm:grid-cols-2">
         <FormField
           label="First Name"
           id="firstName"
@@ -85,7 +84,7 @@ export function QuoteForm() {
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-8 sm:grid-cols-2">
         <FormField
           label="Company / Organization"
           id="company"
@@ -120,9 +119,13 @@ export function QuoteForm() {
 
       <FormStatus status={status} message={message} />
 
-      <Button type="submit" size="lg" disabled={isSubmitting}>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="ease-power inline-flex min-h-[52px] items-center rounded-full bg-black px-8 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+      >
         {isSubmitting ? "Sending…" : "Submit Now"}
-      </Button>
+      </button>
     </form>
   );
 }

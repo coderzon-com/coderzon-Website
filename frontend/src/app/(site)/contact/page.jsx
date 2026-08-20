@@ -49,22 +49,22 @@ export default function ContactPage() {
         description="Send the problem rather than a spec. We will tell you what it takes, who would work on it, and whether we are the right people for it."
       />
 
-      <section className="bg-white py-14 lg:py-20">
-        <div className="container">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
+      <section className="px-x-default py-y-default bg-white text-black">
+        <div>
+          <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
             {/* The record */}
             <div className="lg:col-span-5">
-              <div className="flex items-center gap-4 rounded-lg bg-muted-surface p-4 ring-1 ring-navy/10">
+              <div className="flex items-center gap-4 border-b border-black/10 pb-6">
                 <Image
                   src={person.photo}
                   alt={person.name}
                   width={56}
                   height={56}
-                  className="h-14 w-14 rounded-md object-cover"
+                  className="h-14 w-14 rounded-full object-cover"
                 />
                 <div className="min-w-0">
-                  <p className="font-semibold text-navy">{person.name}</p>
-                  <p className="font-mono text-[10px] uppercase tracking-label text-muted">
+                  <p className="font-medium">{person.name}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-label text-black/40">
                     {person.role}
                   </p>
                 </div>
@@ -73,26 +73,26 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${person.name} on LinkedIn`}
-                  className="ml-auto flex h-9 w-9 items-center justify-center rounded-md text-muted transition-colors hover:bg-brand hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                  className="ease-power ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-black/15 transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
                 >
                   <SocialIcon name="linkedin" className="h-4 w-4" />
                 </a>
               </div>
 
-              <dl className="mt-8 border-t border-navy/10">
+              <dl className="mt-10">
                 {RECORD.map(({ label, icon: RowIcon, lines, href }) => (
                   <div
                     key={label}
-                    className="grid gap-1 border-b border-navy/10 py-4 sm:grid-cols-[7rem_1fr] sm:gap-4"
+                    className="grid gap-1 border-b border-black/10 py-5 sm:grid-cols-[7rem_1fr] sm:gap-6"
                   >
-                    <dt className="flex items-center gap-2 pt-0.5 font-mono text-[10px] uppercase tracking-label text-muted">
+                    <dt className="flex items-center gap-2 pt-0.5 font-mono text-[10px] uppercase tracking-label text-black/40">
                       <RowIcon
                         className="h-3.5 w-3.5 text-brand"
                         aria-hidden="true"
                       />
                       {label}
                     </dt>
-                    <dd className="space-y-0.5 text-[15px] leading-snug text-navy">
+                    <dd className="space-y-0.5 text-[15px] leading-snug">
                       {lines.map((line) =>
                         href ? (
                           <a
@@ -101,7 +101,7 @@ export default function ContactPage() {
                             {...(href.startsWith("http")
                               ? { target: "_blank", rel: "noopener noreferrer" }
                               : {})}
-                            className="block break-words transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                            className="block break-words transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
                           >
                             {line}
                           </a>
@@ -119,8 +119,8 @@ export default function ContactPage() {
 
             {/* The form */}
             <div className="lg:col-span-7">
-              <div className="rounded-lg bg-white p-5 ring-1 ring-navy/10 sm:p-7 lg:p-8">
-                <p className="mb-6 border-l-2 border-brand pl-2.5 font-mono text-[10px] uppercase tracking-label text-navy">
+              <div>
+                <p className="mb-8 font-mono text-[10px] uppercase tracking-label text-black/40">
                   Send a message
                 </p>
                 <ContactForm />

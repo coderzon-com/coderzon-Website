@@ -35,6 +35,11 @@ module.exports = {
           raised: "#071A3A",
           line: "rgba(255,255,255,0.08)",
         },
+        // Surfaces alternate through the page rather than sitting on one
+        // ground. Near-black, paper, and a warm light grey between them.
+        ink: "#0A0A0A",
+        mist: "#EDEDEA",
+        signal: "#4DE1FF",
       },
       fontFamily: {
         sans: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
@@ -42,6 +47,53 @@ module.exports = {
       },
       letterSpacing: {
         label: "0.14em",
+      },
+      // A single spacing rhythm, used everywhere instead of ad-hoc padding.
+      spacing: {
+        "x-default": "clamp(1.25rem, 5vw, 5rem)",
+        "y-default": "clamp(4rem, 9vw, 9rem)",
+      },
+      // One easing curve for the whole site, so motion feels authored.
+      transitionTimingFunction: {
+        power: "cubic-bezier(0.16, 1, 0.3, 1)",
+      },
+      transitionDuration: {
+        400: "400ms",
+        600: "600ms",
+      },
+      fontSize: {
+        /**
+         * The hero headline, in two tiers.
+         *
+         * Keeping "Transforming business with" on a single line caps how large
+         * it can be — twenty-six characters is a lot to fit beside a second
+         * column. Rather than let that shrink the whole claim, the lead-in
+         * stays modest and the word that matters gets the room: at 1920 the
+         * lead-in sets at 65px and "Innovation" at 127px.
+         *
+         * Both floors are set by the longest unbreakable word at 320px, where
+         * 280px is all there is.
+         */
+        "hero-lead": [
+          "clamp(2.125rem, 3.3vw, 4.25rem)",
+          { lineHeight: "1.05", letterSpacing: "-0.03em" },
+        ],
+        hero: [
+          "clamp(2.75rem, 6.6vw, 8rem)",
+          { lineHeight: "0.95", letterSpacing: "-0.04em" },
+        ],
+        display: [
+          "clamp(2rem, 4vw, 3.25rem)",
+          { lineHeight: "1.02", letterSpacing: "-0.03em" },
+        ],
+        heading: [
+          "clamp(1.5rem, 2.6vw, 2.25rem)",
+          { lineHeight: "1.1", letterSpacing: "-0.025em" },
+        ],
+        "display-sm": [
+          "clamp(1.125rem, 1.5vw, 1.375rem)",
+          { lineHeight: "1.25", letterSpacing: "-0.015em" },
+        ],
       },
       boxShadow: {
         card: "0px 25px 70px rgba(0, 0, 0, 0.08)",
@@ -51,6 +103,10 @@ module.exports = {
         "fade-up": {
           from: { opacity: "0", transform: "translateY(16px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
         },
         // Original template animations, kept to the same values.
         orbit: {
@@ -69,13 +125,22 @@ module.exports = {
           "0%, 100%": { transform: "translateX(-20px)" },
           "50%": { transform: "translateX(-10px)" },
         },
+        /* A short downward push with a long rest. The pause is what keeps a
+           permanently-visible cue from becoming a distraction. */
+        nudge: {
+          "0%, 55%, 100%": { transform: "translateY(0)" },
+          "28%": { transform: "translateY(4px)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out both",
+        // Travels exactly half the duplicated track, so it loops seamlessly.
+        marquee: "marquee 42s linear infinite",
         orbit: "orbit 24s linear infinite",
         "float-y": "float-y 11s linear infinite",
         "float-y-slow": "float-y-slow 3s linear infinite",
         "float-x": "float-x 2s linear infinite",
+        nudge: "nudge 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite",
       },
     },
   },

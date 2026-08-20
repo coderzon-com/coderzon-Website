@@ -1,15 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
 import { FormStatus } from "@/components/ui/form-field";
 import { useContactForm } from "@/lib/use-contact-form";
 
 /**
- * Newsletter signup, as a console row inside the footer.
+ * Newsletter signup, opening the footer.
  *
- * The copy no longer promises weekly articles — there is no blog to send.
- * It asks for an address and says plainly what arrives.
+ * The copy makes no promise about frequency, because there is no blog behind
+ * it any more and "articles weekly" would be a lie.
  */
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -25,18 +24,17 @@ export function NewsletterForm() {
   }
 
   return (
-    <div className="grid gap-6 border-y border-console-line py-8 lg:grid-cols-12 lg:items-center lg:gap-10">
-      <div className="lg:col-span-5">
-        <p className="font-mono text-[10px] uppercase tracking-label text-brand-light">
+    <div className="grid gap-8 pb-14 lg:grid-cols-12 lg:items-end">
+      <div className="lg:col-span-6">
+        <p className="font-mono text-[10px] uppercase tracking-label text-white/35">
           Occasional updates
         </p>
-        <p className="mt-2 text-sm leading-relaxed text-white/70">
-          New capabilities and the occasional note on what we are building. No
-          schedule, no filler.
-        </p>
+        <h2 className="mt-4 max-w-[14ch] text-heading font-bold text-white break-words">
+          Keep an eye on what we build
+        </h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="lg:col-span-7">
+      <form onSubmit={handleSubmit} className="lg:col-span-6">
         <div className="flex flex-col gap-3 sm:flex-row">
           <label htmlFor="newsletter-email" className="sr-only">
             Email address
@@ -48,15 +46,14 @@ export function NewsletterForm() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             placeholder="you@company.com"
-            className="min-h-[48px] w-full rounded-md border border-console-line bg-white/[0.04] px-4 text-sm text-white placeholder:text-white/40 transition-colors focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
+            className="min-h-[52px] w-full rounded-full border border-white/20 bg-transparent px-6 text-sm text-white placeholder:text-white/35 transition-colors focus:border-white focus:outline-none"
           />
           <button
             type="submit"
             disabled={isSubmitting}
-            className="group inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-md bg-brand px-6 text-sm font-semibold text-white transition-colors hover:bg-brand-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-light focus-visible:ring-offset-2 focus-visible:ring-offset-console disabled:cursor-not-allowed disabled:opacity-60"
+            className="ease-power inline-flex min-h-[52px] shrink-0 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Subscribing…" : "Subscribe"}
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </button>
         </div>
 

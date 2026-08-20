@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { serviceGroups } from "@/config/navigation";
 import { getServiceBySlug } from "@/data/services";
-import { Icon } from "@/components/ui/icon";
 import { ChecklistBlock, ProseBlock, WorkflowBlock } from "./detail-blocks";
 
 /**
@@ -38,15 +36,15 @@ export function ServiceDetail({ service }) {
   ].filter(Boolean);
 
   return (
-    <section className="bg-white py-14 lg:py-20">
-      <div className="container">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
+    <section className="px-x-default py-y-default bg-white text-black">
+      <div>
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
           {/* Aside */}
           <aside className="lg:col-span-4 lg:order-last">
-            <div className="lg:sticky lg:top-28 space-y-8">
+            <div className="space-y-10 lg:sticky lg:top-28">
               {contents.length > 0 && (
                 <nav aria-label="On this page">
-                  <p className="mb-3 border-l-2 border-brand pl-2.5 font-mono text-[10px] uppercase tracking-label text-navy">
+                  <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-black/40">
                     On this page
                   </p>
                   <ul className="space-y-px">
@@ -54,7 +52,7 @@ export function ServiceDetail({ service }) {
                       <li key={entry.id}>
                         <a
                           href={`#${entry.id}`}
-                          className="block rounded px-2.5 py-2 text-sm text-muted transition-colors hover:bg-muted-surface hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                          className="block py-2 text-sm opacity-50 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
                         >
                           {entry.label}
                         </a>
@@ -64,20 +62,19 @@ export function ServiceDetail({ service }) {
                 </nav>
               )}
 
-              <div className="rounded-lg bg-console p-6 text-white">
-                <p className="font-mono text-[10px] uppercase tracking-label text-brand-light">
+              <div className="border-t border-black/10 pt-8">
+                <p className="font-mono text-[10px] uppercase tracking-label text-black/40">
                   Next step
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-white/75">
+                <p className="mt-4 text-sm leading-relaxed text-black/60">
                   Tell us what you are trying to build and we will map it to the
                   right team.
                 </p>
                 <Link
                   href="/contact"
-                  className="group mt-5 inline-flex items-center gap-2 border-b border-brand pb-1 text-sm font-semibold text-white transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-light"
+                  className="ease-power mt-6 inline-flex min-h-[48px] items-center rounded-full bg-black px-7 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                 >
                   Talk to an expert
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
@@ -85,9 +82,11 @@ export function ServiceDetail({ service }) {
 
           {/* Article */}
           <article className="lg:col-span-8">
-            <p className="text-lg leading-relaxed text-body">{service.intro}</p>
+            <p className="max-w-2xl text-lg leading-relaxed text-black/70">
+              {service.intro}
+            </p>
 
-            <div className="mt-10 space-y-10">
+            <div className="mt-14 space-y-14">
               <ProseBlock
                 id="overview"
                 kicker="Overview"
@@ -118,21 +117,18 @@ export function ServiceDetail({ service }) {
             </div>
 
             {related.length > 0 && (
-              <div className="mt-14 border-t border-navy/10 pt-8">
-                <p className="mb-5 border-l-2 border-brand pl-2.5 font-mono text-[10px] uppercase tracking-label text-navy">
+              <div className="mt-20 border-t border-black/10 pt-10">
+                <p className="mb-6 font-mono text-[10px] uppercase tracking-label text-black/40">
                   Related in {group.label}
                 </p>
-                <ul className="grid gap-px overflow-hidden rounded-lg bg-navy/10 sm:grid-cols-3">
+                <ul className="border-t border-black/10">
                   {related.map((item) => (
                     <li key={item.slug}>
                       <Link
                         href={`/services/${item.slug}`}
-                        className="group flex h-full flex-col bg-white p-5 transition-colors hover:bg-muted-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                        className="ease-power flex items-baseline gap-4 border-b border-black/10 py-5 opacity-50 transition-all duration-300 hover:translate-x-2 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
                       >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-md bg-muted-surface text-brand ring-1 ring-navy/10 transition-colors group-hover:bg-brand group-hover:text-white">
-                          <Icon name={item.icon} className="h-4 w-4" />
-                        </span>
-                        <span className="mt-4 text-sm font-semibold leading-snug text-navy transition-colors group-hover:text-brand">
+                        <span className="text-lg font-bold tracking-[-0.02em]">
                           {item.shortTitle}
                         </span>
                       </Link>

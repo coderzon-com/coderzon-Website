@@ -1,10 +1,12 @@
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// A rule under the field rather than a box around it. With this much white
+// space, boxes read as clutter and the baseline is enough to signal input.
 const CONTROL =
-  "w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-body " +
-  "placeholder:text-gray-400 transition-colors focus:border-brand focus:outline-none " +
-  "focus:ring-1 focus:ring-brand";
+  "w-full border-0 border-b border-black/15 bg-transparent px-0 py-3 text-base text-black " +
+  "placeholder:text-black/30 transition-colors focus:border-black focus:outline-none " +
+  "focus:ring-0";
 
 /** Labelled text input. Pass `as="textarea"` for a multi-line field. */
 export function FormField({
@@ -20,9 +22,12 @@ export function FormField({
 
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-2 block text-sm font-medium text-navy">
+      <label
+        htmlFor={id}
+        className="mb-1 block font-mono text-[10px] uppercase tracking-label text-black/40"
+      >
         {label}
-        {props.required && <span className="ml-0.5 text-brand">*</span>}
+        {props.required && <span className="ml-1 text-brand">*</span>}
       </label>
       <Control
         id={id}
@@ -31,13 +36,13 @@ export function FormField({
         aria-describedby={errorId}
         className={cn(
           CONTROL,
-          as === "textarea" && "min-h-32 resize-y",
-          error && "border-red-400 focus:border-red-500 focus:ring-red-500",
+          as === "textarea" && "min-h-28 resize-y",
+          error && "border-red-500 focus:border-red-500",
         )}
         {...props}
       />
       {error && (
-        <p id={errorId} className="mt-1.5 text-xs text-red-600">
+        <p id={errorId} className="mt-2 text-xs text-red-600">
           {error}
         </p>
       )}
@@ -63,9 +68,12 @@ export function SelectField({
 
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-2 block text-sm font-medium text-navy">
+      <label
+        htmlFor={id}
+        className="mb-1 block font-mono text-[10px] uppercase tracking-label text-black/40"
+      >
         {label}
-        {props.required && <span className="ml-0.5 text-brand">*</span>}
+        {props.required && <span className="ml-1 text-brand">*</span>}
       </label>
       <div className="relative">
         <select
@@ -75,10 +83,10 @@ export function SelectField({
           aria-describedby={errorId}
           className={cn(
             CONTROL,
-            "appearance-none pr-10",
+            "appearance-none pr-8",
             // The placeholder option is greyed until a real choice is made.
-            !props.value && "text-gray-400",
-            error && "border-red-400 focus:border-red-500 focus:ring-red-500",
+            !props.value && "text-black/30",
+            error && "border-red-500 focus:border-red-500",
           )}
           {...props}
         >
@@ -87,7 +95,7 @@ export function SelectField({
             <option
               key={option.value}
               value={option.value}
-              className="text-body"
+              className="text-black"
             >
               {option.label}
             </option>
@@ -95,11 +103,11 @@ export function SelectField({
         </select>
         <ChevronDown
           aria-hidden="true"
-          className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
+          className="pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 text-black/40"
         />
       </div>
       {error && (
-        <p id={errorId} className="mt-1.5 text-xs text-red-600">
+        <p id={errorId} className="mt-2 text-xs text-red-600">
           {error}
         </p>
       )}
@@ -115,7 +123,7 @@ export function FormStatus({ status, message }) {
     <p
       role="status"
       className={cn(
-        "rounded-lg px-4 py-3 text-sm",
+        "rounded-full px-5 py-3 text-sm",
         status === "success"
           ? "bg-green-50 text-green-800"
           : "bg-red-50 text-red-800",

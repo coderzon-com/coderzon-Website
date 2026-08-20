@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  /* The guard belongs on both elements. With it on body alone, an overflowing
+     descendant still grows the viewport and the scrollbar simply appears on
+     html instead — the page scrolls sideways anyway. clip rather than hidden,
+     so the fixed header is not turned into a scroll container. */
   html {
+    @apply overflow-x-clip;
     scroll-behavior: smooth;
   }
 
   body {
-    /* overflow-x-clip (not hidden) guards against stray horizontal scroll on
-       narrow screens without breaking the sticky header. */
     @apply overflow-x-clip bg-white text-body antialiased;
   }
 
@@ -22,4 +25,3 @@
     @apply font-bold text-navy;
   }
 }
-

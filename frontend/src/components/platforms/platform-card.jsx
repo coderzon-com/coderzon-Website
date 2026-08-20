@@ -1,40 +1,27 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 
 /**
- * Catalogue tile for one platform. Platforms carry no icon in the data, so
- * the vendor initials stand in as the mark.
+ * One platform in the catalogue. Same row treatment as services, so the two
+ * indexes behave identically.
  */
-export function PlatformCard({ platform }) {
-  const initials = platform.navLabel
-    .split(/[\s-]+/)
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase();
-
+export function PlatformCard({ platform, index }) {
   return (
     <Link
       href={`/platforms/${platform.slug}`}
-      className="group relative flex h-full flex-col rounded-lg bg-white p-6 ring-1 ring-navy/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_48px_-32px_rgba(5,22,52,0.45)] hover:ring-brand/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      className="group ease-power flex items-baseline gap-5 border-b border-black/10 py-7 opacity-50 transition-all duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black sm:gap-10"
     >
-      <div className="flex items-start justify-between gap-4">
-        <span className="flex h-11 min-w-11 items-center justify-center rounded-md bg-muted-surface px-2 font-mono text-[13px] font-medium text-brand ring-1 ring-navy/10 transition-colors duration-200 group-hover:bg-brand group-hover:text-white group-hover:ring-brand">
-          {initials}
+      {typeof index === "number" && (
+        <span className="font-mono text-[10px] tabular-nums text-black/40">
+          {String(index + 1).padStart(2, "0")}
         </span>
-        <ArrowUpRight className="h-4 w-4 shrink-0 text-muted transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
-      </div>
+      )}
 
-      <h3 className="mt-5 text-[17px] font-semibold leading-snug text-navy transition-colors duration-200 group-hover:text-brand">
+      <span className="ease-power flex-1 text-2xl font-bold tracking-[-0.02em] transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
         {platform.navLabel}
-      </h3>
+      </span>
 
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+      <span className="hidden max-w-sm text-sm leading-relaxed text-black/55 lg:block">
         {platform.shortTitle}
-      </p>
-
-      <span className="mt-5 block truncate font-mono text-[10px] text-muted/70">
-        /platforms/{platform.slug}
       </span>
     </Link>
   );

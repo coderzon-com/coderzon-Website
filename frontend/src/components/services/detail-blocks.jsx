@@ -12,18 +12,20 @@ import { Check } from "lucide-react";
 export function ProseBlock({ id, kicker, heading, children }) {
   if (!children) return null;
   return (
-    <section id={id} className="scroll-mt-28 border-t border-navy/10 pt-10">
+    <section id={id} className="scroll-mt-28 border-t border-black/10 pt-12">
       {kicker && (
-        <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+        <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-brand">
           {kicker}
         </p>
       )}
       {heading && (
-        <h2 className="mb-4 break-words text-xl font-bold leading-snug text-navy sm:text-2xl">
+        <h2 className="mb-5 max-w-[18ch] break-words text-display-sm font-bold">
           {heading}
         </h2>
       )}
-      <p className="max-w-3xl leading-relaxed text-body">{children}</p>
+      <p className="max-w-2xl text-base leading-relaxed text-black/65">
+        {children}
+      </p>
     </section>
   );
 }
@@ -33,25 +35,29 @@ export function ChecklistBlock({ id, kicker, heading, body, points }) {
   if (!heading && !body && !points?.length) return null;
 
   return (
-    <section id={id} className="scroll-mt-28 border-t border-navy/10 pt-10">
+    <section id={id} className="scroll-mt-28 border-t border-black/10 pt-12">
       {kicker && (
-        <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+        <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-brand">
           {kicker}
         </p>
       )}
       {heading && (
-        <h2 className="mb-4 break-words text-xl font-bold leading-snug text-navy sm:text-2xl">
+        <h2 className="mb-5 max-w-[18ch] break-words text-display-sm font-bold">
           {heading}
         </h2>
       )}
-      {body && <p className="max-w-3xl leading-relaxed text-body">{body}</p>}
+      {body && (
+        <p className="max-w-2xl text-base leading-relaxed text-black/65">
+          {body}
+        </p>
+      )}
 
       {points?.length > 0 && (
-        <ul className="mt-6 grid gap-px overflow-hidden rounded-lg bg-navy/10 sm:grid-cols-2">
+        <ul className="mt-8 grid gap-x-10 sm:grid-cols-2">
           {points.map((point) => (
             <li
               key={point}
-              className="flex items-start gap-2.5 bg-muted-surface p-4 text-sm text-navy"
+              className="flex items-start gap-3 border-b border-black/10 py-4 text-sm"
             >
               <Check
                 className="mt-0.5 h-4 w-4 shrink-0 text-brand"
@@ -71,34 +77,34 @@ export function WorkflowBlock({ id, workflow }) {
   if (!workflow?.steps?.length) return null;
 
   return (
-    <section id={id} className="scroll-mt-28 border-t border-navy/10 pt-10">
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+    <section id={id} className="scroll-mt-28 border-t border-black/10 pt-12">
+      <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-brand">
         Workflow
       </p>
       {workflow.heading && (
-        <h2 className="mb-7 break-words text-xl font-bold leading-snug text-navy sm:text-2xl">
+        <h2 className="mb-10 max-w-[18ch] break-words text-display-sm font-bold">
           {workflow.heading}
         </h2>
       )}
 
-      <ol className="relative space-y-8">
+      <ol className="relative space-y-12">
         <span
           aria-hidden="true"
-          className="absolute left-[15px] top-3 h-[calc(100%-1.5rem)] w-px bg-navy/12"
+          className="absolute left-0 top-3 h-[calc(100%-1.5rem)] w-px bg-black/10"
         />
         {workflow.steps.map((step, index) => (
-          <li key={step.title} className="relative pl-11">
-            <span className="absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white font-mono text-[10px] tabular-nums text-navy ring-1 ring-navy/15">
+          <li key={step.title} className="relative pl-10">
+            <span className="absolute left-0 top-1 font-mono text-[10px] tabular-nums text-black/40">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <h3 className="text-base font-semibold leading-snug text-navy">
+            <h3 className="text-xl font-bold tracking-[-0.02em]">
               {step.title}
             </h3>
-            <ul className="mt-3 space-y-1.5">
+            <ul className="mt-4 space-y-2">
               {step.items.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-2.5 text-sm text-muted"
+                  className="flex items-start gap-3 text-sm text-black/55"
                 >
                   <Check
                     className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand"
@@ -120,15 +126,18 @@ export function ListBlock({ heading, items }) {
   if (!items?.length) return null;
 
   return (
-    <div className="mt-7">
+    <div className="mt-8">
       {heading && (
-        <h3 className="mb-3 font-mono text-[10px] uppercase capitalize tracking-label text-muted">
+        <h3 className="mb-4 font-mono text-[10px] uppercase capitalize tracking-label text-black/40">
           {heading}
         </h3>
       )}
       <ul className="space-y-2">
         {items.map((item) => (
-          <li key={item} className="flex items-start gap-2.5 text-sm text-body">
+          <li
+            key={item}
+            className="flex items-start gap-3 text-sm text-black/65"
+          >
             <Check
               className="mt-0.5 h-4 w-4 shrink-0 text-brand"
               aria-hidden="true"

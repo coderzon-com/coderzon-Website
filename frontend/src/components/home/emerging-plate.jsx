@@ -55,8 +55,12 @@ export function EmergingPlate({
     [start, start + 0.08, end - 0.02, end],
     [0, 1, 1, 1],
   );
-  // The plain rise used wherever the plates do not converge.
-  const simpleY = useTransform(progress, [start, end], [28, 0]);
+  /* Where the plates do not converge they are a list, so they enter the way a
+     list should: laterally, one after another, as though being dealt onto the
+     page from the side. A vertical rise on a stack of rows reads as the whole
+     block nudging rather than as items arriving. */
+  const simpleX = useTransform(progress, [start, end], [-28, 0]);
+  const simpleY = useTransform(progress, [start, end], [10, 0]);
   const simpleOpacity = useTransform(progress, [start, end], [0, 1]);
 
   const landed = useTransform(progress, (value) =>
@@ -81,7 +85,7 @@ export function EmergingPlate({
       <motion.li
         data-plate=""
         data-motion-reveal=""
-        style={{ y: simpleY, opacity: simpleOpacity }}
+        style={{ x: simpleX, y: simpleY, opacity: simpleOpacity }}
         className="relative"
       >
         {children}

@@ -50,9 +50,11 @@ export function SiteHeader() {
   const lastScroll = useRef(0);
   const ticking = useRef(false);
 
-  // The hero is dark, so over it the bar needs light type. Every other page
-  // opens on paper.
-  const isOverDarkHero = pathname === "/";
+  /* The homepage is dark the whole way down; the inner pages open on paper.
+     This drives both states of the bar, because a glass surface has to be
+     made of the thing behind it — white glass over a dark page is not
+     translucent, it is a grey slab sitting on top. */
+  const isDarkPage = pathname === "/";
 
   useEffect(() => {
     const read = () => {
@@ -116,9 +118,12 @@ export function SiteHeader() {
     (item) => item.menu && item.label === openMenu,
   );
 
-  // Light type only while transparent over the dark hero. The moment the bar
-  // becomes glass it sits on page content and must switch to dark type.
-  const onDark = isOverDarkHero && !isScrolled && !openMenu;
+  /* Light type wherever the ground behind the bar is dark. That used to end
+     the moment the bar turned to glass, because the glass was white — now the
+     glass matches the page, so on a dark page the type stays light all the
+     way down. The open panel is the exception: it is a white surface, and the
+     bar has to join it rather than float above it. */
+  const onDark = isDarkPage && !openMenu;
 
   return (
     <motion.header
@@ -136,9 +141,11 @@ export function SiteHeader() {
     >
       <div
         className={`relative transition-[background-color,border-color,backdrop-filter] duration-300 ${
-          isScrolled || openMenu
-            ? "border-b border-black/10 bg-white/80 backdrop-blur-xl"
-            : "border-b border-transparent bg-transparent"
+          !isScrolled && !openMenu
+            ? "border-b border-transparent bg-transparent"
+            : onDark
+              ? "bg-ink/75 border-b border-white/10 backdrop-blur-xl"
+              : "border-b border-black/10 bg-white/80 backdrop-blur-xl"
         }`}
       >
         <div className="px-x-default">

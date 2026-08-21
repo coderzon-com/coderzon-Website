@@ -169,8 +169,16 @@ export function PlatformBand() {
 
   const riseVariant = rise(reduceMotion, { y: 24 });
 
+  /* Two compositions, not one shrunk.
+     A plate holds a category, a name and an arrow. At 320px that is 136px of
+     mostly padding carrying no more than a row would — eight of them cost
+     roughly 1,200px of scroll for a list of eight names. Below sm the same
+     content is a compact index: name, category, arrow, separated by rules.
+     Same information, a third of the height, and it reads as something to
+     scan rather than eight things to consider one at a time. */
   const plateClass =
-    "ease-power focus-visible:ring-offset-ink group/plate flex h-full min-h-[136px] flex-col justify-between gap-6 rounded-2xl border p-5 transition-[transform,background-color,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 [transform-style:preserve-3d] hover:translate-z-6";
+    "ease-power focus-visible:ring-offset-ink group/plate flex min-h-[58px] w-full flex-row items-center gap-3 border-0 border-b border-white/12 px-0 py-3 transition-[transform,background-color,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 " +
+    "sm:h-full sm:min-h-[136px] sm:flex-col sm:items-stretch sm:justify-between sm:gap-6 sm:rounded-2xl sm:border sm:p-5 sm:[transform-style:preserve-3d] sm:hover:translate-z-6";
 
   return (
     <motion.section
@@ -230,7 +238,7 @@ export function PlatformBand() {
                   transformStyle: "preserve-3d",
                 }
           }
-          className="group/wall relative grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+          className="group/wall relative grid gap-0 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4"
         >
           {platforms.map((platform, index) => (
             <EmergingPlate
@@ -246,11 +254,11 @@ export function PlatformBand() {
                 href={`/platforms/${platform.slug}`}
                 className={`${plateClass} border-white/12 bg-white/[0.04] hover:border-white/35 hover:bg-white/[0.09]`}
               >
-                <span className="font-mono text-[10px] uppercase tracking-label text-white/55 transition-colors duration-300 group-hover/plate:text-white">
+                <span className="w-[5.5rem] shrink-0 font-mono text-[10px] uppercase leading-tight tracking-label text-white/55 transition-colors duration-300 group-hover/plate:text-white sm:w-auto">
                   {CATEGORY.get(platform.slug) ?? "Platform"}
                 </span>
-                <span className="flex items-end justify-between gap-3">
-                  <span className="text-display-sm font-bold leading-tight [font-stretch:96%]">
+                <span className="flex min-w-0 flex-1 items-center justify-between gap-3 sm:items-end">
+                  <span className="min-w-0 break-words text-[15px] font-bold leading-tight [font-stretch:96%] sm:text-display-sm">
                     {platform.navLabel}
                   </span>
                   <ArrowUpRight
@@ -278,11 +286,11 @@ export function PlatformBand() {
               href="/platforms"
               className={`${plateClass} border-white/25 bg-white/[0.09] hover:bg-white/[0.15]`}
             >
-              <span className="font-mono text-[10px] uppercase tracking-label text-white/55">
+              <span className="w-[5.5rem] shrink-0 font-mono text-[10px] uppercase leading-tight tracking-label text-white/55 sm:w-auto">
                 Everything
               </span>
-              <span className="flex items-end justify-between gap-3">
-                <span className="text-display-sm font-bold leading-tight [font-stretch:96%]">
+              <span className="flex min-w-0 flex-1 items-center justify-between gap-3 sm:items-end">
+                <span className="min-w-0 break-words text-[15px] font-bold leading-tight [font-stretch:96%] sm:text-display-sm">
                   All {platforms.length} platforms
                 </span>
                 <ArrowUpRight

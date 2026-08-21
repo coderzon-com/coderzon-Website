@@ -49,6 +49,7 @@ export function AboutSection() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef(null);
   const figureRef = useRef(null);
+  const deckRef = useRef(null);
 
   /* A late window, deliberately. Starting when the section's top edge first
      touches the bottom of the viewport means the whole move plays out while
@@ -140,6 +141,17 @@ export function AboutSection() {
 
   /* The copy arrives while the figure is still travelling, so the section
      reads as one move rather than a queue. */
+  /* The deck runs off its own position, not the section's.
+     Tied to the section, the cards' window finished while they were still
+     below the fold — the section's top only has to reach a third of the way
+     up the screen, and the deck sits far beneath that. By the time you had
+     scrolled to them the progress was already 1 and they simply sat there.
+     Anchored to the list itself, they animate as they come into view. */
+  const { scrollYProgress: deckProgress } = useScroll({
+    target: deckRef,
+    offset: ["start 0.95", "start 0.45"],
+  });
+
   const supportOpacity = useTransform(scrollYProgress, [0.3, 0.72], [0, 1]);
   const supportY = useTransform(scrollYProgress, [0.3, 0.72], [24, 0]);
   const labelOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
@@ -259,6 +271,7 @@ export function AboutSection() {
                 one shared space instead of each having its own vanishing
                 point — four separate perspectives look subtly wrong. */}
             <ul
+              ref={deckRef}
               style={reduceMotion ? undefined : { perspective: 1200 }}
               className="group/deck mt-10 grid gap-4 sm:grid-cols-2"
             >
@@ -266,11 +279,9 @@ export function AboutSection() {
                 <ScrollStaggerItem
                   key={row.label}
                   as="li"
-                  progress={scrollYProgress}
+                  progress={deckProgress}
                   index={index}
                   total={spec.length}
-                  from={0.32}
-                  to={0.95}
                   deal={index}
                   className="ease-power opacity-100 transition-opacity duration-300 group-hover/deck:opacity-45 hover:!opacity-100 focus-within:!opacity-100 motion-reduce:transition-none"
                 >

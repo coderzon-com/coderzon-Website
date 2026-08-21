@@ -66,7 +66,10 @@ export const whyChooseUsSection = {
     {
       icon: "CloudCog",
       tag: `${platforms.length} platforms`,
-      title: "Vendor-neutral by design",
+      // Retitled: "Vendor-neutral by design" is the heading of the platforms
+      // section, and the same sentence twice on one page weakens both. This
+      // says the same thing in the words of its own description below.
+      title: "Chosen for fit, not licence",
       description:
         "Microsoft, AWS, Google Cloud and open-source stacks. We recommend what fits the problem, not a licence quota.",
     },
@@ -82,7 +85,11 @@ export const whyChooseUsSection = {
 
 export const workProcessSection = {
   eyebrow: "How we work",
-  title: "Sustainable and responsible computing",
+  // Retitled. "Sustainable and responsible computing" described nothing in
+  // this section — the eyebrow, the description and all three steps are about
+  // a gated three-stage process, and the heading pointed somewhere else
+  // entirely. This one says what the section actually contains.
+  title: "Three stages, each closed before the next",
   description:
     "Three stages, in order. Each one has to close before the next begins, so nothing is built on an assumption nobody checked.",
   steps: [

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { FormField, FormStatus, SelectField } from "@/components/ui/form-field";
 import { countries } from "@/data/countries";
 import { useContactForm } from "@/lib/use-contact-form";
@@ -122,9 +123,18 @@ export function QuoteForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="ease-power inline-flex min-h-[52px] items-center rounded-full bg-black px-8 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="group ease-power inline-flex min-h-[52px] items-center gap-2 rounded-full bg-black px-8 text-sm font-medium text-white transition-colors duration-300 hover:bg-black/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isSubmitting ? "Sending…" : "Submit Now"}
+        {/* Names the action, and keeps naming it after the click — the
+            button, the pending state and the confirmation should all use the
+            same word so the flow reads as one thing. */}
+        {isSubmitting ? "Sending…" : "Request a quote"}
+        {!isSubmitting && (
+          <ArrowUpRight
+            aria-hidden="true"
+            className="ease-power h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+          />
+        )}
       </button>
     </form>
   );

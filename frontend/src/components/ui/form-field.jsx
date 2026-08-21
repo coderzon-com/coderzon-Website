@@ -1,12 +1,24 @@
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// A rule under the field rather than a box around it. With this much white
-// space, boxes read as clutter and the baseline is enough to signal input.
+/**
+ * A real field, not a rule under some text.
+ *
+ * These were hairline underlines on a transparent ground, which left nothing
+ * to aim at: no edge, no surface, and a hit area you had to guess. A form is
+ * the one place on a site where the controls should be the most obvious
+ * things present — this is where the visitor is being asked to do work.
+ *
+ * A white ground inside a bordered box separates the field from whatever
+ * panel it sits on, and the focus ring is deliberately unmissable rather than
+ * a one-pixel colour change.
+ */
 const CONTROL =
-  "w-full border-0 border-b border-black/15 bg-transparent px-0 py-3 text-base text-black " +
-  "placeholder:text-black/30 transition-colors focus:border-black focus:outline-none " +
-  "focus:ring-0";
+  "w-full rounded-xl border border-black/15 bg-white px-4 py-3 text-base text-black " +
+  "placeholder:text-black/45 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] " +
+  "transition-[border-color,box-shadow] duration-200 " +
+  "hover:border-black/30 focus:border-black focus:outline-none " +
+  "focus:ring-4 focus:ring-black/10";
 
 /** Labelled text input. Pass `as="textarea"` for a multi-line field. */
 export function FormField({
@@ -24,7 +36,7 @@ export function FormField({
     <div className={className}>
       <label
         htmlFor={id}
-        className="mb-1 block font-mono text-[10px] uppercase tracking-label text-black/40"
+        className="mb-2 block font-mono text-[11px] uppercase tracking-label text-black/65"
       >
         {label}
         {props.required && <span className="ml-1 text-brand">*</span>}
@@ -36,8 +48,8 @@ export function FormField({
         aria-describedby={errorId}
         className={cn(
           CONTROL,
-          as === "textarea" && "min-h-28 resize-y",
-          error && "border-red-500 focus:border-red-500",
+          as === "textarea" && "min-h-32 resize-y leading-relaxed",
+          error && "border-red-600 focus:border-red-600 focus:ring-red-600/15",
         )}
         {...props}
       />
@@ -70,7 +82,7 @@ export function SelectField({
     <div className={className}>
       <label
         htmlFor={id}
-        className="mb-1 block font-mono text-[10px] uppercase tracking-label text-black/40"
+        className="mb-2 block font-mono text-[11px] uppercase tracking-label text-black/65"
       >
         {label}
         {props.required && <span className="ml-1 text-brand">*</span>}
@@ -83,10 +95,11 @@ export function SelectField({
           aria-describedby={errorId}
           className={cn(
             CONTROL,
-            "appearance-none pr-8",
+            "cursor-pointer appearance-none pr-11",
             // The placeholder option is greyed until a real choice is made.
-            !props.value && "text-black/30",
-            error && "border-red-500 focus:border-red-500",
+            !props.value && "text-black/45",
+            error &&
+              "border-red-600 focus:border-red-600 focus:ring-red-600/15",
           )}
           {...props}
         >
@@ -103,7 +116,7 @@ export function SelectField({
         </select>
         <ChevronDown
           aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 text-black/40"
+          className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-black/50"
         />
       </div>
       {error && (
@@ -123,10 +136,10 @@ export function FormStatus({ status, message }) {
     <p
       role="status"
       className={cn(
-        "rounded-full px-5 py-3 text-sm",
+        "rounded-xl border px-5 py-3.5 text-sm",
         status === "success"
-          ? "bg-green-50 text-green-800"
-          : "bg-red-50 text-red-800",
+          ? "border-green-700/20 bg-green-50 text-green-900"
+          : "border-red-700/20 bg-red-50 text-red-900",
       )}
     >
       {message}

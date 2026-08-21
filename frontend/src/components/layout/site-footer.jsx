@@ -44,13 +44,13 @@ export function SiteFooter() {
           <div className="mt-8 space-y-1">
             <a
               href={siteConfig.contact.phoneHref}
-              className="block text-sm text-white/70 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="block rounded-sm text-sm text-white/70 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               {siteConfig.contact.phone}
             </a>
             <a
               href={`mailto:${siteConfig.contact.email}`}
-              className="block text-sm text-white/70 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="block rounded-sm text-sm text-white/70 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               {siteConfig.contact.email}
             </a>
@@ -58,7 +58,7 @@ export function SiteFooter() {
               href={siteConfig.contact.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-sm text-white/70 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="block rounded-sm text-sm text-white/70 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               Kakkanad, Kochi, Kerala
             </a>

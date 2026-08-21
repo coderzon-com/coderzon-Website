@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { FormField, FormStatus, SelectField } from "@/components/ui/form-field";
 import { countries } from "@/data/countries";
 import { useContactForm } from "@/lib/use-contact-form";
@@ -41,8 +42,8 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="grid gap-8 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid gap-5 sm:grid-cols-2">
         <FormField
           label="Full Name"
           id="name"
@@ -73,7 +74,7 @@ export function ContactForm() {
         placeholder="How can we help?"
       />
 
-      <div className="grid gap-8 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <FormField
           label="Company / Organization"
           id="company"
@@ -110,9 +111,15 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="ease-power inline-flex min-h-[52px] items-center rounded-full bg-black px-8 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="group ease-power inline-flex min-h-[52px] items-center gap-2 rounded-full bg-black px-8 text-sm font-medium text-white transition-colors duration-300 hover:bg-black/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isSubmitting ? "Sending…" : "Submit Now"}
+        {isSubmitting ? "Sending…" : "Send message"}
+        {!isSubmitting && (
+          <ArrowUpRight
+            aria-hidden="true"
+            className="ease-power h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+          />
+        )}
       </button>
     </form>
   );

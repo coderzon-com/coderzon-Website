@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { buildMetadata } from "@/config/site";
 import { services, getServiceBySlug } from "@/data/services";
 import { PageHero } from "@/components/ui/page-hero";
+import { CapabilityDial } from "@/components/services/capability-dial";
 import { ServiceDetail } from "@/components/services/service-detail";
 import { ContactCta } from "@/components/contact/contact-cta";
 
@@ -32,6 +33,7 @@ export default function ServiceDetailPage({ params }) {
         title={service.shortTitle}
         breadcrumb={service.shortTitle}
         trail={[{ label: "Services", href: "/services" }]}
+        visual={<CapabilityDial />}
       />
       <ServiceDetail service={service} />
       <ContactCta />

@@ -8,10 +8,10 @@ export function PlatformCard({ platform, index }) {
   return (
     <Link
       href={`/platforms/${platform.slug}`}
-      className="group ease-power flex items-baseline gap-5 border-b border-black/10 py-7 opacity-50 transition-all duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black sm:gap-10"
+      className="group ease-power flex items-baseline gap-5 border-b border-white/12 py-7 opacity-50 transition-all duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:gap-10"
     >
       {typeof index === "number" && (
-        <span className="font-mono text-[10px] tabular-nums text-black/40">
+        <span className="font-mono text-[10px] tabular-nums text-white/55">
           {String(index + 1).padStart(2, "0")}
         </span>
       )}
@@ -20,7 +20,7 @@ export function PlatformCard({ platform, index }) {
         {platform.navLabel}
       </span>
 
-      <span className="hidden max-w-sm text-sm leading-relaxed text-black/55 lg:block">
+      <span className="hidden max-w-sm text-sm leading-relaxed text-white/70 lg:block">
         {platform.shortTitle}
       </span>
     </Link>

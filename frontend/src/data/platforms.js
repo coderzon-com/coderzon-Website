@@ -657,6 +657,276 @@ export const platforms = [
     },
   },
   {
+    slug: "Microsoft-Fabric",
+    navLabel: "Microsoft Fabric",
+    title:
+      "Microsoft Fabric Consulting: One Platform for the Whole Data Estate",
+    intro:
+      "Fabric puts ingestion, the lakehouse, the warehouse, orchestration and Power BI behind a single billing model and a single security boundary. For a business already committed to Microsoft, that removes most of the integration work a data platform usually demands \u2014 and introduces a set of choices about capacity and workspace design that are expensive to get wrong.",
+    overview: {
+      heading: "OneLake, and what it changes",
+      body: "Fabric's shortcut model means data can be queried where it lives instead of being copied into each engine that needs it. That is the single biggest saving available in a Microsoft data estate, and it is also the part most implementations miss \u2014 they lift and shift their existing copy-everywhere pipelines into Fabric and pay for the same duplication on a newer bill.",
+    },
+    highlight: {
+      heading: "Where the money is actually spent",
+      body: "Fabric bills by capacity, not by query, which changes how you design. Workloads that were fine on a per-query platform can saturate a capacity unit and throttle everything sharing it. We size capacity against real workload profiles and separate workspaces so that a heavy refresh cannot take reporting down with it.",
+      points: [
+        "Lakehouse and warehouse design, with a clear rule for which to use when",
+        "OneLake shortcuts instead of duplicate copies",
+        "Direct Lake semantic models for Power BI, avoiding import refresh windows",
+        "Capacity sizing, monitoring and workspace separation",
+        "Migration from existing Synapse, Data Factory or Power BI estates",
+      ],
+    },
+    value: {
+      heading: "Why Fabric, and when not",
+      body: "Fabric is the right answer when the organisation is already on Microsoft 365 and Power BI, and wants one security model across the estate. It is the wrong answer when the workload is a single large warehouse with heavy concurrent SQL, where a dedicated warehouse still wins. We will tell you which case you are in.",
+    },
+    workflow: {
+      heading: "How we work in it.",
+      steps: [
+        {
+          title: "Assessment",
+          items: [
+            "Current estate: Synapse, Data Factory, Power BI, on-premises sources",
+            "Workload profile and concurrency requirements",
+            "Capacity sizing model and cost forecast",
+            "Security and tenancy boundaries",
+          ],
+        },
+        {
+          title: "Platform Design",
+          items: [
+            "Workspace and domain structure",
+            "Lakehouse and warehouse split",
+            "OneLake shortcut strategy",
+            "Semantic model approach: Direct Lake or import",
+          ],
+        },
+        {
+          title: "Build & Migration",
+          items: [
+            "Pipelines and dataflows",
+            "Medallion layering with tested transformations",
+            "Report migration and rewiring",
+            "Parallel running against the existing estate",
+          ],
+        },
+        {
+          title: "Operate",
+          items: [
+            "Capacity monitoring and throttling alerts",
+            "Refresh scheduling that respects the capacity",
+            "Governance, lineage and endorsement",
+            "Handover and training",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: "snowflake",
+    navLabel: "Snowflake",
+    title:
+      "Snowflake Consulting: Separate Storage, Separate Compute, Separate Bills",
+    intro:
+      "Snowflake's advantage is that storage and compute scale independently, so a heavy transformation does not slow down the analysts querying the same tables. Its risk is the same thing: it is trivially easy to leave warehouses running, clone datasets casually, and receive a bill nobody can attribute.",
+    overview: {
+      heading: "Warehouses sized to the work",
+      body: "Most Snowflake overspend comes from a small number of habits: oversized warehouses left on, no auto-suspend, queries scanning far more than they need, and clones nobody deletes. We design warehouse tiers against real query patterns, set suspension aggressively, and put resource monitors in place before the first month's bill rather than after it.",
+    },
+    highlight: {
+      heading: "What we build in it",
+      body: "The platform is only half the job. The other half is the modelling and the governance around it \u2014 which roles can see what, how personal data is masked, and how a table's definition is agreed and versioned.",
+      points: [
+        "Warehouse tiering and auto-suspend policy, with resource monitors",
+        "Layered modelling: raw, staged, modelled, serving",
+        "Role hierarchy and row-level or column-level masking",
+        "Streams and tasks for incremental processing",
+        "Zero-copy cloning used deliberately, with a lifecycle",
+      ],
+    },
+    value: {
+      heading: "Why teams pick it",
+      body: "Snowflake suits organisations with mixed workloads and several teams querying the same data at once, because those teams can be given their own compute without copying the data. It is less compelling where the workload is small and steady, or where the estate is already committed to a single cloud's native stack.",
+    },
+    workflow: {
+      heading: "How we work in it.",
+      steps: [
+        {
+          title: "Assessment",
+          items: [
+            "Query and concurrency profile",
+            "Current spend and where it is going",
+            "Data sources, volumes and update patterns",
+            "Governance and compliance obligations",
+          ],
+        },
+        {
+          title: "Account & Warehouse Design",
+          items: [
+            "Database, schema and role hierarchy",
+            "Warehouse tiers matched to workload",
+            "Auto-suspend, auto-resume and resource monitors",
+            "Environment separation",
+          ],
+        },
+        {
+          title: "Modelling & Loading",
+          items: [
+            "Ingestion via Snowpipe or batch, with replay",
+            "Layered models under version control",
+            "Streams and tasks for incremental work",
+            "Tests on the tables that matter",
+          ],
+        },
+        {
+          title: "Operate",
+          items: [
+            "Cost attribution by team and workload",
+            "Query performance review and pruning",
+            "Access review cadence",
+            "Documentation and handover",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: "google-bigquery",
+    navLabel: "BigQuery",
+    title: "BigQuery Consulting: Serverless Analytics, Priced by the Byte",
+    intro:
+      "BigQuery removes the warehouse-sizing question entirely \u2014 there is no cluster to provision. What it introduces instead is a pricing model where a careless query can scan a terabyte and a well-partitioned one can scan a gigabyte for the same answer. Design decisions show up directly on the bill.",
+    overview: {
+      heading: "Partitioning is the whole game",
+      body: "The difference between an expensive BigQuery estate and a cheap one is almost entirely partitioning, clustering, and whether queries filter on the partition column. We design tables around how they will actually be queried, and put the controls in place \u2014 custom quotas, required partition filters \u2014 that stop an ad-hoc query becoming an incident.",
+    },
+    highlight: {
+      heading: "Beyond the warehouse",
+      body: "BigQuery sits inside a wider Google Cloud estate, and the integrations are usually where the value is: streaming in through Pub/Sub and Dataflow, serving out to Looker, and running models without moving the data.",
+      points: [
+        "Partitioning and clustering designed against real query patterns",
+        "Required partition filters and per-user quotas",
+        "Streaming ingestion through Pub/Sub and Dataflow",
+        "Scheduled queries and materialised views where they pay",
+        "BigQuery ML where a model belongs next to the data",
+      ],
+    },
+    value: {
+      heading: "Why teams pick it",
+      body: "BigQuery suits bursty, unpredictable analytical workloads and teams who do not want to run infrastructure. It suits steady heavy workloads less well, where flat-rate or a provisioned warehouse can be cheaper \u2014 and we will model both before recommending either.",
+    },
+    workflow: {
+      heading: "How we work in it.",
+      steps: [
+        {
+          title: "Assessment",
+          items: [
+            "Query patterns, volumes and burst profile",
+            "Current spend, broken down by table and user",
+            "Source systems and ingestion latency needs",
+            "Residency and access requirements",
+          ],
+        },
+        {
+          title: "Dataset & Table Design",
+          items: [
+            "Partitioning and clustering strategy",
+            "Dataset layout and access boundaries",
+            "Required partition filters and quotas",
+            "Cost model and forecast",
+          ],
+        },
+        {
+          title: "Pipelines",
+          items: [
+            "Batch and streaming ingestion",
+            "Transformations under version control, with tests",
+            "Scheduled queries and materialised views",
+            "Orchestration and dependency management",
+          ],
+        },
+        {
+          title: "Operate",
+          items: [
+            "Per-query cost attribution",
+            "Slot and quota monitoring",
+            "Access review and audit logging",
+            "Handover and training",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: "amazon-redshift",
+    navLabel: "Redshift",
+    title: "Amazon Redshift Consulting: The Warehouse Inside Your AWS Estate",
+    intro:
+      "Where the rest of the estate already runs on AWS, Redshift removes a lot of movement: it reads directly from S3, shares data across clusters without copying, and sits inside the same IAM model as everything else. The trade is that distribution and sort keys are decisions you make early and feel for years.",
+    overview: {
+      heading: "Distribution keys are not a detail",
+      body: "Redshift performance is decided mostly by how data is distributed across nodes and how it is sorted within them. Get it right and joins happen locally; get it wrong and every query redistributes data across the network. We model this against the joins you actually run rather than the ones the schema implies.",
+    },
+    highlight: {
+      heading: "Serverless or provisioned",
+      body: "Redshift Serverless removes cluster management and suits variable workloads; provisioned still wins on sustained heavy use and reserved pricing. The right answer depends on your load profile, and it is worth measuring rather than assuming.",
+      points: [
+        "Distribution and sort key design against real join patterns",
+        "Spectrum for querying S3 without loading it",
+        "Data sharing across clusters instead of copies",
+        "Workload management queues so reporting survives a heavy load",
+        "Serverless or provisioned, chosen on measured load",
+      ],
+    },
+    value: {
+      heading: "Why teams pick it",
+      body: "Redshift is the pragmatic choice when the data already lives in S3 and the organisation is committed to AWS, because it removes egress, duplication and a second identity model. It is less compelling as a standalone warehouse bought on its merits alone.",
+    },
+    workflow: {
+      heading: "How we work in it.",
+      steps: [
+        {
+          title: "Assessment",
+          items: [
+            "Existing AWS estate and where the data sits",
+            "Join and query patterns",
+            "Load profile: steady, bursty or seasonal",
+            "Compliance and access boundaries",
+          ],
+        },
+        {
+          title: "Cluster & Schema Design",
+          items: [
+            "Serverless or provisioned, with the reasoning",
+            "Distribution and sort key strategy",
+            "Spectrum external tables where loading is unnecessary",
+            "Workload management queues",
+          ],
+        },
+        {
+          title: "Build & Load",
+          items: [
+            "Ingestion from S3, streams and operational databases",
+            "Layered modelling with tested transformations",
+            "Data sharing rather than duplication",
+            "Vacuum, analyse and maintenance scheduling",
+          ],
+        },
+        {
+          title: "Operate",
+          items: [
+            "Query monitoring and queue tuning",
+            "Cost review and reserved capacity planning",
+            "Access review and audit",
+            "Handover and training",
+          ],
+        },
+      ],
+    },
+  },
+  {
     slug: "shopify",
     title: "Shopify Development Company",
     shortTitle: "Shopify Development Company",

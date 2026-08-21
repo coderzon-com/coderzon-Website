@@ -45,7 +45,10 @@ export function ScrollToTop() {
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Scroll back to top"
-      className={`fixed bottom-5 right-5 z-50 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-transparent text-black shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all duration-300 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black ${
+      /* Light on the dark ground the whole site now uses. This was black
+         type inside a black hairline — present, focusable, and completely
+         invisible from the moment the pages stopped being white. */
+      className={`bg-ink/70 fixed bottom-5 right-5 z-50 flex h-[50px] w-[50px] items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.22)] backdrop-blur-md transition-all duration-300 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
         isVisible
           ? "visible translate-y-0 opacity-100"
           : "invisible translate-y-4 opacity-0"
@@ -57,6 +60,12 @@ export function ScrollToTop() {
         viewBox="-1 -1 102 102"
         className="absolute inset-0 h-full w-full -rotate-90"
       >
+        <path
+          d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+          fill="none"
+          stroke="rgba(255,255,255,0.16)"
+          strokeWidth="4"
+        />
         <path
           ref={pathRef}
           d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"

@@ -1,6 +1,7 @@
 import {
   Bot,
   Braces,
+  Database,
   ChartColumnBig,
   CloudCog,
   CodeXml,
@@ -10,6 +11,7 @@ import {
   RadioTower,
   Satellite,
   Search,
+  Share2,
   Smartphone,
   Wrench,
 } from "lucide-react";
@@ -23,6 +25,7 @@ import {
 const ICONS = {
   Bot,
   Braces,
+  Database,
   ChartColumnBig,
   CloudCog,
   CodeXml,
@@ -32,6 +35,7 @@ const ICONS = {
   RadioTower,
   Satellite,
   Search,
+  Share2,
   Smartphone,
   Wrench,
 };

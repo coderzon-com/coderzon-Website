@@ -26,7 +26,7 @@ export function NewsletterForm() {
   return (
     <div className="grid gap-8 pb-14 lg:grid-cols-12 lg:items-end">
       <div className="lg:col-span-6">
-        <p className="font-mono text-[10px] uppercase tracking-label text-white/35">
+        <p className="font-mono text-[10px] uppercase tracking-label text-white/55">
           Occasional updates
         </p>
         <h2 className="mt-4 max-w-[14ch] text-heading font-bold text-white break-words">
@@ -46,12 +46,12 @@ export function NewsletterForm() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             placeholder="you@company.com"
-            className="min-h-[52px] w-full rounded-full border border-white/20 bg-transparent px-6 text-sm text-white placeholder:text-white/35 transition-colors focus:border-white focus:outline-none"
+            className="min-h-[52px] w-full rounded-full border border-white/20 bg-transparent px-6 text-sm text-white placeholder:text-white/50 transition-colors focus:border-white focus:outline-none"
           />
           <button
             type="submit"
             disabled={isSubmitting}
-            className="ease-power inline-flex min-h-[52px] shrink-0 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-60"
+            className="ease-power inline-flex min-h-[52px] shrink-0 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-black transition-colors duration-300 hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Subscribing…" : "Subscribe"}
           </button>

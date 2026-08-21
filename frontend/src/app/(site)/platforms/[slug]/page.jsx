@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { buildMetadata } from "@/config/site";
 import { platforms, getPlatformBySlug } from "@/data/platforms";
 import { PageHero } from "@/components/ui/page-hero";
+import { PlatformGyro } from "@/components/ui/figures/platform-gyro";
 import { PlatformDetail } from "@/components/platforms/platform-detail";
 import { ContactCta } from "@/components/contact/contact-cta";
 
@@ -33,6 +34,7 @@ export default function PlatformDetailPage({ params }) {
         breadcrumb={platform.navLabel}
         description={platform.shortTitle}
         trail={[{ label: "Platforms", href: "/platforms" }]}
+        visual={<PlatformGyro />}
       />
       <PlatformDetail platform={platform} />
       <ContactCta />

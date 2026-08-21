@@ -20,9 +20,14 @@ import { motion, useReducedMotion, useTransform } from "motion/react";
  * for most of the flight, and a card sitting on top of another reads as a
  * bug rather than as choreography. There they rise into place instead.
  *
- * Everything animated here is transform and opacity, and the plate is inert
- * to the pointer until it has landed — a link should not be clickable while
- * it is still flying.
+ * Everything animated here is transform and opacity.
+ *
+ * The plates stay clickable throughout, including mid-flight. An earlier
+ * version gated pointer events until each one landed, on the reasoning that a
+ * link should not be clickable while it is moving. That was the wrong trade:
+ * the gate depended on a scroll value reaching a threshold, and when it did
+ * not, every platform link on the page was permanently dead. A card caught
+ * mid-flight is a harmless click; unreachable navigation is not.
  */
 export function EmergingPlate({
   index,
@@ -63,10 +68,6 @@ export function EmergingPlate({
   const simpleY = useTransform(progress, [start, end], [10, 0]);
   const simpleOpacity = useTransform(progress, [start, end], [0, 1]);
 
-  const landed = useTransform(progress, (value) =>
-    value >= end - 0.02 ? "auto" : "none",
-  );
-
   if (reduceMotion) {
     // Nothing to reveal and nothing to wait for: just show it.
     return (
@@ -104,7 +105,6 @@ export function EmergingPlate({
         scale,
         rotate,
         opacity,
-        pointerEvents: landed,
         transformStyle: "preserve-3d",
       }}
       className="relative"

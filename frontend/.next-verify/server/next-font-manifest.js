@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/mnt/d/CoderZone/Comapny website/frontend/src/app/layout":["static/media/42c0d1ff9eba2829-s.p.woff2","static/media/558ca1a6aa3cb55e-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';

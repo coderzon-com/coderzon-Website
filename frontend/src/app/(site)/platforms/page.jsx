@@ -2,6 +2,7 @@ import { buildMetadata } from "@/config/site";
 import { platforms, getPlatformBySlug } from "@/data/platforms";
 import { platformGroups } from "@/config/navigation";
 import { PageHero } from "@/components/ui/page-hero";
+import { PlatformGyro } from "@/components/ui/figures/platform-gyro";
 import { PlatformCard } from "@/components/platforms/platform-card";
 import { RevealGrid } from "@/components/ui/reveal-grid";
 import { ContactCta } from "@/components/contact/contact-cta";
@@ -21,22 +22,23 @@ export default function PlatformsPage() {
         title="What we work in"
         breadcrumb="Platforms"
         description="We are not tied to one vendor. These are the stacks we implement, migrate and support in production."
+        visual={<PlatformGyro />}
       />
 
-      <section className="px-x-default py-y-default bg-white text-black">
+      <section className="px-x-default py-y-default bg-ink text-white">
         <div className="space-y-20">
           {platformGroups.map((group) => (
             <div key={group.label}>
               <div className="flex items-baseline justify-between gap-4">
-                <h2 className="font-mono text-[10px] uppercase tracking-label text-black/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-label text-white/55">
                   {group.label}
                 </h2>
-                <span className="font-mono text-[10px] tabular-nums text-black/30">
+                <span className="font-mono text-[10px] tabular-nums text-white/45">
                   {String(group.items.length).padStart(2, "0")}
                 </span>
               </div>
 
-              <RevealGrid className="mt-8 border-t border-black/10">
+              <RevealGrid className="mt-8 border-t border-white/12">
                 {group.items
                   .map((entry) => getPlatformBySlug(entry.slug))
                   .filter(Boolean)

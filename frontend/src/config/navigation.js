@@ -13,8 +13,12 @@ import { platforms } from "@/data/platforms";
 
 const SERVICE_GROUPS = [
   {
+    // The firm leads with data work, so this group leads the catalogue and
+    // carries the engineering discipline the rest of it depends on.
     label: "Data & intelligence",
     slugs: [
+      "data-engineering",
+      "data-science",
       "data-analytics-consulting-services",
       "business-intelligence",
       "network-analysis",
@@ -23,9 +27,10 @@ const SERVICE_GROUPS = [
   {
     label: "AI & engineering",
     slugs: [
+      "agentic-ai",
       "machine-learning-app-development-services",
-      "iot-software-development",
       "Digital-Product-Engineering",
+      "iot-software-development",
     ],
   },
   {
@@ -49,9 +54,30 @@ const SERVICE_GROUPS = [
 ];
 
 const PLATFORM_GROUPS = [
-  { label: "Microsoft", slugs: ["Microsoft-BI", "Microsoft-Azure"] },
-  { label: "Cloud", slugs: ["Amazon-Web-Services", "Google-Cloud"] },
-  { label: "Open source", slugs: ["Open-Source-BI"] },
+  /* Grouped by what a platform is, not by who sells it.
+     "Microsoft" sat alongside "Cloud" and "Commerce & content" — a vendor in
+     a list of categories — which put Fabric (a data platform), Power BI (a
+     reporting tool) and Azure (a cloud) in one bucket whose only common
+     property was the logo. A buyer shopping for a warehouse does not care who
+     owns it, so Fabric now sits with the warehouses it competes against and
+     Azure with the clouds it competes against. */
+  {
+    label: "Warehouse & lakehouse",
+    slugs: [
+      "Microsoft-Fabric",
+      "snowflake",
+      "google-bigquery",
+      "amazon-redshift",
+    ],
+  },
+  {
+    label: "Cloud",
+    slugs: ["Microsoft-Azure", "Amazon-Web-Services", "Google-Cloud"],
+  },
+  {
+    label: "Business intelligence",
+    slugs: ["Microsoft-BI", "Open-Source-BI"],
+  },
   { label: "Commerce & content", slugs: ["shopify", "WordPress"] },
 ];
 

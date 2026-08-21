@@ -1,3 +1,6 @@
+"use client";
+import { RevealOnScroll } from "@/components/ui/reveal-on-scroll";
+
 import { Check } from "lucide-react";
 
 /**
@@ -12,9 +15,13 @@ import { Check } from "lucide-react";
 export function ProseBlock({ id, kicker, heading, children }) {
   if (!children) return null;
   return (
-    <section id={id} className="scroll-mt-28 border-t border-black/10 pt-12">
+    <RevealOnScroll
+      as="section"
+      id={id}
+      className="scroll-mt-28 border-t border-white/12 pt-12"
+    >
       {kicker && (
-        <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-brand">
+        <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-signal">
           {kicker}
         </p>
       )}
@@ -23,10 +30,10 @@ export function ProseBlock({ id, kicker, heading, children }) {
           {heading}
         </h2>
       )}
-      <p className="max-w-2xl text-base leading-relaxed text-black/65">
+      <p className="max-w-2xl text-base leading-relaxed text-white/80">
         {children}
       </p>
-    </section>
+    </RevealOnScroll>
   );
 }
 
@@ -35,9 +42,13 @@ export function ChecklistBlock({ id, kicker, heading, body, points }) {
   if (!heading && !body && !points?.length) return null;
 
   return (
-    <section id={id} className="scroll-mt-28 border-t border-black/10 pt-12">
+    <RevealOnScroll
+      as="section"
+      id={id}
+      className="scroll-mt-28 border-t border-white/12 pt-12"
+    >
       {kicker && (
-        <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-brand">
+        <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-signal">
           {kicker}
         </p>
       )}
@@ -47,7 +58,7 @@ export function ChecklistBlock({ id, kicker, heading, body, points }) {
         </h2>
       )}
       {body && (
-        <p className="max-w-2xl text-base leading-relaxed text-black/65">
+        <p className="max-w-2xl text-base leading-relaxed text-white/80">
           {body}
         </p>
       )}
@@ -57,10 +68,10 @@ export function ChecklistBlock({ id, kicker, heading, body, points }) {
           {points.map((point) => (
             <li
               key={point}
-              className="flex items-start gap-3 border-b border-black/10 py-4 text-sm"
+              className="flex items-start gap-3 border-b border-white/12 py-4 text-sm"
             >
               <Check
-                className="mt-0.5 h-4 w-4 shrink-0 text-brand"
+                className="mt-0.5 h-4 w-4 shrink-0 text-signal"
                 aria-hidden="true"
               />
               {point}
@@ -68,7 +79,7 @@ export function ChecklistBlock({ id, kicker, heading, body, points }) {
           ))}
         </ul>
       )}
-    </section>
+    </RevealOnScroll>
   );
 }
 
@@ -77,8 +88,12 @@ export function WorkflowBlock({ id, workflow }) {
   if (!workflow?.steps?.length) return null;
 
   return (
-    <section id={id} className="scroll-mt-28 border-t border-black/10 pt-12">
-      <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-brand">
+    <RevealOnScroll
+      as="section"
+      id={id}
+      className="scroll-mt-28 border-t border-white/12 pt-12"
+    >
+      <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-signal">
         Workflow
       </p>
       {workflow.heading && (
@@ -90,11 +105,11 @@ export function WorkflowBlock({ id, workflow }) {
       <ol className="relative space-y-12">
         <span
           aria-hidden="true"
-          className="absolute left-0 top-3 h-[calc(100%-1.5rem)] w-px bg-black/10"
+          className="absolute left-0 top-3 h-[calc(100%-1.5rem)] w-px bg-white/10"
         />
         {workflow.steps.map((step, index) => (
           <li key={step.title} className="relative pl-10">
-            <span className="absolute left-0 top-1 font-mono text-[10px] tabular-nums text-black/40">
+            <span className="absolute left-0 top-1 font-mono text-[10px] tabular-nums text-white/55">
               {String(index + 1).padStart(2, "0")}
             </span>
             <h3 className="text-xl font-bold tracking-[-0.02em]">
@@ -104,10 +119,10 @@ export function WorkflowBlock({ id, workflow }) {
               {step.items.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3 text-sm text-black/55"
+                  className="flex items-start gap-3 text-sm text-white/70"
                 >
                   <Check
-                    className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand"
+                    className="mt-0.5 h-3.5 w-3.5 shrink-0 text-signal"
                     aria-hidden="true"
                   />
                   {item}
@@ -117,7 +132,7 @@ export function WorkflowBlock({ id, workflow }) {
           </li>
         ))}
       </ol>
-    </section>
+    </RevealOnScroll>
   );
 }
 
@@ -128,7 +143,7 @@ export function ListBlock({ heading, items }) {
   return (
     <div className="mt-8">
       {heading && (
-        <h3 className="mb-4 font-mono text-[10px] uppercase capitalize tracking-label text-black/40">
+        <h3 className="mb-4 font-mono text-[10px] uppercase capitalize tracking-label text-white/55">
           {heading}
         </h3>
       )}
@@ -136,10 +151,10 @@ export function ListBlock({ heading, items }) {
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-3 text-sm text-black/65"
+            className="flex items-start gap-3 text-sm text-white/80"
           >
             <Check
-              className="mt-0.5 h-4 w-4 shrink-0 text-brand"
+              className="mt-0.5 h-4 w-4 shrink-0 text-signal"
               aria-hidden="true"
             />
             {item}

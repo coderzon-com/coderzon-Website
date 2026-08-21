@@ -16,23 +16,23 @@ export function Accordion({ items, defaultOpen = 0 }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="border-t border-black/10">
+    <div className="border-t border-white/12">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (
-          <div key={item.question} className="border-b border-black/10">
+          <div key={item.question} className="border-b border-white/12">
             <h3>
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 aria-expanded={isOpen}
-                className={`group flex w-full items-start gap-5 py-7 text-left transition-opacity duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black sm:gap-8 ${
+                className={`group flex w-full items-start gap-5 py-7 text-left transition-opacity duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:gap-8 ${
                   isOpen ? "opacity-100" : "opacity-50 hover:opacity-100"
                 }`}
               >
                 <span
                   aria-hidden="true"
-                  className="mt-2 shrink-0 font-mono text-[10px] tabular-nums text-black/40"
+                  className="mt-2 shrink-0 font-mono text-[10px] tabular-nums text-white/55"
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -61,7 +61,7 @@ export function Accordion({ items, defaultOpen = 0 }) {
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="max-w-2xl pb-8 leading-relaxed text-black/60 sm:pl-[3.25rem]">
+                  <p className="max-w-2xl pb-8 leading-relaxed text-white/75 sm:pl-[3.25rem]">
                     {item.answer}
                   </p>
                 </motion.div>

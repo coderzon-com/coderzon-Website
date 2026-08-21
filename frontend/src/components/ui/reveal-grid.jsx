@@ -28,6 +28,7 @@ export function RevealGrid({ className, children, amount = 0.15 }) {
     <motion.div
       className={className}
       initial="hidden"
+      data-motion-reveal=""
       whileInView="show"
       viewport={{ once: true, amount }}
       variants={{

@@ -72,7 +72,7 @@ export function MegaPanel({ menu, onNavigate, onMouseEnter, onMouseLeave }) {
         animate="show"
         exit="exit"
         style={{ transformOrigin: "top center" }}
-        className="origin-top border-b border-black/10 bg-white text-black shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]"
+        className="bg-ink-raised origin-top border-b border-white/12 text-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.85)]"
       >
         <motion.div
           variants={{
@@ -89,13 +89,13 @@ export function MegaPanel({ menu, onNavigate, onMouseEnter, onMouseLeave }) {
           className="px-x-default grid gap-12 py-12 lg:grid-cols-12"
         >
           <motion.div variants={column} className="lg:col-span-9">
-            <div className="mb-8 flex items-baseline justify-between gap-6 border-b border-black/10 pb-5">
+            <div className="mb-8 flex items-baseline justify-between gap-6 border-b border-white/12 pb-5">
               <div className="flex items-baseline gap-4">
                 <span className="text-brand font-mono text-[10px] uppercase tracking-label">
                   {menu.eyebrow}
                 </span>
                 <span aria-hidden="true" className="h-px w-8 bg-black/15" />
-                <h2 className="font-mono text-[10px] uppercase tracking-label text-black/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-label text-white/55">
                   {menu.title}
                 </h2>
               </div>
@@ -103,7 +103,7 @@ export function MegaPanel({ menu, onNavigate, onMouseEnter, onMouseLeave }) {
               <Link
                 href={menu.viewAll.href}
                 onClick={onNavigate}
-                className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-label text-black/45 transition-colors duration-300 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+                className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-label text-white/55 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 {menu.viewAll.label}
                 <ArrowUpRight className="ease-power h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -115,7 +115,7 @@ export function MegaPanel({ menu, onNavigate, onMouseEnter, onMouseLeave }) {
             <div className="group/list grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
               {menu.groups.map((group) => (
                 <motion.div key={group.label} variants={column}>
-                  <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-black/35">
+                  <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-white/55">
                     {group.label}
                   </p>
                   <ul className="space-y-1">
@@ -127,7 +127,7 @@ export function MegaPanel({ menu, onNavigate, onMouseEnter, onMouseLeave }) {
                             href={entry.href}
                             onClick={onNavigate}
                             aria-current={current ? "page" : undefined}
-                            className={`group/item ease-power -mx-2 flex items-center gap-2.5 rounded-md px-2 py-2 text-sm leading-snug transition-all duration-300 hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black group-hover/list:opacity-40 hover:!opacity-100 focus-visible:!opacity-100 ${
+                            className={`group/item ease-power -mx-2 flex items-center gap-2.5 rounded-md px-2 py-2 text-sm leading-snug transition-all duration-300 hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white group-hover/list:opacity-40 hover:!opacity-100 focus-visible:!opacity-100 ${
                               current ? "font-medium" : ""
                             }`}
                           >
@@ -154,19 +154,19 @@ export function MegaPanel({ menu, onNavigate, onMouseEnter, onMouseLeave }) {
           </motion.div>
 
           <motion.aside variants={column} className="lg:col-span-3">
-            <div className="flex h-full flex-col justify-between border-l border-black/10 pl-10">
+            <div className="flex h-full flex-col justify-between border-l border-white/12 pl-10">
               <div>
                 <h3 className="text-display-sm font-bold">
                   {menu.feature.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-black/55">
+                <p className="mt-3 text-sm leading-relaxed text-white/65">
                   {menu.feature.body}
                 </p>
               </div>
               <Link
                 href={menu.feature.cta.href}
                 onClick={onNavigate}
-                className="ease-power mt-8 inline-flex min-h-[44px] items-center self-start rounded-full bg-black px-6 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                className="ease-power mt-8 inline-flex min-h-[44px] items-center self-start rounded-full bg-black px-6 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
               >
                 {menu.feature.cta.label}
               </Link>

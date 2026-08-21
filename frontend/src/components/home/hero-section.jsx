@@ -122,7 +122,7 @@ export function HeroSection() {
           instead put it 47px below the copy's own centre at every width,
           because the catalogue index is a flex sibling that the copy centres
           above and the stack did not know about. */}
-      <div className="relative z-[1] flex flex-1 items-center pb-12 pt-[calc(72px+2rem)] lg:pt-[calc(80px+1.5rem)]">
+      <div className="relative z-[1] flex flex-1 items-center pb-10 pt-[calc(72px+2rem)] lg:pt-[calc(80px+1.5rem)]">
         <motion.div
           style={reduceMotion ? undefined : { y: copyY, opacity: copyOpacity }}
           variants={{
@@ -179,7 +179,7 @@ export function HeroSection() {
 
           <motion.div
             variants={rise}
-            className="mt-8 flex flex-col items-start gap-7"
+            className="mt-7 flex flex-col items-start gap-6"
           >
             <p className="max-w-md text-base leading-relaxed text-white/70 lg:text-lg">
               {hero.description}

@@ -50,11 +50,14 @@ export function SiteHeader() {
   const lastScroll = useRef(0);
   const ticking = useRef(false);
 
-  /* The homepage is dark the whole way down; the inner pages open on paper.
-     This drives both states of the bar, because a glass surface has to be
-     made of the thing behind it — white glass over a dark page is not
-     translucent, it is a grey slab sitting on top. */
-  const isDarkPage = pathname === "/";
+  /* Every page opens dark now: the homepage on its hero, the rest on the
+     shared page header. This was still keyed to the homepage alone, which
+     left the nav rendering dark type on a dark hero everywhere else —
+     invisible until you hovered it.
+
+     Kept as a value rather than inlined, because the day a light page comes
+     back this is the single place that has to know about it. */
+  const isDarkPage = true;
 
   useEffect(() => {
     const read = () => {
@@ -123,7 +126,9 @@ export function SiteHeader() {
      glass matches the page, so on a dark page the type stays light all the
      way down. The open panel is the exception: it is a white surface, and the
      bar has to join it rather than float above it. */
-  const onDark = isDarkPage && !openMenu;
+  /* The open panel used to be a white surface, so the bar switched to join
+     it. The panel is dark now and they already match. */
+  const onDark = isDarkPage;
 
   return (
     <motion.header
@@ -143,9 +148,7 @@ export function SiteHeader() {
         className={`relative transition-[background-color,border-color,backdrop-filter] duration-300 ${
           !isScrolled && !openMenu
             ? "border-b border-transparent bg-transparent"
-            : onDark
-              ? "bg-ink/75 border-b border-white/10 backdrop-blur-xl"
-              : "border-b border-black/10 bg-white/80 backdrop-blur-xl"
+            : "bg-ink/85 border-b border-white/10 backdrop-blur-xl"
         }`}
       >
         <div className="px-x-default">

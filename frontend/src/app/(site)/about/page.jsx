@@ -1,5 +1,6 @@
 import { buildMetadata } from "@/config/site";
 import { PageHero } from "@/components/ui/page-hero";
+import { LayerFan } from "@/components/ui/figures/layer-fan";
 import { AboutSection } from "@/components/home/about-section";
 import { WorkProcessSection } from "@/components/home/work-process-section";
 import { ContactCta } from "@/components/contact/contact-cta";
@@ -19,6 +20,7 @@ export default function AboutPage() {
         title="A technology partner, not only a staffing supplier"
         breadcrumb="About"
         description="Software architects and senior engineers building systems that outlast the engagement."
+        visual={<LayerFan />}
       />
       <AboutSection />
       <WorkProcessSection />

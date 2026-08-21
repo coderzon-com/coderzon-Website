@@ -2,13 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { serviceGroups } from "@/config/navigation";
 import { getServiceBySlug, services } from "@/data/services";
 import { DURATION, EASE, STAGGER, rise, stagger } from "@/lib/motion";
 import { Icon } from "@/components/ui/icon";
 import { StackCard } from "@/components/ui/stack-card";
+import { PlatformChips } from "@/components/ui/platform-chips";
 
 /**
  * The catalogue, as a deck of four disciplines.
@@ -56,6 +62,38 @@ const STACKS_ABOVE = "(min-height: 560px)";
  * tallest natural card at that width, which is what makes them actually equal
  * rather than merely bounded.
  */
+/**
+ * The two disciplines the firm leads with, on one card ahead of the grouped
+ * catalogue.
+ *
+ * Together rather than separately: they are one practice, sold together and
+ * usually delivered by the same people on the same engagement. Two cards
+ * implied two offers and cost a whole extra pin in the stack for a
+ * distinction the buyer does not make.
+ *
+ * They are removed from their group below rather than listed twice — the same
+ * service appearing in two cards of one deck makes the deck look padded.
+ */
+const LEAD_SLUGS = ["data-engineering", "data-science"];
+const LEAD_HEADING = "Data engineering & data science";
+const LEAD_BLURB =
+  "The platform underneath and the modelling on top, from the same team. Most engagements start with the pipelines and end with something predicting on them.";
+
+/**
+ * What an engagement actually leaves behind.
+ *
+ * Concrete deliverables rather than adjectives. A buyer comparing firms is
+ * trying to work out what they will own at the end, and "modern, scalable
+ * solutions" answers that for nobody — these are the four artefacts that
+ * exist when the work is done.
+ */
+const LEAD_OUTPUTS = [
+  "A warehouse with tested, versioned models",
+  "Pipelines that announce their own failures",
+  "Models serving in production, not sitting in notebooks",
+  "Documentation and a team who can run it without us",
+];
+
 const CARD_MIN_H = "min-h-[330px] sm:min-h-[430px] lg:min-h-[530px]";
 
 /**
@@ -64,9 +102,9 @@ const CARD_MIN_H = "min-h-[330px] sm:min-h-[430px] lg:min-h-[530px]";
  */
 const PURPOSE = {
   "Data & intelligence":
-    "Turning data you already hold into decisions people act on — pipelines, warehouses, and the reporting that sits on top.",
+    "The engineering underneath, and the reporting on top: pipelines, warehouses and models that make the numbers dependable enough to act on.",
   "AI & engineering":
-    "Models and connected systems built to survive production, not to demo well.",
+    "Agents and models built to survive production rather than to demo well — grounded in your own data, with the brakes fitted.",
   "Build & ship":
     "New products, from first architecture through to something customers can use.",
   "Run & modernise":
@@ -80,6 +118,17 @@ export function CapabilityStack() {
   const { scrollYProgress } = useScroll({
     target: stackRef,
     offset: ["start start", "end end"],
+  });
+
+  /* A second, earlier window purely for the cards arriving.
+     Their entrance used whileInView, which is an observer this section does
+     not need — it already has a scroll position in hand, and every time a
+     reveal here has depended on an observer the section has ended up rendering
+     blank when the observer did not fire. This runs from the deck appearing at
+     the bottom of the viewport to it reaching the middle. */
+  const { scrollYProgress: arrival } = useScroll({
+    target: stackRef,
+    offset: ["start end", "start 0.4"],
   });
 
   /* One decision for the whole deck, from the tallest card actually rendered.
@@ -140,24 +189,34 @@ export function CapabilityStack() {
   }, []);
 
   const riseVariant = rise(reduceMotion, { y: 24 });
-  /* Self-contained, not inherited. A card that depends on a variant coming
-     down from an ancestor is one remount away from being stuck at opacity 0,
-     and it cannot recover because the ancestor's whileInView only fires once. */
+  /* Driven by the arrival window rather than by an observer, and staggered so
+     the deck assembles rather than appearing all at once. */
+  const cardOpacity = useTransform(arrival, [0.05, 0.45], [0, 1]);
+  const cardY = useTransform(arrival, [0.05, 0.45], [40, 0]);
   const entrance = reduceMotion
     ? {}
-    : {
-        initial: { opacity: 0, y: 40 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-8% 0px" },
-        transition: { duration: DURATION.entrance, ease: EASE.power },
-      };
+    : { style: { opacity: cardOpacity, y: cardY } };
 
   /* The phases each engagement runs through, straight from the service data.
      This is the part a buyer actually wants: not what the service is called,
      but what working with us on it involves. One service documents no
      workflow, so the line is dropped rather than faked. */
+  const lead = LEAD_SLUGS.map((slug) => {
+    const service = getServiceBySlug(slug);
+    if (!service) return null;
+    return {
+      ...service,
+      href: `/services/${slug}`,
+      phases: (service.workflow?.steps ?? [])
+        .map((step) => step.title)
+        .filter(Boolean),
+      platforms: service.platforms ?? [],
+    };
+  }).filter(Boolean);
+
   const groups = serviceGroups.map((group) => {
     const entries = group.items
+      .filter((item) => !LEAD_SLUGS.includes(item.slug))
       .map((item) => {
         const service = getServiceBySlug(item.slug);
         if (!service) return null;
@@ -178,8 +237,14 @@ export function CapabilityStack() {
     return { ...group, entries, range };
   });
 
-  // Four discipline cards plus the closing catalogue card.
-  const total = groups.length + 1;
+  // The lead cards, the discipline cards, and the closing catalogue card.
+  const leadPlatforms = [
+    ...new Set(lead.flatMap((service) => service.platforms)),
+  ];
+
+  const populated = groups.filter((group) => group.entries.length > 0);
+  const leadCards = lead.length > 0 ? 1 : 0;
+  const total = leadCards + populated.length + 1;
 
   return (
     <section className="bg-ink px-x-default border-b border-white/10 pb-y-seam pt-y-default text-white">
@@ -202,8 +267,9 @@ export function CapabilityStack() {
             </h2>
           </div>
           <p className="max-w-full text-sm leading-relaxed text-white/60 sm:max-w-xs">
-            Four disciplines, one team. Most engagements start in the first one
-            and end up touching all four.
+            Data work leads, and the rest of the catalogue supports it. Most
+            engagements start with the platform and end up touching several of
+            the disciplines below it.
           </p>
         </motion.div>
       </motion.div>
@@ -221,15 +287,108 @@ export function CapabilityStack() {
            played its whole entrance before the reader arrived. */
         className="relative mt-12 pb-[5vh] lg:mt-16 lg:pb-[6vh]"
       >
-        {groups.map((group, index) => (
+        {/* One lead card for both disciplines. Each service keeps its own
+            row, its own link and its own phases, so nothing is lost by
+            combining them — but the deck states one practice rather than two
+            competing offers, and the reader pins one card instead of two. */}
+        {lead.length > 0 && (
+          <StackCard
+            as="li"
+            index={0}
+            total={total}
+            top={STACK_TOP}
+            progress={scrollYProgress}
+            range={ranges[0]}
+            enabled={canStack}
+            className="pb-4"
+          >
+            <motion.div data-motion-reveal="" {...entrance}>
+              <div
+                className={`bg-ink-raised grid content-start gap-8 rounded-3xl border border-white/20 p-6 shadow-[0_-14px_40px_-28px_rgba(0,0,0,0.9)] sm:grid-cols-12 sm:gap-8 sm:p-7 lg:gap-10 lg:p-8 ${CARD_MIN_H}`}
+              >
+                <div className="sm:col-span-5 lg:col-span-4">
+                  <p className="text-signal font-mono text-[10px] uppercase tracking-label">
+                    What we lead with
+                  </p>
+                  <h3 className="mt-3 break-words text-display-sm font-bold [font-stretch:96%]">
+                    {LEAD_HEADING}
+                  </h3>
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/65 sm:mt-4 sm:text-sm">
+                    {LEAD_BLURB}
+                  </p>
+                  <PlatformChips
+                    slugs={leadPlatforms}
+                    className="mt-6 hidden sm:block"
+                  />
+                </div>
+
+                <div className="sm:col-span-7 lg:col-span-8">
+                  <ul>
+                    {lead.map((service) => (
+                      <li
+                        key={service.slug}
+                        className="border-t border-white/10 py-4 first:border-t-0 first:pt-0"
+                      >
+                        <Link
+                          href={service.href}
+                          className="focus-visible:ring-offset-ink-raised group/lead ease-power flex items-start gap-4 rounded-sm transition-[padding] duration-300 hover:pl-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 motion-reduce:hover:pl-0"
+                        >
+                          <span className="text-signal mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10">
+                            <Icon name={service.icon} className="h-4 w-4" />
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block break-words text-base font-bold leading-tight">
+                              {service.shortTitle}
+                            </span>
+                            <span className="mt-1 block text-sm leading-snug text-white/65">
+                              {service.overview.heading}
+                            </span>
+                          </span>
+                          <ArrowUpRight
+                            aria-hidden="true"
+                            className="ease-power mt-1 h-4 w-4 shrink-0 text-white/45 transition-all duration-300 group-hover/lead:-translate-y-0.5 group-hover/lead:translate-x-0.5 group-hover/lead:text-white motion-reduce:transition-none"
+                          />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-5 border-t border-white/10 pt-5">
+                    <p className="font-mono text-[10px] uppercase tracking-label text-white/55">
+                      What you end up with
+                    </p>
+                    <ul className="mt-3 grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
+                      {LEAD_OUTPUTS.map((output) => (
+                        <li
+                          key={output}
+                          className="flex items-start gap-2 text-[13px] leading-snug text-white/70"
+                        >
+                          <span aria-hidden="true" className="text-signal mt-1">
+                            &#8226;
+                          </span>
+                          {output}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </StackCard>
+        )}
+
+        {populated.map((group, index) => (
           <StackCard
             key={group.label}
+            /* Offset past the lead cards. Using the map index alone gave the
+               third card a z-index of 1, the same as the first — so it stacked
+               underneath the cards it is supposed to cover. */
+            index={leadCards + index}
             as="li"
-            index={index}
             total={total}
-            top={STACK_TOP + index * STACK_STEP}
+            top={STACK_TOP + (leadCards + index) * STACK_STEP}
             progress={scrollYProgress}
-            range={ranges[index]}
+            range={ranges[leadCards + index]}
             enabled={canStack}
             className="pb-4"
           >
@@ -313,11 +472,11 @@ export function CapabilityStack() {
               "what else?" before the reader has to go looking. */}
         <StackCard
           as="li"
-          index={groups.length}
+          index={leadCards + populated.length}
           total={total}
           top={STACK_TOP + groups.length * STACK_STEP}
           progress={scrollYProgress}
-          range={ranges[groups.length]}
+          range={ranges[leadCards + populated.length]}
           enabled={canStack}
           className="pb-4"
         >

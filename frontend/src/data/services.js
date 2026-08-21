@@ -6,7 +6,90 @@
  */
 export const services = [
   {
+    slug: "data-science",
+    // The platforms this work is actually delivered in. Held as data so
+    // it can be rendered as links on the detail page and in the homepage
+    // card — the experience stated, not implied by a list elsewhere.
+    platforms: ["Microsoft-Fabric", "snowflake", "google-bigquery"],
+    icon: "Search",
+    title: "Data Science: Answers You Can Defend in a Meeting",
+    shortTitle: "Data Science",
+    intro:
+      "Forecasting, segmentation, churn, pricing, anomaly detection — the questions where the answer changes a decision and someone will ask how you arrived at it. We build models that are accurate enough to be useful and explainable enough to be argued with, then put them somewhere they actually run.",
+    overview: {
+      heading: "Models that reach production",
+      body: "Most data science never ships. It lives in a notebook, produces a number nobody can reproduce, and quietly stops being run. We treat a model as software from the first week: versioned data, a training pipeline that can be re-executed, evaluation against a held-out set the business agrees is fair, and a serving path with monitoring on it. If it cannot be re-run next quarter and give the same answer, it is not finished.",
+    },
+    highlight: {
+      heading: "The unglamorous parts decide the result",
+      body: "Model choice is rarely the bottleneck. Feature quality, leakage, class imbalance and a test set that does not reflect reality are what separate a model that works in a notebook from one that works in the business. We spend the time there, and we say plainly when the data will not support the question being asked.",
+      points: [
+        "Framing: turning a business question into something measurable",
+        "Feature engineering on top of the warehouse, not beside it",
+        "Honest evaluation — held-out sets, baselines, and the cost of being wrong",
+        "Explainability where a decision affects a person or a price",
+        "Deployment, monitoring and drift detection, not a handover of notebooks",
+      ],
+    },
+    value: {
+      heading: "When it is worth doing",
+      body: "A model earns its keep where a decision is made often, the outcome is measurable, and a small improvement compounds. Where the decision is rare or the data thin, a clear report beats a model and we will say so. The cheapest engagement is the one that establishes there is no model worth building.",
+    },
+    approach:
+      "We start with a baseline — often something deliberately simple — so every later model has something to beat. It keeps the conversation about whether the work is paying rather than about how sophisticated it is.",
+    workflow: {
+      heading: "Our Data Science Workflow.",
+      steps: [
+        {
+          title: "Question & Baseline",
+          items: [
+            "Turn the business question into a measurable target",
+            "Agree what a useful improvement would look like",
+            "Establish a simple baseline to beat",
+            "Confirm the data can actually support the question",
+          ],
+        },
+        {
+          title: "Features & Data Preparation",
+          items: [
+            "Feature engineering against the warehouse",
+            "Leakage checks and temporal validation",
+            "Class balance, sampling and missing-data strategy",
+            "Reproducible datasets under version control",
+          ],
+        },
+        {
+          title: "Modelling & Evaluation",
+          items: [
+            "Candidate models compared against the baseline",
+            "Held-out evaluation with the cost of error made explicit",
+            "Explainability appropriate to the decision being made",
+            "Review with the people who will act on the output",
+          ],
+        },
+        {
+          title: "Deployment & Monitoring",
+          items: [
+            "Serving path: batch scoring or an endpoint",
+            "Drift, performance and data-quality monitoring",
+            "Retraining cadence and ownership",
+            "Documentation the next analyst can pick up",
+          ],
+        },
+      ],
+    },
+  },
+  {
     slug: "data-analytics-consulting-services",
+    // The platforms this work is actually delivered in. Held as data so
+    // it can be rendered as links on the detail page and in the homepage
+    // card — the experience stated, not implied by a list elsewhere.
+    platforms: [
+      "Microsoft-Fabric",
+      "snowflake",
+      "google-bigquery",
+      "amazon-redshift",
+    ],
     icon: "ChartColumnBig",
     title: "Data Analytics: Your Business in Every Hand",
     shortTitle: "Data Analytics",
@@ -664,6 +747,80 @@ export const services = [
     },
   },
   {
+    slug: "agentic-ai",
+    // The platforms this work is actually delivered in. Held as data so
+    // it can be rendered as links on the detail page and in the homepage
+    // card — the experience stated, not implied by a list elsewhere.
+    platforms: ["Microsoft-Azure", "Amazon-Web-Services", "Google-Cloud"],
+    icon: "Bot",
+    title: "Agentic AI: Systems That Take Action, Not Just Answer",
+    shortTitle: "Agentic AI",
+    intro:
+      "A chatbot answers a question. An agent completes a task — it reads the systems it has access to, decides what to do, does it, and reports what happened. The difference matters because the second one has to be built like production software: with permissions, audit trails, and a clear boundary around what it is allowed to touch.",
+    overview: {
+      heading: "Useful autonomy, with the brakes fitted",
+      body: "We build agents that work against your real systems: retrieving from your own documents and data, calling your own APIs, and writing back through the same validation any other client would face. Every action is scoped by permission and recorded, so an agent can be audited afterwards like any other actor in the system. Where a task is genuinely ambiguous the agent asks rather than guesses, because a confident wrong answer is worse than no answer.",
+    },
+    highlight: {
+      heading: "Grounded in your data, not the open internet",
+      body: "The value is rarely in the model. It is in the retrieval — what the agent can see, how current it is, and how faithfully it cites what it used. That is a data engineering problem before it is an AI problem, which is why the two sit next to each other here.",
+      points: [
+        "Retrieval over your own documents, tickets, code and warehouse tables",
+        "Tool use against real APIs, with permissions scoped per action",
+        "Human approval gates on anything irreversible",
+        "Evaluation sets, so a prompt change can be measured rather than argued about",
+        "Full traces: what was retrieved, what was decided, what was done",
+      ],
+    },
+    value: {
+      heading: "Where agents actually pay",
+      body: "The work that suits an agent is high-volume, rule-heavy and currently done by a person reading one screen and typing into another: triage, reconciliation, first-line support, document extraction, routine research. Those tasks have a measurable before and after, which means the system can be judged on results rather than on how impressive the demo was.",
+    },
+    approach:
+      "We pick one task with a number attached to it and ship that end to end before widening the scope. An agent released across five workflows at once cannot be evaluated, tuned or trusted — and if it goes wrong nobody can say which part was at fault.",
+    workflow: {
+      heading: "Our Agentic AI Workflow.",
+      steps: [
+        {
+          title: "Task Selection & Baseline",
+          items: [
+            "Identify tasks with volume, rules and a measurable outcome",
+            "Record how long the task takes today and how often it is wrong",
+            "Agree what the agent is allowed to do without a human",
+            "Set the bar the system has to clear to be worth keeping",
+          ],
+        },
+        {
+          title: "Grounding & Retrieval",
+          items: [
+            "Source and index the documents and data the task needs",
+            "Chunking, embedding and retrieval tuned against real questions",
+            "Citation, so every answer can be traced to what it came from",
+            "Freshness strategy for sources that change",
+          ],
+        },
+        {
+          title: "Tools, Guardrails & Evaluation",
+          items: [
+            "Tool definitions against real APIs, scoped by permission",
+            "Approval gates on irreversible actions",
+            "Evaluation set built from genuine historical cases",
+            "Failure handling: escalate rather than improvise",
+          ],
+        },
+        {
+          title: "Rollout & Supervision",
+          items: [
+            "Shadow running alongside the existing process",
+            "Staged handover as accuracy holds",
+            "Tracing and cost monitoring per run",
+            "Review cycle, because models and sources both move",
+          ],
+        },
+      ],
+    },
+  },
+  {
     slug: "machine-learning-app-development-services",
     icon: "ChartColumnBig",
     title: "Artificial Intelligence Solutions: Smarter, Adaptive Systems",
@@ -984,7 +1141,90 @@ export const services = [
     },
   },
   {
+    slug: "data-engineering",
+    // The platforms this work is actually delivered in. Held as data so
+    // it can be rendered as links on the detail page and in the homepage
+    // card — the experience stated, not implied by a list elsewhere.
+    platforms: [
+      "Microsoft-Fabric",
+      "snowflake",
+      "google-bigquery",
+      "amazon-redshift",
+    ],
+    icon: "Database",
+    title: "Data Engineering: The Platform Everything Else Runs On",
+    shortTitle: "Data Engineering",
+    intro:
+      "Analytics, reporting and machine learning all rest on the same thing: data that arrives on time, in a known shape, from a source someone is accountable for. Data engineering is that groundwork. We build the pipelines, the warehouse and the contracts around them, so the numbers a dashboard shows are the numbers the business can act on.",
+    overview: {
+      heading: "Pipelines you can trust at 3am",
+      body: "Most reporting problems are not reporting problems. They are a load that failed quietly, a schema that changed upstream, or a definition that two teams disagree about. We build ingestion that is idempotent and observable, transformations that are versioned and tested, and a warehouse layered so that raw, modelled and serving data never get confused with one another. Failures announce themselves rather than surfacing three weeks later as a number nobody can explain.",
+    },
+    highlight: {
+      heading: "Built on the warehouse you already pay for",
+      body: "Snowflake, BigQuery, Redshift and Microsoft Fabric all do this job well, and the right one is usually the one your business is already committed to. We work natively in each rather than putting an abstraction over the top, because an abstraction is another thing to maintain and it costs you the features you are paying for.",
+      points: [
+        "Batch and streaming ingestion, with replay and backfill built in",
+        "Dimensional and wide-table modelling, whichever the query pattern wants",
+        "Tested transformations, versioned alongside the code that uses them",
+        "Cost controls: partitioning, clustering, and warehouse sizing that matches the load",
+        "Lineage and freshness monitoring, so a stale table is caught before a person notices",
+      ],
+    },
+    value: {
+      heading: "Why the plumbing decides the outcome",
+      body: "A model is only as good as the features behind it and a dashboard is only as good as its load. Teams that treat data engineering as a prerequisite ship analytics that hold up under scrutiny; teams that skip it spend their time reconciling numbers instead of using them. The work is unglamorous and it is the difference between a data function that is trusted and one that is quietly worked around.",
+    },
+    approach:
+      "We start with the questions the business needs answered and work backwards to the sources, rather than ingesting everything and hoping something useful falls out. Ownership is explicit from the first week — every table has a purpose, a definition, and someone accountable for it.",
+    workflow: {
+      heading: "Our Data Engineering Workflow.",
+      steps: [
+        {
+          title: "Source & Requirement Mapping",
+          items: [
+            "Inventory of systems, owners and update cadence",
+            "Definition of the metrics that matter and how they are calculated",
+            "Data quality and freshness expectations agreed in writing",
+            "Access, privacy and retention constraints identified early",
+          ],
+        },
+        {
+          title: "Warehouse & Model Design",
+          items: [
+            "Platform selection or confirmation of the existing warehouse",
+            "Layering: raw, staged, modelled and serving",
+            "Schema design against real query patterns",
+            "Partitioning, clustering and cost strategy",
+          ],
+        },
+        {
+          title: "Pipeline Build",
+          items: [
+            "Idempotent ingestion with replay and backfill",
+            "Transformations under version control, with tests",
+            "Orchestration, retries and dependency-aware scheduling",
+            "Secrets, credentials and environment separation",
+          ],
+        },
+        {
+          title: "Observability & Handover",
+          items: [
+            "Freshness, volume and schema-drift monitoring",
+            "Lineage from source through to the serving table",
+            "Runbooks for the failures that actually happen",
+            "Documentation and training for the team who will run it",
+          ],
+        },
+      ],
+    },
+  },
+  {
     slug: "business-intelligence",
+    // The platforms this work is actually delivered in. Held as data so
+    // it can be rendered as links on the detail page and in the homepage
+    // card — the experience stated, not implied by a list elsewhere.
+    platforms: ["Microsoft-Fabric", "Microsoft-BI", "Open-Source-BI"],
     icon: "Bot",
     title: "Business Intelligence: Drive Informed Decisions",
     shortTitle: "Business Intelligence",

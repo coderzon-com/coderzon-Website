@@ -45,6 +45,15 @@ const STACK = [
   "Google Cloud",
   "Docker",
   "Terraform",
+  // Data Engineering — the warehouses the work actually lands in, and the
+  // tools that move data into them. This is what the firm leads with, so it
+  // is the largest group in the field.
+  "Snowflake",
+  "BigQuery",
+  "Amazon Redshift",
+  "Microsoft Fabric",
+  "dbt",
+  "Apache Kafka",
   // Data Analytics, Business Intelligence
   "Power BI",
   "Tableau",
@@ -52,10 +61,12 @@ const STACK = [
   "Apache Spark",
   "Apache Airflow",
   "PostgreSQL",
-  // Artificial Intelligence Solutions
+  // Agentic AI, Artificial Intelligence Solutions
   "Python",
   "TensorFlow",
   "PyTorch",
+  "LangChain",
+  "Vector search",
   // Web Development, MVP, Digital Product Engineering, SaaS
   "React",
   "Node.js",

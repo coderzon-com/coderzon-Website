@@ -2,6 +2,7 @@ import { buildMetadata } from "@/config/site";
 import { services, getServiceBySlug } from "@/data/services";
 import { serviceGroups } from "@/config/navigation";
 import { PageHero } from "@/components/ui/page-hero";
+import { CapabilityDial } from "@/components/services/capability-dial";
 import { ServiceCard } from "@/components/services/service-card";
 import { RevealGrid } from "@/components/ui/reveal-grid";
 import { WorkProcessSection } from "@/components/home/work-process-section";
@@ -22,22 +23,23 @@ export default function ServicesPage() {
         title="What we build"
         breadcrumb="Services"
         description="Grouped by the kind of problem they solve rather than listed alphabetically, so you can find the right team without reading all fourteen."
+        visual={<CapabilityDial />}
       />
 
-      <section className="px-x-default py-y-default bg-white text-black">
+      <section className="bg-ink px-x-default pb-y-default pt-y-default text-white">
         <div className="space-y-20">
           {serviceGroups.map((group) => (
             <div key={group.label}>
               <div className="flex items-baseline justify-between gap-4">
-                <h2 className="font-mono text-[10px] uppercase tracking-label text-black/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-label text-white/55">
                   {group.label}
                 </h2>
-                <span className="font-mono text-[10px] tabular-nums text-black/30">
+                <span className="font-mono text-[10px] tabular-nums text-white/45">
                   {String(group.items.length).padStart(2, "0")}
                 </span>
               </div>
 
-              <RevealGrid className="mt-8 border-t border-black/10">
+              <RevealGrid className="mt-8 border-t border-white/12">
                 {group.items
                   .map((entry) => getServiceBySlug(entry.slug))
                   .filter(Boolean)

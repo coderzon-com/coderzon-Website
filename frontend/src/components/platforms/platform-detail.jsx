@@ -51,14 +51,14 @@ export function PlatformDetail({ platform }) {
   ].filter(Boolean);
 
   return (
-    <section className="px-x-default py-y-default bg-white text-black">
+    <section className="px-x-default py-y-default bg-ink text-white">
       <div>
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
           <aside className="lg:order-last lg:col-span-4">
             <div className="space-y-10 lg:sticky lg:top-28">
               {contents.length > 0 && (
                 <nav aria-label="On this page">
-                  <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-black/40">
+                  <p className="mb-4 font-mono text-[10px] uppercase tracking-label text-white/55">
                     On this page
                   </p>
                   <ul className="space-y-px">
@@ -66,7 +66,7 @@ export function PlatformDetail({ platform }) {
                       <li key={entry.id}>
                         <a
                           href={`#${entry.id}`}
-                          className="block py-2 text-sm opacity-50 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+                          className="block py-2 text-sm opacity-50 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                         >
                           {entry.label}
                         </a>
@@ -76,17 +76,17 @@ export function PlatformDetail({ platform }) {
                 </nav>
               )}
 
-              <div className="border-t border-black/10 pt-8">
-                <p className="font-mono text-[10px] uppercase tracking-label text-black/40">
+              <div className="border-t border-white/12 pt-8">
+                <p className="font-mono text-[10px] uppercase tracking-label text-white/55">
                   Already using it?
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-black/60">
+                <p className="mt-4 text-sm leading-relaxed text-white/75">
                   We take over systems someone else built \u2014 upgrading,
                   migrating and supporting them without starting over.
                 </p>
                 <Link
                   href="/request-quote"
-                  className="ease-power mt-6 inline-flex min-h-[48px] items-center rounded-full bg-black px-7 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                  className="ease-power mt-6 inline-flex min-h-[48px] items-center rounded-full bg-black px-7 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                 >
                   Request a quote
                 </Link>
@@ -95,7 +95,7 @@ export function PlatformDetail({ platform }) {
           </aside>
 
           <article className="lg:col-span-8">
-            <p className="max-w-2xl text-lg leading-relaxed text-black/70">
+            <p className="max-w-2xl text-lg leading-relaxed text-white/85">
               {intro}
             </p>
 
@@ -131,9 +131,9 @@ export function PlatformDetail({ platform }) {
               {useCases && (
                 <section
                   id="use-cases"
-                  className="scroll-mt-28 border-t border-black/10 pt-12"
+                  className="scroll-mt-28 border-t border-white/12 pt-12"
                 >
-                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-signal">
                     In practice
                   </p>
                   <h2 className="mb-3 max-w-[18ch] text-display-sm font-bold break-words">
@@ -150,27 +150,27 @@ export function PlatformDetail({ platform }) {
               )}
 
               {mobileAndEmbedded && (
-                <section className="scroll-mt-28 border-t border-black/10 pt-12">
-                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+                <section className="scroll-mt-28 border-t border-white/12 pt-12">
+                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-signal">
                     Reach
                   </p>
                   <h2 className="mb-5 max-w-[18ch] text-display-sm font-bold break-words">
                     Mobile and embedded
                   </h2>
                   <div className="grid gap-x-10 sm:grid-cols-2">
-                    <div className="border-b border-black/10 py-5">
-                      <h3 className="font-mono text-[10px] uppercase tracking-label text-black/40">
+                    <div className="border-b border-white/12 py-5">
+                      <h3 className="font-mono text-[10px] uppercase tracking-label text-white/55">
                         Mobile
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-black/65">
+                      <p className="mt-2 text-sm leading-relaxed text-white/80">
                         {mobileAndEmbedded.mobile}
                       </p>
                     </div>
-                    <div className="border-b border-black/10 py-5">
-                      <h3 className="font-mono text-[10px] uppercase tracking-label text-black/40">
+                    <div className="border-b border-white/12 py-5">
+                      <h3 className="font-mono text-[10px] uppercase tracking-label text-white/55">
                         Embedded
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-black/65">
+                      <p className="mt-2 text-sm leading-relaxed text-white/80">
                         {mobileAndEmbedded.embedded}
                       </p>
                     </div>
@@ -179,8 +179,8 @@ export function PlatformDetail({ platform }) {
               )}
 
               {predictiveAnalytics && (
-                <section className="scroll-mt-28 border-t border-black/10 pt-12">
-                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+                <section className="scroll-mt-28 border-t border-white/12 pt-12">
+                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-signal">
                     Advanced
                   </p>
                   <h2 className="mb-3 max-w-[18ch] text-display-sm font-bold break-words">
@@ -198,14 +198,14 @@ export function PlatformDetail({ platform }) {
               )}
 
               {realTimeAnalytics && (
-                <section className="scroll-mt-28 border-t border-black/10 pt-12">
-                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+                <section className="scroll-mt-28 border-t border-white/12 pt-12">
+                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-signal">
                     Latency
                   </p>
                   <h2 className="mb-5 max-w-[18ch] text-display-sm font-bold break-words">
                     Real-time analytics
                   </h2>
-                  <p className="max-w-2xl leading-relaxed text-black/65">
+                  <p className="max-w-2xl leading-relaxed text-white/80">
                     {realTimeAnalytics.description}
                   </p>
                   <ListBlock items={realTimeAnalytics.components} />
@@ -215,9 +215,9 @@ export function PlatformDetail({ platform }) {
               {dataArchitecture && (
                 <section
                   id="architecture"
-                  className="scroll-mt-28 border-t border-black/10 pt-12"
+                  className="scroll-mt-28 border-t border-white/12 pt-12"
                 >
-                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-brand">
+                  <p className="mb-3 font-mono text-[10px] uppercase tracking-label text-signal">
                     Foundations
                   </p>
                   <h2 className="mb-3 max-w-[18ch] text-display-sm font-bold break-words">
@@ -236,21 +236,21 @@ export function PlatformDetail({ platform }) {
             </div>
 
             {related.length > 0 && (
-              <div className="mt-20 border-t border-black/10 pt-10">
-                <p className="mb-6 font-mono text-[10px] uppercase tracking-label text-black/40">
+              <div className="mt-20 border-t border-white/12 pt-10">
+                <p className="mb-6 font-mono text-[10px] uppercase tracking-label text-white/55">
                   Related in {group.label}
                 </p>
-                <ul className="border-t border-black/10">
+                <ul className="border-t border-white/12">
                   {related.map((item) => (
                     <li key={item.slug}>
                       <Link
                         href={`/platforms/${item.slug}`}
-                        className="ease-power flex items-baseline gap-4 border-b border-black/10 py-5 opacity-50 transition-all duration-300 hover:translate-x-2 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+                        className="ease-power flex items-baseline gap-4 border-b border-white/12 py-5 opacity-50 transition-all duration-300 hover:translate-x-2 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                       >
                         <span className="text-lg font-bold tracking-[-0.02em]">
                           {item.navLabel}
                         </span>
-                        <span className="ml-auto font-mono text-[10px] text-black/35">
+                        <span className="ml-auto font-mono text-[10px] text-white/50">
                           /{item.slug}
                         </span>
                       </Link>

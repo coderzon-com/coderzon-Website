@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Fragments of the stack, flying past the camera.
+ * The stack, flying past the camera.
  *
  * A dot field is generic — it could sit behind any technology company. These
  * are real lines from the work Coderzon actually does: Spark jobs, EKS
@@ -23,66 +23,49 @@ import { useEffect, useRef, useState } from "react";
  */
 
 /**
- * What flies past.
+ * What flies past: the stack, by name.
  *
- * Two kinds of line, mixed. Most are real: the languages and tools the work is
- * actually done in, so the field says what the company builds without a word
- * of marketing. A minority speak directly to whoever is reading — the same
- * things we would say out loud, written the way an engineer would write them.
+ * Grouped by the services it belongs to, and deliberately short. Every entry
+ * maps to one of the fourteen things this company sells — not to every tool
+ * the codebase happens to mention. A background listing everything anyone has
+ * ever touched reads as a tag cloud; one that names only what is actually on
+ * offer reads as a capability list, and a visitor scanning for the platform
+ * they already run finds it in a second.
  *
- * The ratio matters. All-real reads as wallpaper nobody looks at twice;
- * all-slogans reads as a novelty T-shirt. Keeping the voice lines outnumbered
- * means noticing one feels like catching something, not being sold to.
+ * Names rather than code. A line of SQL says "engineers work here"; a name
+ * says which engineers.
+ *
+ * Set in the mono face, matching the eyebrows and labels elsewhere, so the
+ * field reads as a manifest rather than as scattered logos.
  */
-const FRAGMENTS = [
-  // Things we would actually say
-  'console.log("Hello from Coderzon")',
-  "// we build what your business runs on",
-  "coderzon.architect(yourIdea)",
-  "if (problem.hard) { call(coderzon) }",
-  "// from first architecture to uptime",
-  'git commit -m "ship it"',
-  "SELECT * FROM ideas WHERE shipped",
-  "assert uptime >= 99.9",
-  "return systems.that(hold)",
-  "// senior engineers, in-house",
-  "deploy --to production",
-  "status: 200 OK",
-  // JavaScript / TypeScript
-  "const res = await fetch(url, { signal })",
-  "export default function Page() {",
-  "app.use(express.json())",
-  "type Props = { items: Item[] }",
-  "await Promise.all(tasks.map(run))",
-  // Python
-  "async def ingest(batch: list[Event]):",
-  "df = pd.read_parquet(path)",
-  "embedding = model.encode(chunk)",
-  "@task(retries=3)",
-  "with Session(engine) as session:",
-  // Java
-  "@RestController",
-  "public class OrderService {",
-  "List<Order> findByStatus(Status s)",
-  "@Transactional(readOnly = true)",
-  // Go
-  "func (s *Server) Handle(ctx) error {",
-  "if err != nil { return err }",
-  // SQL
-  "CREATE MATERIALIZED VIEW daily_rollup",
-  "ON CONFLICT (id) DO UPDATE",
-  "GROUP BY 1, 2 ORDER BY 3 DESC",
-  // Data engineering
-  'df.groupBy("region").agg(sum("revenue"))',
-  "spark.sql.shuffle.partitions=200",
-  // Cloud and delivery
-  'resource "aws_eks_cluster" "prod" {',
-  "kind: Deployment",
-  "replicas: 3",
-  "kubectl rollout status deploy/api",
-  "FROM node:22-alpine",
-  "terraform apply -auto-approve",
-  "p99_latency_ms < 250",
+const STACK = [
+  // Cloud Computing, Legacy Modernization, Support & Maintenance
+  "AWS",
+  "Microsoft Azure",
+  "Google Cloud",
+  "Docker",
+  "Terraform",
+  // Data Analytics, Business Intelligence
+  "Power BI",
+  "Tableau",
+  "Databricks",
+  "Apache Spark",
+  "Apache Airflow",
+  "PostgreSQL",
+  // Artificial Intelligence Solutions
+  "Python",
+  "TensorFlow",
+  "PyTorch",
+  // Web Development, MVP, Digital Product Engineering, SaaS
+  "React",
+  "Node.js",
+  // Mobile App Development
+  "Flutter",
+  "React Native",
+  "Swift",
+  // Commerce and content platforms
+  "Shopify",
+  "WordPress",
 ];
 
 /** Perspective. Focal length sets how sharply the tunnel converges. */
@@ -119,9 +102,11 @@ const SPEED = 52;
  *  rather than a suggestion. */
 const PEAK_ALPHA = 0.74;
 
-/* Higher than it looks: with the field confined to the right of the frame,
- * roughly two thirds of these are off-screen or faded out at any moment. */
-const COUNT_DESKTOP = 84;
+/* Higher than it looks. With the field confined to the right of the frame,
+ * most of these are off-screen or faded out at any moment — and a stack name
+ * covers about a third the width of the code line it replaced, so the count
+ * has to rise for the field to read at the same density. */
+const COUNT_DESKTOP = 150;
 
 /**
  * Composition. The copy occupies the left of the frame, so the stream is given
@@ -151,23 +136,33 @@ const RIGHTWARD_BIAS = 0.76;
 const QUIET_UNTIL = 0.44;
 const QUIET_RAMP = 0.24;
 
-/** Cool white for most of it, the palette's cyan for a meaningful minority —
- *  enough that the accent reads as part of the scheme, not as a stray. */
+/**
+ * One colour, cooled very slightly toward blue so it sits on the ink rather
+ * than glaring off it.
+ *
+ * Monochrome on purpose. Depth here is carried by size and opacity, which is
+ * how distance actually reads — hue variation competes with that cue instead
+ * of reinforcing it, and a field that fades from bright to dim in a single
+ * colour looks like air between you and the far names.
+ *
+ * It also gives the cyan back its job. Sprinkled across random stack names it
+ * meant nothing; reserved for the beam and the packets on the object beside
+ * it, it means one thing — work moving up through the layers.
+ */
 const INK_WHITE = "228, 239, 255";
-const INK_SIGNAL = "77, 225, 255";
 
 function makeFragment(random, spreadX, spreadY) {
   // Skewed toward the vanishing point's own side of the frame, with a mild
   // power curve so the density builds rather than banding.
   const side = random() < RIGHTWARD_BIAS ? 1 : -1;
   return {
-    text: FRAGMENTS[Math.floor(random() * FRAGMENTS.length)],
+    text: STACK[Math.floor(random() * STACK.length)],
     x: Math.pow(random(), 0.85) * spreadX * side,
     y: (random() * 2 - 1) * spreadY,
     z: NEAR + random() * (FAR - NEAR),
     // A little variation in speed stops the field moving as one sheet.
     rate: 0.75 + random() * 0.6,
-    colour: random() < 0.3 ? INK_SIGNAL : INK_WHITE,
+    colour: INK_WHITE,
   };
 }
 
@@ -182,7 +177,7 @@ function depthAlpha(z) {
  *  for the stream to occupy. */
 const MIN_WIDTH = "(min-width: 1024px)";
 
-export function CodeStream({ className = "" }) {
+export function TechStream({ className = "" }) {
   const canvasRef = useRef(null);
   const [isRunning, setRunning] = useState(false);
   const [hasColumn, setHasColumn] = useState(false);

@@ -37,12 +37,15 @@ module.exports = {
         },
         // Surfaces alternate through the page rather than sitting on one
         // ground. Near-black, paper, and a warm light grey between them.
-        ink: "#0A0A0A",
+        /* Stacked surfaces need an opaque lift from the ground, not a white
+           overlay: cards that pile on top of each other must hide what is
+           underneath or the stack reads as a smear. */
+        ink: { DEFAULT: "#0A0A0A", raised: "#151515", high: "#1C1C1C" },
         mist: "#EDEDEA",
         signal: "#4DE1FF",
       },
       fontFamily: {
-        sans: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
+        sans: ["var(--font-instrument-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
       },
       letterSpacing: {
@@ -52,8 +55,19 @@ module.exports = {
       spacing: {
         "x-default": "clamp(1.25rem, 5vw, 5rem)",
         "y-default": "clamp(4rem, 9vw, 9rem)",
+        /* For the seam between two sections that share a background.
+           Where the boundary is invisible, both sections paying full vertical
+           padding just compounds into dead space — measured at 39% of a
+           screen between the deck and the platform wall. */
+        "y-seam": "clamp(1.75rem, 3vw, 3rem)",
       },
       // One easing curve for the whole site, so motion feels authored.
+      /* Depth on hover, inside the wall's shared perspective. Moving a plate
+         toward the viewer makes it grow very slightly, which reads as coming
+         forward; translating it in Y only reads as sliding. */
+      translate: {
+        "z-6": "0 0 24px",
+      },
       transitionTimingFunction: {
         power: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
@@ -75,12 +89,12 @@ module.exports = {
          * 280px is all there is.
          */
         "hero-lead": [
-          "clamp(2.125rem, 3.3vw, 4.25rem)",
+          "clamp(2.125rem, 3.8vw, 4.75rem)",
           { lineHeight: "1.05", letterSpacing: "-0.03em" },
         ],
         hero: [
-          "clamp(2.75rem, 6.6vw, 8rem)",
-          { lineHeight: "0.95", letterSpacing: "-0.04em" },
+          "clamp(3.25rem, 8vw, 9.5rem)",
+          { lineHeight: "0.92", letterSpacing: "-0.04em" },
         ],
         display: [
           "clamp(2rem, 4vw, 3.25rem)",

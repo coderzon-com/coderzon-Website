@@ -1,12 +1,23 @@
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { siteConfig, buildMetadata } from "@/config/site";
 import "./globals.css";
 
-// Display and body face — the brand's geometric, technical character.
-const spaceGrotesk = Space_Grotesk({
+/**
+ * Display and body face.
+ *
+ * A neo-grotesque rather than the geometric one that was here before: quieter
+ * letterforms, a taller x-height, and no quirks competing with the layout —
+ * the type carries the page by proportion instead of by personality.
+ *
+ * Loaded as a variable font across both its axes. The width axis is the point:
+ * it allows a genuinely narrower drawing for display sizes, which is the
+ * mechanism a separate headline cut provides, rather than faking the same
+ * effect with negative tracking on the normal width.
+ */
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
+  axes: ["wdth"],
+  variable: "--font-instrument-sans",
   display: "swap",
 });
 
@@ -37,7 +48,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${instrumentSans.variable} ${jetbrainsMono.variable}`}
     >
       <body>{children}</body>
     </html>

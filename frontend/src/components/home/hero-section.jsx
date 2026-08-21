@@ -15,7 +15,7 @@ import { DURATION, EASE, STAGGER } from "@/lib/motion";
 import { WordReveal } from "@/components/ui/word-reveal";
 import { Magnetic } from "@/components/ui/magnetic";
 import { PlatformStack } from "./platform-stack";
-import { CodeStream } from "./code-stream";
+import { TechStream } from "./tech-stream";
 
 /**
  * Homepage hero.
@@ -75,12 +75,9 @@ export function HeroSection() {
       .map((text) => ({ text }));
 
   const headline = [
-    { parts: words(hero.titleStart), className: "text-hero-lead" },
+    { parts: words(hero.titleStart) },
     {
-      parts: [
-        { text: hero.titleHighlight, accent: true },
-        ...words(hero.titleEnd),
-      ],
+      parts: [{ text: hero.titleHighlight }, ...words(hero.titleEnd)],
       className: "text-hero",
     },
   ];
@@ -99,7 +96,7 @@ export function HeroSection() {
            would otherwise pull a hard edge into frame. */
         className="absolute inset-x-0 -top-[20%] -z-10 h-[140%]"
       >
-        <CodeStream />
+        <TechStream />
       </motion.div>
 
       {/* The stream already fades itself out of the copy column, so this is
@@ -162,10 +159,21 @@ export function HeroSection() {
             ))}
           </motion.p>
 
-          {/* The lead-in is held back so the accent word carries. On a dark
-            ground no bright hue separates from white by much — cyan against
-            white is 1.55:1 — so the hierarchy has to come from value. */}
-          <h1 className="mt-5 max-w-[26ch] break-words font-bold text-white/55">
+          {/* Fully white. The hierarchy is carried by size alone — 73px
+            against 152px on a wide screen — which separates far more strongly
+            than colour did: a bright accent sits only 1.55:1 from white, so
+            it cost brand colour without buying much emphasis.
+
+            font-stretch narrows the drawing itself at display size. That is a
+            real width axis on the variable font, not tracking pulled tight,
+            so the letterforms stay properly proportioned as they condense.
+
+            The lead-in size sits on the h1 rather than on its first line,
+            because `ch` resolves against the font-size of the element it is
+            written on. With the size only on the lines, 26ch measured against
+            the inherited 16px body text — a 229px column — and the headline
+            broke after every word. */}
+          <h1 className="mt-5 max-w-[26ch] break-words text-hero-lead font-bold text-white [font-stretch:94%]">
             <WordReveal lines={headline} delay={0.12} />
           </h1>
 

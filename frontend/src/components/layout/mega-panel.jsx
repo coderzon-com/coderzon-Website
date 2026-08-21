@@ -72,7 +72,7 @@ export function MegaPanel({ menu, onNavigate, onMouseEnter, onMouseLeave }) {
         animate="show"
         exit="exit"
         style={{ transformOrigin: "top center" }}
-        className="origin-top border-b border-black/10 bg-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]"
+        className="origin-top border-b border-black/10 bg-white text-black shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]"
       >
         <motion.div
           variants={{

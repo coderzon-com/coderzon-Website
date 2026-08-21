@@ -2,26 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /**
+   * Pinning for a scroll-driven card stack.
+   *
+   * Declared in CSS rather than toggled from JavaScript on purpose. The
+   * stacking is the section's core behaviour, so it must not depend on a
+   * measurement running, a media query resolving, or a state update landing —
+   * if the script never runs, the cards should still stack.
+   *
+   * The height condition is not decoration. A pinned card taller than the
+   * window can never have its lower half scrolled into view, because pinning
+   * is exactly what stops it moving. Below these bounds the cards stay in
+   * normal flow and read as an ordinary column.
+   *
+   * Height only, and no width bound. Gating on width switched the stack off
+   * for every phone, which is where most people will meet it — the cards were
+   * simply too tall to pin, so the answer was to redesign the card for that
+   * width rather than delete the behaviour. A compact card is ~330px and the
+   * tightest common phone gives a 432px budget, so it fits.
+   *
+   * 560px of height is what a 320x568 phone has. An earlier 760px bound also
+   * silently killed the stack on a 1366x768, a 1280x800 and a 1536x864 —
+   * four of the six most common laptop screens — with no clue why.
+   */
+  .stack-pin {
+    position: static;
+  }
+
+  @media (min-height: 560px) {
+    .stack-pin {
+      position: sticky;
+    }
+  }
+}
+
 @layer base {
-  /* The guard belongs on both elements. With it on body alone, an overflowing
-     descendant still grows the viewport and the scrollbar simply appears on
-     html instead — the page scrolls sideways anyway. clip rather than hidden,
-     so the fixed header is not turned into a scroll container. */
+  /* No overflow clipping here, deliberately.
+     A global `overflow-x: clip` on html/body was added to stop a sideways
+     scroll, and it did — but it also silently broke every `position: sticky`
+     on the site, because overflow set on the root propagates to the viewport
+     and changes what a sticky element resolves against. The scroll it was
+     hiding came from one marquee that no longer exists.
+     Horizontal bleed is now contained where it is created: a section that
+     lets something extend past its edge clips it itself. That keeps the fix
+     next to the cause and leaves sticky working. */
   html {
-    @apply overflow-x-clip;
     scroll-behavior: smooth;
   }
 
   body {
-    @apply overflow-x-clip bg-white text-body antialiased;
+    @apply bg-white text-body antialiased;
   }
 
+  /* Weight only — colour inherits.
+     Forcing text-navy here made every heading on a dark surface invisible:
+     #051634 on #0A0A0A measures 1.10:1, and 1.02:1 on a raised card. Each
+     one had to remember to override it, and any new heading on a dark
+     section would silently break again. Inheriting means a section states
+     its colour once and its headings follow. */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-bold text-navy;
+    @apply font-bold;
   }
 }

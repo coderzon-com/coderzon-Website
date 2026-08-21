@@ -3,6 +3,7 @@
   "ignorePatterns": ["src/lib/generated/**"],
   "env": { "browser": true, "es2022": true, "node": true },
   "rules": {
-    "no-undef": "error"
+    "no-undef": "error",
+    "no-shadow": ["error", { "hoist": "all" }]
   }
 }

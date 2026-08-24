@@ -142,7 +142,7 @@ export function SiteHeader() {
           ? { duration: 0 }
           : { duration: DURATION.interaction, ease: EASE.power }
       }
-      className="fixed inset-x-0 top-0 z-50"
+      className="fixed inset-x-0 top-0 z-50 print:hidden"
     >
       <div
         className={`relative transition-[background-color,border-color,backdrop-filter] duration-300 ${

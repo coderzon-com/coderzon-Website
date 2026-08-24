@@ -11,6 +11,7 @@ import {
 import { ArrowUpRight } from "lucide-react";
 import { serviceGroups } from "@/config/navigation";
 import { getServiceBySlug, services } from "@/data/services";
+import { getProjectsForService } from "@/data/projects";
 import { DURATION, EASE, STAGGER, rise, stagger } from "@/lib/motion";
 import { Icon } from "@/components/ui/icon";
 import { StackCard } from "@/components/ui/stack-card";
@@ -242,6 +243,15 @@ export function CapabilityStack() {
     ...new Set(lead.flatMap((service) => service.platforms)),
   ];
 
+  /* Proof, on the card that makes the claim. A deck of capabilities is a list
+     of things a firm says it can do; a named system running in production is
+     the only line on it that can be checked. Pulled from the project data so
+     the card cannot go stale when the case studies change, and capped at two
+     because a third would push this card taller than the others in the deck. */
+  const leadProjects = LEAD_SLUGS.flatMap((slug) =>
+    getProjectsForService(slug),
+  ).slice(0, 2);
+
   const populated = groups.filter((group) => group.entries.length > 0);
   const leadCards = lead.length > 0 ? 1 : 0;
   const total = leadCards + populated.length + 1;
@@ -320,6 +330,50 @@ export function CapabilityStack() {
                     slugs={leadPlatforms}
                     className="mt-6 hidden sm:block"
                   />
+
+                  {leadProjects.length > 0 && (
+                    <div className="mt-6 rounded-2xl border border-white/15 bg-white/[0.04] p-4">
+                      <p className="font-mono text-[10px] uppercase tracking-label text-white/55">
+                        {leadProjects.length === 1
+                          ? "Recent project"
+                          : "Recent projects"}
+                      </p>
+
+                      <ul className="mt-1">
+                        {leadProjects.map((project) => (
+                          <li
+                            key={project.slug}
+                            className="border-t border-white/10 pt-3 first:border-t-0 [&+li]:mt-3"
+                          >
+                            <Link
+                              href={`/work/${project.slug}`}
+                              className="focus-visible:ring-offset-ink-raised group/project ease-power flex items-start justify-between gap-3 rounded-sm transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                            >
+                              <span className="min-w-0">
+                                <span className="block break-words text-[13.5px] font-bold leading-tight transition-colors duration-300 group-hover/project:text-white">
+                                  {project.cardName}
+                                </span>
+                                {/* The headline figure is supporting evidence,
+                                    not the link. It is dropped on the narrowest
+                                    screens, where every row added here makes
+                                    this card taller than the others in the
+                                    deck — the project names still both appear
+                                    and both still lead to the full write-up. */}
+                                <span className="mt-1 hidden text-[12.5px] leading-snug text-white/60 sm:block">
+                                  {project.metrics.plain[0][0]}{" "}
+                                  {project.metrics.plain[0][1].toLowerCase()}
+                                </span>
+                              </span>
+                              <ArrowUpRight
+                                aria-hidden="true"
+                                className="ease-power mt-0.5 h-4 w-4 shrink-0 text-white/45 transition-all duration-300 group-hover/project:-translate-y-0.5 group-hover/project:translate-x-0.5 group-hover/project:text-white motion-reduce:transition-none"
+                              />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
                 <div className="sm:col-span-7 lg:col-span-8">

@@ -158,6 +158,13 @@ export const mainNav = [
       },
     },
   },
+  {
+    // Named for what a visitor is looking for rather than what we call
+    // it internally. "Case studies" is industry language; "Our work" is
+    // what someone types when they want to see whether we can do it.
+    label: "Our work",
+    href: "/work",
+  },
   { label: "About", href: "/about" },
   { label: "Training", href: "https://codiin.com/", external: true },
   { label: "Contact", href: "/contact" },
@@ -188,6 +195,7 @@ export const footerNav = [
     heading: "Company",
     links: [
       { label: "About", href: "/about" },
+      { label: "Our work", href: "/work" },
       { label: "FAQ", href: "/faq" },
       { label: "Contact", href: "/contact" },
       { label: "Request a quote", href: "/request-quote" },

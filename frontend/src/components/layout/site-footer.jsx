@@ -17,7 +17,7 @@ import { NewsletterForm } from "./newsletter-form";
  */
 export function SiteFooter() {
   return (
-    <footer className="px-x-default bg-black pb-10 pt-y-default text-white">
+    <footer className="px-x-default bg-black pb-10 pt-y-default text-white print:hidden">
       <NewsletterForm />
 
       <div className="grid gap-12 border-t border-white/10 pt-14 lg:grid-cols-12">

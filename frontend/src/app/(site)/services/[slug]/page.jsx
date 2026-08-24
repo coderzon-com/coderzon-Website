@@ -4,6 +4,7 @@ import { services, getServiceBySlug } from "@/data/services";
 import { PageHero } from "@/components/ui/page-hero";
 import { CapabilityDial } from "@/components/services/capability-dial";
 import { ServiceDetail } from "@/components/services/service-detail";
+import { RelatedProjects } from "@/components/work/related-projects";
 import { ContactCta } from "@/components/contact/contact-cta";
 
 /** Pre-render every service page at build time. */
@@ -36,6 +37,7 @@ export default function ServiceDetailPage({ params }) {
         visual={<CapabilityDial />}
       />
       <ServiceDetail service={service} />
+      <RelatedProjects serviceSlug={service.slug} />
       <ContactCta />
     </>
   );

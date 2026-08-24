@@ -70,3 +70,165 @@
     @apply font-bold;
   }
 }
+
+@layer components {
+  /**
+   * Case-study prose.
+   *
+   * The component write-ups are hand-authored HTML carried over from the
+   * standalone page the engineer built. Restyling them here — rather than
+   * rewriting his markup into JSX — means his class names (`lead`, `note`,
+   * `kv`, `code`) keep working and the content stays a single source of
+   * truth that can be edited as prose.
+   *
+   * Sized a touch smaller than body copy because it lives inside a drawer,
+   * where the reader is scanning one component rather than reading a page.
+   */
+  .project-prose {
+    @apply text-[13.5px] leading-relaxed text-white/70;
+    /* Identifiers like `LastModifiedDate` and paths like `maps/opportunity.json`
+       are longer than a 320px column, and a grid item's automatic minimum is
+       its min-content width — so without this the track, not the word, is what
+       overflows. */
+    overflow-wrap: break-word;
+  }
+
+  .project-prose > * + * {
+    @apply mt-3.5;
+  }
+
+  .project-prose h4 {
+    @apply mt-6 font-mono text-[10px] font-bold uppercase tracking-label text-white/55;
+  }
+
+  .project-prose h4:first-child {
+    @apply mt-0;
+  }
+
+  .project-prose b {
+    @apply font-semibold text-white;
+  }
+
+  .project-prose .lead {
+    @apply text-sm leading-relaxed text-white/85;
+  }
+
+  .project-prose ul {
+    @apply space-y-2 pl-0;
+  }
+
+  /* Marker drawn with a pseudo-element rather than list-style so it can take
+     the accent colour of the component the drawer is showing. */
+  .project-prose li {
+    @apply relative pl-5;
+  }
+
+  .project-prose li::before {
+    @apply absolute left-1 top-[0.55em] h-1 w-1 rounded-full;
+    content: "";
+    background: var(--accent, theme("colors.signal"));
+  }
+
+  .project-prose code {
+    @apply rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-white/90;
+    overflow-wrap: anywhere;
+  }
+
+  /* Blocks scroll on their own so a long SQL line can never widen the page. */
+  .project-prose pre.code {
+    @apply overflow-x-auto rounded-xl border border-white/[0.12] bg-black/40 p-4 font-mono text-[12px] leading-[1.7] text-white/80;
+  }
+
+  .project-prose pre.code code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+
+  .project-prose pre.code .k {
+    @apply text-[#38bdf8];
+  }
+
+  .project-prose pre.code .s {
+    @apply text-[#34d399];
+  }
+
+  .project-prose .note {
+    @apply rounded-xl border border-white/[0.12] bg-white/[0.04] p-4 text-[13px] leading-relaxed text-white/75;
+    border-left: 2px solid var(--accent, theme("colors.signal"));
+  }
+
+  .project-prose .kv {
+    @apply flex flex-wrap gap-1.5;
+  }
+
+  .project-prose .kv span {
+    @apply max-w-full rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-label text-white/70;
+  }
+}
+
+/**
+ * Print.
+ *
+ * A case study is the one thing on this site people genuinely print — to send
+ * on, to read away from a screen, to attach to a procurement pack. The
+ * engineer's original supported that with a PDF button; this is the same
+ * intent expressed as a stylesheet, so Ctrl/Cmd+P produces the document too.
+ *
+ * The hard part is that this site is white text on near-black, and Chrome
+ * drops background colours when printing by default while keeping text
+ * colour — so left alone the whole document prints white on white. Every rule
+ * below exists to undo that.
+ */
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  /* The one that matters: without it the page prints blank. */
+  body * {
+    color: #111 !important;
+    box-shadow: none !important;
+  }
+
+  /* Layer accents are information — which stage a component belongs to — not
+     decoration, so they are the single exception. The attribute selector
+     outranks the blanket rule above on specificity, not on ordering. */
+  [data-accent-text] {
+    color: var(--accent, #111) !important;
+  }
+
+  /* Hairlines drawn for a dark ground vanish on paper. */
+  body [class*="border-white"],
+  .project-prose pre.code,
+  .project-prose .note,
+  .project-prose .kv span {
+    border-color: #c9c9c9 !important;
+  }
+
+  /* Every reference entry opens, so the printed document is complete whatever
+     the reader happened to have expanded on screen. Two rules because Chrome
+     moved closed-details content behind `::details-content`. */
+  details:not([open]) > *:not(summary) {
+    display: block !important;
+  }
+
+  details::details-content {
+    content-visibility: visible !important;
+  }
+
+  details > summary {
+    list-style: none;
+  }
+
+  .project-prose pre.code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Keep a component and its write-up on one sheet where it fits. */
+  .project-ref {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

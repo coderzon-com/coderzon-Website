@@ -48,7 +48,7 @@ export function ScrollToTop() {
       /* Light on the dark ground the whole site now uses. This was black
          type inside a black hairline — present, focusable, and completely
          invisible from the moment the pages stopped being white. */
-      className={`bg-ink/70 fixed bottom-5 right-5 z-50 flex h-[50px] w-[50px] items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.22)] backdrop-blur-md transition-all duration-300 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+      className={`bg-ink/70 fixed bottom-5 print:hidden right-5 z-50 flex h-[50px] w-[50px] items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.22)] backdrop-blur-md transition-all duration-300 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
         isVisible
           ? "visible translate-y-0 opacity-100"
           : "invisible translate-y-4 opacity-0"

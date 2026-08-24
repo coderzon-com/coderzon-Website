@@ -1,1 +1,1 @@
-{"version":1,"functions":{"/api/register/message":{},"/faq":{},"/api/register/quote":{},"/_not-found":{},"/about":{},"/platforms":{},"/services":{},"/platforms/[slug]":{},"/request-quote":{},"/services/[slug]":{},"/contact":{}}}
+{"version":1,"functions":{"/_not-found":{},"/api/register/quote":{},"/api/notify":{},"/api/register/message":{},"/about":{},"/faq":{},"/platforms":{},"/services":{},"/contact":{},"/platforms/[slug]":{},"/services/[slug]":{},"/request-quote":{}}}

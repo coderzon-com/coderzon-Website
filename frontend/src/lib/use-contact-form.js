@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 
-const MAIL_ENDPOINT = "https://api.web3forms.com/submit";
+/* Our own route, not Web3Forms directly. The access key stays on the server;
+   see src/app/api/notify/route.js for why. */
+const MAIL_ENDPOINT = "/api/notify";
 
 /**
  * Shared submit logic for the contact, quote and newsletter forms.
  *
- * Two things happen on submit: the notification email goes to Web3Forms, and
+ * Two things happen on submit: the notification email goes out through our
+ * own /api/notify route, and
  * — when `saveTo` is given — the submission is stored through our own API.
  *
  * The save runs first. If the database rejects the payload we want to tell the
@@ -50,13 +53,6 @@ export function useContactForm({ subject, successMessage, saveTo }) {
       }
     }
 
-    const accessKey = process.env.NEXT_PUBLIC_FORM_ACCESS_KEY;
-    if (!accessKey) {
-      setStatus("error");
-      setMessage("The form is not configured. Please email us directly.");
-      return false;
-    }
-
     try {
       const response = await fetch(MAIL_ENDPOINT, {
         method: "POST",
@@ -64,18 +60,18 @@ export function useContactForm({ subject, successMessage, saveTo }) {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({ access_key: accessKey, subject, ...fields }),
+        body: JSON.stringify({ subject, fields }),
       });
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
-      if (result.success) {
+      if (result.ok) {
         setStatus("success");
         setMessage(successMessage);
         return true;
       }
 
       setStatus("error");
-      setMessage(result.message ?? "Something went wrong. Please try again.");
+      setMessage(result.error ?? "Something went wrong. Please try again.");
       return false;
     } catch (error) {
       console.error("Form submission failed:", error);
@@ -121,7 +117,10 @@ async function saveSubmission(url, fields) {
       };
     }
 
-    return { ok: false, error: result.error ?? `Save failed (${response.status})` };
+    return {
+      ok: false,
+      error: result.error ?? `Save failed (${response.status})`,
+    };
   } catch (error) {
     return { ok: false, error: error.message };
   }

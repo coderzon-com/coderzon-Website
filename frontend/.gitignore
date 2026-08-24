@@ -5,6 +5,9 @@ node_modules
 
 # next.js
 .next
+# Any alternate dist dir, e.g. NEXT_DIST_DIR=.next-verify for a build that
+# must not disturb a running dev server. Build output is never source.
+.next-*
 out
 build
 

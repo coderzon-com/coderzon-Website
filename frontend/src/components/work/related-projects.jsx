@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { ACCENTS, getProjectsForService } from "@/data/projects";
+import {
+  ACCENTS,
+  flowSummary,
+  getProjectsForService,
+  projectLabel,
+  projectHref,
+} from "@/data/projects";
 
 /**
  * The case studies belonging to a capability.
@@ -17,18 +23,18 @@ export function RelatedProjects({ serviceSlug }) {
   return (
     <section className="bg-ink px-x-default pb-y-default border-t border-white/10 pt-14 text-white sm:pt-20">
       <h2 className="font-mono text-[10px] uppercase tracking-label text-white/55">
-        We have built this
+        Work &amp; case studies
       </h2>
 
       <div className="mt-7 space-y-3">
         {related.map((project) => (
           <Link
             key={project.slug}
-            href={`/work/${project.slug}`}
+            href={projectHref(project)}
             className="focus-visible:ring-offset-ink group ease-power block rounded-3xl border border-white/15 bg-white/[0.035] p-6 transition-colors duration-300 hover:border-white/30 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:p-8"
           >
             <p className="text-signal font-mono text-[10px] uppercase tracking-label">
-              Project {project.number}
+              {projectLabel(project)}
             </p>
 
             <div className="mt-4 flex items-start justify-between gap-4">
@@ -46,17 +52,17 @@ export function RelatedProjects({ serviceSlug }) {
             </p>
 
             <ul className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2">
-              {project.columns.map((column, index) => (
+              {flowSummary(project).map((stage) => (
                 <li
-                  key={column.key ?? index}
+                  key={stage.label}
                   className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-label text-white/55"
                 >
                   <span
                     aria-hidden="true"
                     className="h-1.5 w-1.5 rounded-full"
-                    style={{ background: ACCENTS[column.accent] }}
+                    style={{ background: ACCENTS[stage.accent] }}
                   />
-                  {column.head.tech}
+                  {stage.label}
                 </li>
               ))}
             </ul>

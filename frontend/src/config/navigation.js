@@ -165,6 +165,13 @@ export const mainNav = [
     label: "Our work",
     href: "/work",
   },
+  {
+    // Separate from "Our work" on purpose: one is systems we built and run,
+    // the other is how we would approach a sector. Listing them together
+    // presented the second as the first.
+    label: "Case studies",
+    href: "/case-studies",
+  },
   { label: "About", href: "/about" },
   { label: "Training", href: "https://codiin.com/", external: true },
   { label: "Contact", href: "/contact" },
@@ -196,6 +203,7 @@ export const footerNav = [
     links: [
       { label: "About", href: "/about" },
       { label: "Our work", href: "/work" },
+      { label: "Case studies", href: "/case-studies" },
       { label: "FAQ", href: "/faq" },
       { label: "Contact", href: "/contact" },
       { label: "Request a quote", href: "/request-quote" },

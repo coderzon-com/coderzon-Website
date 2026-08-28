@@ -3,6 +3,7 @@ import { CapabilityStack } from "@/components/home/capability-stack";
 import { AboutSection } from "@/components/home/about-section";
 import { WhyChooseUsSection } from "@/components/home/why-choose-us-section";
 import { PlatformBand } from "@/components/home/platform-band";
+import { SelectedWork } from "@/components/home/selected-work";
 import { WorkProcessSection } from "@/components/home/work-process-section";
 import { ContactCta } from "@/components/contact/contact-cta";
 
@@ -17,6 +18,11 @@ export default function HomePage() {
           just read what we build asks next whether we work in what they
           already run. */}
       <PlatformBand />
+      {/* Proof, fourth. The two sections above are claims about what we do and
+          what we run it on; this is the first thing on the page that can be
+          checked. Before it existed the only route to a case study was a
+          two-line list buried inside the capability deck. */}
+      <SelectedWork />
       <AboutSection />
       <WhyChooseUsSection />
       <WorkProcessSection />

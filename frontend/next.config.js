@@ -18,6 +18,14 @@ const nextConfig = {
         destination: "/platforms/:slug",
         permanent: true,
       },
+      // Case studies were briefly published under /work before the two
+      // collections were separated. Named individually rather than as a
+      // wildcard, because /work/:slug is still live for delivered projects.
+      {
+        source: "/work/pharmaceutical-data-platform",
+        destination: "/case-studies/pharmaceutical-data-platform",
+        permanent: true,
+      },
     ];
   },
 };

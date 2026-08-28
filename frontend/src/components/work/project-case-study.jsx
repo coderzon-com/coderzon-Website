@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowDown, Info } from "lucide-react";
-import { ACCENTS } from "@/data/projects";
+import { ACCENTS, projectLabel } from "@/data/projects";
 import { DURATION, EASE, STAGGER } from "@/lib/motion";
 import { ProjectNode } from "./project-node";
 import { ProjectDrawer } from "./project-drawer";
@@ -83,7 +83,7 @@ export function ProjectCaseStudy({ project }) {
     <>
       <section className="bg-ink px-x-default relative isolate overflow-hidden pb-16 pt-10 text-white sm:pb-20">
         <p className="text-signal font-mono text-[11px] uppercase tracking-label">
-          Project {project.number} &middot; {project.discipline}
+          {projectLabel(project)}
         </p>
 
         {/* Keyed on the mode so the retitle plays as a crossfade. The element

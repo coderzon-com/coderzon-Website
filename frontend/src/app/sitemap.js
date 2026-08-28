@@ -1,7 +1,7 @@
 import { siteConfig } from "@/config/site";
 import { services } from "@/data/services";
 import { platforms } from "@/data/platforms";
-import { projects } from "@/data/projects";
+import { deliveredProjects, caseStudies } from "@/data/projects";
 
 /**
  * Next.js serves this at /sitemap.xml automatically — no hand-written XML.
@@ -13,6 +13,7 @@ export default function sitemap() {
     "/services",
     "/platforms",
     "/work",
+    "/case-studies",
     "/faq",
     "/contact",
     "/request-quote",
@@ -37,8 +38,15 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  const projectRoutes = projects.map((project) => ({
+  const projectRoutes = deliveredProjects.map((project) => ({
     url: `${siteConfig.url}/work/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  const caseStudyRoutes = caseStudies.map((study) => ({
+    url: `${siteConfig.url}/case-studies/${study.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.7,
@@ -49,5 +57,6 @@ export default function sitemap() {
     ...serviceRoutes,
     ...platformRoutes,
     ...projectRoutes,
+    ...caseStudyRoutes,
   ];
 }

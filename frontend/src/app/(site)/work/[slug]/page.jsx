@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { buildMetadata } from "@/config/site";
-import { projects, getProjectBySlug } from "@/data/projects";
+import { deliveredProjects, getProjectBySlug } from "@/data/projects";
 import { getServiceBySlug } from "@/data/services";
 import { getPlatformBySlug } from "@/data/platforms";
 import { ProjectCaseStudy } from "@/components/work/project-case-study";
@@ -10,12 +10,14 @@ import { ProjectReference } from "@/components/work/project-reference";
 import { ContactCta } from "@/components/contact/contact-cta";
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return deliveredProjects.map((project) => ({ slug: project.slug }));
 }
 
 export function generateMetadata({ params }) {
   const project = getProjectBySlug(params.slug);
-  if (!project) return buildMetadata({ title: "Project not found" });
+  if (!project || project.kind === "case-study") {
+    return buildMetadata({ title: "Project not found" });
+  }
 
   return buildMetadata({
     title: project.name,
@@ -26,7 +28,9 @@ export function generateMetadata({ params }) {
 
 export default function ProjectPage({ params }) {
   const project = getProjectBySlug(params.slug);
-  if (!project) notFound();
+  // A case study reached through this path is a 404: it lives under
+  // /case-studies, and the two collections are not interchangeable.
+  if (!project || project.kind === "case-study") notFound();
 
   const service = getServiceBySlug(project.serviceSlug);
   const platforms = project.platformSlugs

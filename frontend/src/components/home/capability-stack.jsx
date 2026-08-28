@@ -11,7 +11,7 @@ import {
 import { ArrowUpRight } from "lucide-react";
 import { serviceGroups } from "@/config/navigation";
 import { getServiceBySlug, services } from "@/data/services";
-import { getProjectsForService } from "@/data/projects";
+import { deliveredProjects, projectHref } from "@/data/projects";
 import { DURATION, EASE, STAGGER, rise, stagger } from "@/lib/motion";
 import { Icon } from "@/components/ui/icon";
 import { StackCard } from "@/components/ui/stack-card";
@@ -76,6 +76,10 @@ const STACKS_ABOVE = "(min-height: 560px)";
  * service appearing in two cards of one deck makes the deck look padded.
  */
 const LEAD_SLUGS = ["data-engineering", "data-science"];
+
+/* How many case studies the lead card names before deferring to /work.
+   Bounded by the deck's shared height, not by how many exist. */
+const LEAD_PROJECT_LIMIT = 2;
 const LEAD_HEADING = "Data engineering & data science";
 const LEAD_BLURB =
   "The platform underneath and the modelling on top, from the same team. Most engagements start with the pipelines and end with something predicting on them.";
@@ -246,11 +250,18 @@ export function CapabilityStack() {
   /* Proof, on the card that makes the claim. A deck of capabilities is a list
      of things a firm says it can do; a named system running in production is
      the only line on it that can be checked. Pulled from the project data so
-     the card cannot go stale when the case studies change, and capped at two
-     because a third would push this card taller than the others in the deck. */
-  const leadProjects = LEAD_SLUGS.flatMap((slug) =>
-    getProjectsForService(slug),
-  ).slice(0, 2);
+     the card cannot go stale when the case studies change. */
+  const allLeadProjects = deliveredProjects.filter((project) =>
+    LEAD_SLUGS.includes(project.serviceSlug),
+  );
+
+  /* Two, not all of them. Every card in this deck sits on one height floor,
+     and each extra row pushes the lead card past it — which is the mismatch
+     that made the deck look broken before. So the card shows the two most
+     recent and links out for the rest, rather than silently dropping a
+     project the way a bare cap did. */
+  const leadProjects = allLeadProjects.slice(0, LEAD_PROJECT_LIMIT);
+  const hasMoreProjects = allLeadProjects.length > leadProjects.length;
 
   const populated = groups.filter((group) => group.entries.length > 0);
   const leadCards = lead.length > 0 ? 1 : 0;
@@ -333,11 +344,32 @@ export function CapabilityStack() {
 
                   {leadProjects.length > 0 && (
                     <div className="mt-6 rounded-2xl border border-white/15 bg-white/[0.04] p-4">
-                      <p className="font-mono text-[10px] uppercase tracking-label text-white/55">
-                        {leadProjects.length === 1
-                          ? "Recent project"
-                          : "Recent projects"}
-                      </p>
+                      {/* The link rides the label row rather than sitting
+                          under the list. Every card in this deck shares one
+                          height, and an extra row here pushed the lead card
+                          22px past it at 1440 — visibly taller than its
+                          neighbours. On a row that already exists it costs
+                          nothing. */}
+                      <div className="flex items-baseline justify-between gap-3">
+                        <p className="font-mono text-[10px] uppercase tracking-label text-white/55">
+                          {leadProjects.length === 1
+                            ? "Recent project"
+                            : "Recent projects"}
+                        </p>
+
+                        {hasMoreProjects && (
+                          <Link
+                            href="/work"
+                            className="focus-visible:ring-offset-ink-raised group/all ease-power flex shrink-0 items-center gap-1.5 rounded-sm font-mono text-[10px] uppercase tracking-label text-white/55 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                          >
+                            View all {allLeadProjects.length}
+                            <ArrowUpRight
+                              aria-hidden="true"
+                              className="ease-power h-3 w-3 transition-transform duration-300 group-hover/all:-translate-y-0.5 group-hover/all:translate-x-0.5 motion-reduce:transition-none"
+                            />
+                          </Link>
+                        )}
+                      </div>
 
                       <ul className="mt-1">
                         {leadProjects.map((project) => (
@@ -346,23 +378,34 @@ export function CapabilityStack() {
                             className="border-t border-white/10 pt-3 first:border-t-0 [&+li]:mt-3"
                           >
                             <Link
-                              href={`/work/${project.slug}`}
+                              href={projectHref(project)}
                               className="focus-visible:ring-offset-ink-raised group/project ease-power flex items-start justify-between gap-3 rounded-sm transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
                             >
                               <span className="min-w-0">
                                 <span className="block break-words text-[13.5px] font-bold leading-tight transition-colors duration-300 group-hover/project:text-white">
                                   {project.cardName}
                                 </span>
-                                {/* The headline figure is supporting evidence,
-                                    not the link. It is dropped on the narrowest
-                                    screens, where every row added here makes
-                                    this card taller than the others in the
-                                    deck — the project names still both appear
-                                    and both still lead to the full write-up. */}
-                                <span className="mt-1 hidden text-[12.5px] leading-snug text-white/60 sm:block">
-                                  {project.metrics.plain[0][0]}{" "}
-                                  {project.metrics.plain[0][1].toLowerCase()}
-                                </span>
+                                {/* The project's headline figure, shown as the
+                                    pair it is rather than glued into a
+                                    sentence. Lower-casing the label and running
+                                    the two together only reads for one of them
+                                    — the others came out as "Batch by batch how
+                                    sap data is fetched" and "Who might leave
+                                    what it predicts".
+
+                                    Supporting evidence, not the link, so it is
+                                    dropped on the narrowest screens where every
+                                    row makes this card taller than its
+                                    neighbours in the deck. Both project names
+                                    still appear and both still lead to the
+                                    write-up. */}
+                                {project.metrics && (
+                                  <span className="mt-1 hidden text-[12.5px] leading-snug text-white/60 sm:block">
+                                    {project.metrics.plain[0][0]}
+                                    {" \u2014 "}
+                                    {project.metrics.plain[0][1]}
+                                  </span>
+                                )}
                               </span>
                               <ArrowUpRight
                                 aria-hidden="true"

@@ -2,48 +2,55 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { buildMetadata } from "@/config/site";
 import {
-  deliveredProjects,
+  caseStudies,
   ACCENTS,
   flowSummary,
-  projectLabel,
+  projectHref,
 } from "@/data/projects";
 import { PageHero } from "@/components/ui/page-hero";
-import { PipelineFlow } from "@/components/ui/figures/pipeline-flow";
+import { LayerFan } from "@/components/ui/figures/layer-fan";
 import { RevealGrid } from "@/components/ui/reveal-grid";
 import { ContactCta } from "@/components/contact/contact-cta";
 
 export const metadata = buildMetadata({
-  title: "Our work",
+  title: "Case studies",
   description:
-    "Systems we have built and run in production — written up by the engineers who built them, in plain English and in full technical detail.",
-  path: "/work",
+    "How we would build for a sector — the challenge, the architecture that answers it, and the outcomes it makes possible.",
+  path: "/case-studies",
 });
 
-export default function WorkPage() {
+/**
+ * Case studies, kept separate from delivered work.
+ *
+ * `/work` is systems we built and run. This is the other thing: an
+ * architecture worked through for a sector, written to show how the problem
+ * is approached. Mixing the two in one list made the second look like the
+ * first, which is a claim about work that was not done.
+ */
+export default function CaseStudiesPage() {
   return (
     <>
       <PageHero
-        eyebrow={`${deliveredProjects.length} ${deliveredProjects.length === 1 ? "project" : "projects"}`}
-        title="Our work"
-        breadcrumb="Our work"
-        description="Systems running in production, written up by the engineers who built them. Every one can be read two ways: plain English if you want to know what it does, full technical detail if you want to know how. Looking for how we would approach a sector? Those are the case studies."
-        trail={[]}
-        visual={<PipelineFlow />}
+        eyebrow={`${caseStudies.length} ${caseStudies.length === 1 ? "case study" : "case studies"}`}
+        title="Case studies"
+        breadcrumb="Case studies"
+        description="How we approach a sector's data problem: what makes it hard, the architecture that answers it, and what the business gets. Worked through in full, so you can judge the thinking rather than the summary."
+        visual={<LayerFan />}
       />
 
       <section className="bg-ink px-x-default pb-y-default pt-y-default text-white">
         <RevealGrid className="space-y-4">
-          {deliveredProjects.map((project) => (
-            <article key={project.slug}>
+          {caseStudies.map((study) => (
+            <article key={study.slug}>
               <Link
-                href={`/work/${project.slug}`}
+                href={projectHref(study)}
                 className="focus-visible:ring-offset-ink group ease-power block overflow-hidden rounded-3xl border border-white/15 bg-white/[0.035] p-6 transition-colors duration-500 hover:border-white/30 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:p-8 lg:p-10"
               >
                 <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
                   <div className="lg:col-span-7">
                     <div className="flex items-start justify-between gap-4">
                       <p className="text-signal font-mono text-[10px] uppercase tracking-label">
-                        {projectLabel(project)}
+                        {study.sector} &middot; {study.discipline}
                       </p>
                       <ArrowUpRight
                         aria-hidden="true"
@@ -52,15 +59,15 @@ export default function WorkPage() {
                     </div>
 
                     <h2 className="mt-4 break-words text-display-sm font-bold [font-stretch:96%]">
-                      {project.name}
+                      {study.name}
                     </h2>
 
                     <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/65">
-                      {project.cardSummary}
+                      {study.cardSummary}
                     </p>
 
                     <ul className="mt-7 flex flex-wrap gap-2">
-                      {project.chips.map((chip) => (
+                      {study.chips.map((chip) => (
                         <li
                           key={chip}
                           className="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-label text-white/60"
@@ -71,9 +78,6 @@ export default function WorkPage() {
                     </ul>
                   </div>
 
-                  {/* The five stages of the pipeline, at a glance. A reader
-                      who never opens the case study still learns its shape,
-                      and the labels come from the same data the page uses. */}
                   <div className="lg:col-span-5">
                     <div className="flex items-start justify-between gap-4">
                       <p className="font-mono text-[10px] uppercase tracking-label text-white/45">
@@ -84,10 +88,9 @@ export default function WorkPage() {
                         className="ease-power hidden h-5 w-5 shrink-0 text-white/45 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white motion-reduce:transition-none lg:block"
                       />
                     </div>
-                    {/* Asked of the project rather than read off its columns:
-                        a narrative case study has no board to count. */}
+
                     <ol className="mt-4 space-y-2.5">
-                      {flowSummary(project).map((stage) => (
+                      {flowSummary(study).map((stage) => (
                         <li
                           key={stage.label}
                           className="flex items-center gap-3"
@@ -108,7 +111,7 @@ export default function WorkPage() {
                     </ol>
 
                     <p className="mt-6 font-mono text-[10px] uppercase tracking-label text-white/45">
-                      Plain English or full technical detail
+                      Challenge, architecture and outcomes
                     </p>
                   </div>
                 </div>

@@ -1,4 +1,5 @@
-import { Check } from "lucide-react";
+import Image from "next/image";
+import { Check, Maximize2 } from "lucide-react";
 import { ACCENTS, projectLabel } from "@/data/projects";
 import { RevealGrid } from "@/components/ui/reveal-grid";
 
@@ -158,10 +159,59 @@ export function ProjectNarrative({ project }) {
           {n.architecture.intro}
         </p>
 
+        {n.architecture.diagram && (
+          /* Framed as a printed sheet laid on the page. The drawing is
+             white-on-blue and the site is near-black; dropped in bare it
+             reads as a hole punched in the section, so it gets its own light
+             ground and behaves like an artefact rather than a background. */
+          <figure className="mt-10">
+            <a
+              href={n.architecture.diagram.src}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-visible:ring-offset-ink group ease-power block overflow-hidden rounded-2xl bg-white p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] transition-transform duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:p-3"
+            >
+              <Image
+                src={n.architecture.diagram.src}
+                alt={n.architecture.diagram.alt}
+                width={n.architecture.diagram.width}
+                height={n.architecture.diagram.height}
+                sizes="(min-width: 1280px) 1200px, 100vw"
+                className="h-auto w-full rounded-lg"
+                priority={false}
+              />
+            </a>
+
+            {/* At 390px the labels inside are about three pixels tall, so the
+                caption offers the only thing that actually helps: the full
+                image, where the browser's own zoom works. */}
+            <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+              <span className="text-[13px] text-white/55">
+                {n.architecture.diagram.caption}
+              </span>
+              <a
+                href={n.architecture.diagram.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-visible:ring-offset-ink group/full ease-power inline-flex items-center gap-2 rounded-sm font-mono text-[10px] uppercase tracking-label text-white/55 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+              >
+                <Maximize2 aria-hidden="true" className="h-3.5 w-3.5" />
+                Open full size
+              </a>
+            </figcaption>
+          </figure>
+        )}
+
+        {/* The same architecture as text: this is the copy that reflows, that
+            a screen reader can read, and that search can index. */}
+        <p className="mt-14 font-mono text-[10px] uppercase tracking-label text-white/45">
+          Layer by layer
+        </p>
+
         {/* Read left to right on a wide screen, top to bottom on a phone —
             the same direction the data travels either way. */}
         <RevealGrid
-          className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+          className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
           amount={0.05}
         >
           {n.architecture.columns.map((column) => {

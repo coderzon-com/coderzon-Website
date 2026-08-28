@@ -182,6 +182,21 @@ export const pharmaceuticalDataPlatform = {
       heading: "A modern cloud data engineering foundation",
       intro:
         "The architecture ingests data from business systems, applies quality and transformation rules, and publishes curated data products for analytics and AI/ML.",
+
+      /* The diagram as the engineer drew it. The layer breakdown below carries
+         the same information as HTML — which is what reflows on a phone, what
+         a screen reader can read and what a search engine indexes. The image
+         is here for the single glance a wall of text cannot give; because it
+         is not the only copy of this information, it can afford to be
+         illegible at 390px and simply open full size instead. */
+      diagram: {
+        src: "/images/pharmaceutical-data-architecture.jpg",
+        width: 1600,
+        height: 900,
+        alt: "Pharmaceutical data engineering architecture. Nine source systems — ERP, CRM, manufacturing, inventory, distributor, pharmacy and hospital, e-commerce, finance and external data — feed an ingestion layer of batch pipelines, APIs and streaming. That lands in a cloud data lake zoned into landing, raw, curated and reference. Processing applies validation, business rules, master data management and lineage, publishing to an enterprise warehouse of sales, inventory, finance and supply chain marts, and out to BI reporting, AI/ML analytics and data APIs. Governance, security and monitoring run across every layer.",
+        caption: "The architecture as drawn, from data sources to insights.",
+      },
+
       columns: [
         {
           accent: "source",

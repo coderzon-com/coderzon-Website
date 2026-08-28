@@ -7,10 +7,17 @@ import { ACCENTS } from "@/data/projects";
 import { DURATION, EASE, STAGGER } from "@/lib/motion";
 import { ProjectNode } from "./project-node";
 import { ProjectDrawer } from "./project-drawer";
+import { ProjectWorkflow } from "./project-workflow";
 
 const MODES = [
   { id: "plain", label: "Plain English" },
   { id: "tech", label: "Technical" },
+];
+
+/* Only shown for a project that has a second board. */
+const VIEWS = [
+  { id: "arch", label: "Architecture" },
+  { id: "flow", label: "Runtime workflow" },
 ];
 
 /**
@@ -34,6 +41,7 @@ const MODES = [
 export function ProjectCaseStudy({ project }) {
   const reduceMotion = useReducedMotion();
   const [mode, setMode] = useState("tech");
+  const [view, setView] = useState("arch");
   const [openId, setOpenId] = useState(null);
   const triggerRef = useRef(null);
 
@@ -196,87 +204,135 @@ export function ProjectCaseStudy({ project }) {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col lg:mt-12 lg:flex-row lg:items-stretch">
-          {project.columns.map((column, columnIndex) => {
-            const accent = ACCENTS[column.accent];
-            return (
-              <div key={column.key ?? columnIndex} className="contents">
-                <motion.div
-                  variants={stageVariants(columnIndex)}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.15 }}
-                  style={{ "--accent": accent }}
-                  className="min-w-0 flex-1"
-                >
-                  <motion.div variants={fade} data-motion-reveal="">
-                    <h2
-                      data-accent-text=""
-                      className="text-[15px] font-bold leading-tight [font-stretch:96%]"
-                      style={{ color: accent }}
-                    >
-                      {column.head[mode]}
-                    </h2>
-                    <p className="mt-1.5 text-[13px] leading-snug text-white/50">
-                      {column.sub[mode]}
-                    </p>
-                  </motion.div>
-
-                  <div className="mt-5 space-y-3">
-                    {column.nodes.map((id) => (
-                      <ProjectNode
-                        key={id}
-                        id={id}
-                        component={project.components[id]}
-                        mode={mode}
-                        active={openId === id}
-                        onOpen={handleOpen}
-                      />
-                    ))}
-                  </div>
-
-                  {column.mini && (
-                    <motion.p
-                      variants={fade}
-                      data-motion-reveal=""
-                      className="mt-4 border-l-2 pl-3 text-[12.5px] leading-relaxed text-white/55 [&_b]:font-semibold [&_b]:text-white/85"
-                      style={{ borderColor: accent }}
-                      dangerouslySetInnerHTML={{ __html: column.mini[mode] }}
-                    />
-                  )}
-                </motion.div>
-
-                {columnIndex < project.columns.length - 1 && (
-                  <FlowArrow reduceMotion={reduceMotion} />
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-16 border-t border-white/12 pt-10 sm:mt-20">
-          <h2 className="font-mono text-[10px] uppercase tracking-label text-white/55">
-            {project.platform.label[mode]}
-          </h2>
-          <motion.div
-            variants={stageVariants(0)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+        {/* Only a project that drew a second board gets a switch. The other
+            two have one view, and a control with nothing to switch to is
+            worse than no control. Underlines rather than a second pill: the
+            reading level and the board are different kinds of choice, and two
+            identical pills side by side would read as one four-way control. */}
+        {project.workflow && (
+          <div
+            role="group"
+            aria-label="Board"
+            className="mt-8 flex gap-6 border-b border-white/12"
           >
-            {project.platform.nodes.map((id) => (
-              <ProjectNode
-                key={id}
-                id={id}
-                component={project.components[id]}
-                mode={mode}
-                active={openId === id}
-                onOpen={handleOpen}
-              />
-            ))}
-          </motion.div>
-        </div>
+            {VIEWS.map((option) => {
+              const selected = view === option.id;
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setView(option.id)}
+                  aria-pressed={selected}
+                  className={`focus-visible:ring-offset-ink relative -mb-px border-b-2 pb-3 text-sm font-semibold transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 ${
+                    selected
+                      ? "border-white text-white"
+                      : "border-transparent text-white/55 hover:text-white"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {view === "arch" ? (
+          <>
+            <div className="mt-10 flex flex-col lg:mt-12 lg:flex-row lg:items-stretch">
+              {project.columns.map((column, columnIndex) => {
+                const accent = ACCENTS[column.accent];
+                return (
+                  <div key={column.key ?? columnIndex} className="contents">
+                    <motion.div
+                      variants={stageVariants(columnIndex)}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.15 }}
+                      style={{ "--accent": accent }}
+                      className="min-w-0 flex-1"
+                    >
+                      <motion.div variants={fade} data-motion-reveal="">
+                        <h2
+                          data-accent-text=""
+                          className="text-[15px] font-bold leading-tight [font-stretch:96%]"
+                          style={{ color: accent }}
+                        >
+                          {column.head[mode]}
+                        </h2>
+                        <p className="mt-1.5 text-[13px] leading-snug text-white/50">
+                          {column.sub[mode]}
+                        </p>
+                      </motion.div>
+
+                      <div className="mt-5 space-y-3">
+                        {column.nodes.map((id) => (
+                          <ProjectNode
+                            key={id}
+                            id={id}
+                            component={project.components[id]}
+                            mode={mode}
+                            active={openId === id}
+                            onOpen={handleOpen}
+                          />
+                        ))}
+                      </div>
+
+                      {column.mini && (
+                        <motion.p
+                          variants={fade}
+                          data-motion-reveal=""
+                          className="mt-4 border-l-2 pl-3 text-[12.5px] leading-relaxed text-white/55 [&_b]:font-semibold [&_b]:text-white/85"
+                          style={{ borderColor: accent }}
+                          dangerouslySetInnerHTML={{
+                            __html: column.mini[mode],
+                          }}
+                        />
+                      )}
+                    </motion.div>
+
+                    {columnIndex < project.columns.length - 1 && (
+                      <FlowArrow reduceMotion={reduceMotion} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-16 border-t border-white/12 pt-10 sm:mt-20">
+              <h2 className="font-mono text-[10px] uppercase tracking-label text-white/55">
+                {project.platform.label[mode]}
+              </h2>
+              <motion.div
+                variants={stageVariants(0)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.15 }}
+                className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+              >
+                {project.platform.nodes.map((id) => (
+                  <ProjectNode
+                    key={id}
+                    id={id}
+                    component={project.components[id]}
+                    mode={mode}
+                    active={openId === id}
+                    onOpen={handleOpen}
+                  />
+                ))}
+              </motion.div>
+            </div>
+          </>
+        ) : (
+          <div className="mt-10 lg:mt-12">
+            <ProjectWorkflow
+              workflow={project.workflow}
+              components={project.components}
+              mode={mode}
+              openId={openId}
+              onOpen={handleOpen}
+            />
+          </div>
+        )}
 
         {/* The diagram is a map; the reference below is the territory. A
             reader who wants everything at once should not have to open

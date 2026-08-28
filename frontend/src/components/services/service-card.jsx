@@ -4,8 +4,8 @@ import Link from "next/link";
  * One service in the catalogue.
  *
  * A row rather than a card: held back at rest, full on hover, sliding a
- * little to the right as it lights. Fourteen boxed cards is a wall; fourteen
- * rows is an index you can read down.
+ * little to the right as it lights. A grid of boxed cards is a wall; a list
+ * of rows is an index you can read down.
  *
  * The resting state is 70%, not 50%. Nothing on a touch device is ever
  * hovered, so whatever the row looks like at rest is the whole experience —

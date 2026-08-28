@@ -26,7 +26,7 @@ import { useEffect, useRef, useState } from "react";
  * What flies past: the stack, by name.
  *
  * Grouped by the services it belongs to, and deliberately short. Every entry
- * maps to one of the fourteen things this company sells — not to every tool
+ * maps to one of the things this company sells — not to every tool
  * the codebase happens to mention. A background listing everything anyone has
  * ever touched reads as a tag cloud; one that names only what is actually on
  * offer reads as a capability list, and a visitor scanning for the platform

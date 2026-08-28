@@ -21,8 +21,12 @@ export function PlatformGyro() {
   ];
 
   return (
+    /* Drawn at 64% of its frame. The rings turn continuously under
+       perspective, and a ring sized to the full frame projects past it —
+       measured 136% of the box at its widest, which put the outer orbit
+       129px beyond the right edge of the page at 1280. */
     <div
-      className="relative aspect-square w-full"
+      className="relative aspect-square w-full scale-[0.64]"
       style={{ perspective: 1100 }}
     >
       {rings.map((ring) => (

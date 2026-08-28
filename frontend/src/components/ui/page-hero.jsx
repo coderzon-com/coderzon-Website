@@ -31,7 +31,18 @@ export function PageHero({
       {visual && (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-[-30%] right-[-12%] -z-10 hidden w-[54%] max-w-[660px] items-center justify-center md:flex"
+          /* Sized from the hero's height, not its width, and offset by a
+             fixed distance rather than a percentage.
+
+             The previous slot was `inset-y-[-30%] right-[-12%] w-[54%]`,
+             which meant the object was always taller than the band it sits
+             in and pushed further off the right edge the wider the screen
+             got — at 1920 only 101px of a 330px radius was still on screen,
+             so a concentric figure lost its outer ring on every side. A
+             square the height of the hero always fits the band, and sitting
+             inside the right edge rather than hanging past it means a figure
+             whose 3D projection runs a little wide is still whole. */
+          className="pointer-events-none absolute inset-y-[-7%] right-0 -z-10 hidden aspect-square w-auto max-w-[56%] items-center justify-center md:flex lg:right-2"
         >
           {visual}
         </div>

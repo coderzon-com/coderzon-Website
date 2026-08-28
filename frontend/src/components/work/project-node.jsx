@@ -18,7 +18,7 @@ import { DURATION, EASE } from "@/lib/motion";
  * again — a crossfade with a few pixels of lift, short enough to read as a
  * relabel rather than a transition.
  */
-export function ProjectNode({ id, component, mode, active, onOpen }) {
+export function ProjectNode({ id, component, mode, active, onOpen, step }) {
   const reduceMotion = useReducedMotion();
   const copy = component.node[mode];
   const accent = ACCENTS[component.accent];
@@ -43,11 +43,16 @@ export function ProjectNode({ id, component, mode, active, onOpen }) {
             }
       }
       style={{ "--accent": accent }}
-      className={`focus-visible:ring-offset-ink group ease-power relative w-full overflow-hidden rounded-2xl border p-4 text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 ${
+      className={`focus-visible:ring-offset-ink group ease-power relative h-full w-full overflow-hidden rounded-2xl border p-4 text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 ${
+        /* A gate is a branch, not a stage. The dashed edge is the engineer's
+           own distinction and it carries real meaning: this is the step where
+           a run can stop. */
+        component.gate ? "border-dashed" : ""
+      } ${
         active
           ? "border-[color:var(--accent)] bg-white/[0.09]"
           : "border-white/12 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]"
-      }`}
+      } ${step ? "pt-9" : ""}`}
     >
       {/* The accent rail is how a node declares which layer it belongs to.
           It is the only place colour is load-bearing, so it grows on hover
@@ -59,6 +64,16 @@ export function ProjectNode({ id, component, mode, active, onOpen }) {
         }`}
         style={{ background: accent }}
       />
+
+      {step ? (
+        <span
+          aria-hidden="true"
+          className="absolute left-4 top-3 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold tabular-nums"
+          style={{ color: accent, background: `${accent}1f` }}
+        >
+          {String(step).padStart(2, "0")}
+        </span>
+      ) : null}
 
       <span
         aria-hidden="true"
@@ -81,7 +96,10 @@ export function ProjectNode({ id, component, mode, active, onOpen }) {
           <span className="block break-words text-[15px] font-bold leading-tight text-white">
             {copy.t}
           </span>
-          <span className="mt-1.5 block text-[13px] leading-snug text-white/60">
+          {/* `break-words`: descriptions carry identifiers like
+              `models:/prod.ml_churn.churn_model@Champion`, which have no space
+              to wrap at and otherwise run straight out of the card. */}
+          <span className="mt-1.5 block break-words text-[13px] leading-snug text-white/60">
             {copy.d}
           </span>
           {copy.tag && (

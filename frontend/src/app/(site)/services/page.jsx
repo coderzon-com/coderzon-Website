@@ -22,7 +22,7 @@ export default function ServicesPage() {
         eyebrow={`${services.length} capabilities`}
         title="What we build"
         breadcrumb="Services"
-        description="Grouped by the kind of problem they solve rather than listed alphabetically, so you can find the right team without reading all fourteen."
+        description="Grouped by the kind of problem they solve rather than listed alphabetically, so you can find the right team without reading the whole catalogue."
         visual={<CapabilityDial />}
       />
 

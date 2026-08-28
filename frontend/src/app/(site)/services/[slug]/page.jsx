@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { buildMetadata } from "@/config/site";
 import { services, getServiceBySlug } from "@/data/services";
 import { PageHero } from "@/components/ui/page-hero";
-import { CapabilityDial } from "@/components/services/capability-dial";
+import { getServiceTerms } from "@/data/service-terms";
+import { ServiceField } from "@/components/services/service-field";
+import { ServiceTermsStrip } from "@/components/services/service-terms-strip";
 import { ServiceDetail } from "@/components/services/service-detail";
 import { RelatedProjects } from "@/components/work/related-projects";
 import { ContactCta } from "@/components/contact/contact-cta";
@@ -27,6 +29,8 @@ export default function ServiceDetailPage({ params }) {
   const service = getServiceBySlug(params.slug);
   if (!service) notFound();
 
+  const terms = getServiceTerms(service.slug);
+
   return (
     <>
       <PageHero
@@ -34,8 +38,9 @@ export default function ServiceDetailPage({ params }) {
         title={service.shortTitle}
         breadcrumb={service.shortTitle}
         trail={[{ label: "Services", href: "/services" }]}
-        visual={<CapabilityDial />}
+        visual={<ServiceField terms={terms} />}
       />
+      <ServiceTermsStrip terms={terms} />
       <ServiceDetail service={service} />
       <RelatedProjects serviceSlug={service.slug} />
       <ContactCta />

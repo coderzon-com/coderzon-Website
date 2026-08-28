@@ -40,3 +40,15 @@ model Quote {
   @@index([email])
   @@map("quotes")
 }
+
+model Subscriber {
+  id String @id @default(uuid())
+  // Unique so the list cannot hold the same person twice. Re-subscribing is
+  // an upsert that leaves the original createdAt alone — the date someone
+  // first joined is the useful one, and a repeat submission is not a new
+  // subscriber. It also means a double-click cannot create two rows.
+  email     String   @unique
+  createdAt DateTime @default(now())
+  @@index([createdAt(sort: Desc)])
+  @@map("subscribers")
+}

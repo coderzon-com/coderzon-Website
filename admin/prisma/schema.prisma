@@ -37,3 +37,12 @@ model Quote {
   @@index([email])
   @@map("quotes")
 }
+
+model Subscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@map("subscribers")
+}

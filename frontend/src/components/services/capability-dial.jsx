@@ -34,7 +34,10 @@ export function CapabilityDial() {
   const lean = useMotionValue(0);
   const smooth = useSpring(lean, { stiffness: 120, damping: 24, mass: 0.8 });
   const tilt = useTransform(smooth, (value) => TILT + value);
-  const face = useMotionTemplate`perspective(900px) rotateX(${tilt}deg)`;
+  /* The trailing scale keeps the tilted face inside the frame: under
+     perspective the near edge projects wider than the box it is sized
+     from, so the dial is drawn smaller than the space it is given. */
+  const face = useMotionTemplate`perspective(900px) rotateX(${tilt}deg) scale(0.84)`;
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -55,7 +58,7 @@ export function CapabilityDial() {
     <motion.div
       style={{
         transform: reduceMotion
-          ? `perspective(900px) rotateX(${TILT}deg)`
+          ? `perspective(900px) rotateX(${TILT}deg) scale(0.84)`
           : face,
         transformStyle: "preserve-3d",
       }}

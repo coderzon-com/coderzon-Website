@@ -15,6 +15,9 @@ export function NewsletterForm() {
   const { status, message, submit, isSubmitting } = useContactForm({
     subject: "Newsletter subscription",
     successMessage: "Thanks — you're on the list.",
+    // Stored as well as mailed. Until now a signup only existed as an email
+    // in an inbox, which is not a mailing list anyone can send to.
+    saveTo: "/api/register/subscribe",
   });
 
   async function handleSubmit(event) {

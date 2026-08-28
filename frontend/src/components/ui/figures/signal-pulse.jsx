@@ -27,9 +27,13 @@ export function SignalPulse() {
             className="absolute left-1/2 top-1/2 rounded-full border border-white/25"
             style={{ x: "-50%", y: "-50%" }}
             initial={{ width: "8%", height: "8%", opacity: 0 }}
+            /* Stops at 80%, not 96%. The hero bleeds its object slightly past
+               the right edge and past the band top and bottom, so a wave that
+               expands to the full width of the frame is cut on three sides at
+               the moment it is brightest. */
             animate={{
-              width: ["8%", "96%"],
-              height: ["8%", "96%"],
+              width: ["8%", "80%"],
+              height: ["8%", "80%"],
               opacity: [0, 0.55, 0],
             }}
             transition={{
@@ -76,8 +80,15 @@ export function SignalPulse() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute left-1/2 top-1/2 h-[18%] w-[18%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-lg"
+        className="absolute left-1/2 top-1/2 h-[18%] w-[18%] rounded-full blur-lg"
+        /* Centred through Motion, not Tailwind. Motion owns `transform` on any
+           element it animates, so `-translate-x-1/2 -translate-y-1/2` sitting
+           beside an animated `scale` is silently discarded — which left the
+           core hanging half its own width down and right of the rings it is
+           supposed to sit inside. */
         style={{
+          x: "-50%",
+          y: "-50%",
           background:
             "radial-gradient(circle, rgba(150,240,255,0.9), rgba(77,225,255,0.5) 45%, rgba(14,89,242,0.18) 68%, transparent 80%)",
         }}

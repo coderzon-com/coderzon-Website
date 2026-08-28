@@ -28,7 +28,7 @@ export function LayerFan({ leaves = 5 }) {
   const lean = useMotionValue(0);
   const smooth = useSpring(lean, { stiffness: 110, damping: 22, mass: 0.8 });
   const rotate = useTransform(smooth, (v) => -18 + v);
-  const face = useMotionTemplate`perspective(1000px) rotateX(58deg) rotateZ(${rotate}deg)`;
+  const face = useMotionTemplate`perspective(1000px) rotateX(58deg) rotateZ(${rotate}deg) scale(0.88)`;
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -43,7 +43,7 @@ export function LayerFan({ leaves = 5 }) {
     <motion.div
       style={{
         transform: reduceMotion
-          ? "perspective(1000px) rotateX(58deg) rotateZ(-18deg)"
+          ? "perspective(1000px) rotateX(58deg) rotateZ(-18deg) scale(0.88)"
           : face,
         transformStyle: "preserve-3d",
       }}
@@ -56,10 +56,15 @@ export function LayerFan({ leaves = 5 }) {
             key={index}
             className="absolute rounded-[22px] border"
             style={{
-              inset: `${8 + index * 5}%`,
+              /* Inset from 16%, not 8%. Under `perspective(1000px)` a plate
+                 pushed toward the viewer on Z projects larger than its box,
+                 so the outermost leaf measured 117px past the viewport edge
+                 at 1280 and above. The fan is drawn smaller than the frame
+                 precisely because the projection makes it bigger. */
+              inset: `${16 + index * 5}%`,
               borderColor: `rgba(255,255,255,${0.08 + depth * 0.16})`,
               background: `rgba(255,255,255,${0.012 + depth * 0.022})`,
-              transform: `translateZ(${index * 26}px) rotate(${index * 4 - 8}deg)`,
+              transform: `translateZ(${index * 20}px) rotate(${index * 4 - 8}deg)`,
               transformStyle: "preserve-3d",
             }}
           />

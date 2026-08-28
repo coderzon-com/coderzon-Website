@@ -5,20 +5,13 @@ import { EASE } from "@/lib/motion";
 
 /* Five stages down a spine, each reaching further right than the last as the
    data gets more refined. Percentages of a square, so the figure scales with
-   its frame.
-
-   Nothing reaches past 62%. The hero deliberately hangs its object off the
-   right edge of the page, and the further the viewport widens the more of
-   that square falls outside it — at 1920 roughly a third is never seen. A
-   circle bleeding off an edge reads as intentional; a row of bars sliced in
-   half reads as broken, so the drawing simply stays inside the part that is
-   always on screen. */
+   its frame. */
 const STAGES = [
-  { y: 16, reach: 28 },
-  { y: 33, reach: 38 },
-  { y: 50, reach: 47 },
-  { y: 67, reach: 55 },
-  { y: 84, reach: 62 },
+  { y: 12, reach: 38 },
+  { y: 31, reach: 51 },
+  { y: 50, reach: 63 },
+  { y: 69, reach: 74 },
+  { y: 88, reach: 84 },
 ];
 
 /**
@@ -30,10 +23,9 @@ const STAGES = [
  * abstract shape rotating.
  *
  * Laid out down rather than across. A left-to-right rail is the truer diagram
- * but it is wide and thin, which in a square frame means a hairline stranded
- * in empty space with its last stage pushed off the edge. Descending stages,
- * each reaching further right as the data gets cleaner, fill the same frame
- * and say the same thing.
+ * but it is wide and thin, which in this frame means a hairline stranded in
+ * empty space. Descending stages, each reaching further right as the data
+ * gets cleaner, fill the frame and say the same thing.
  *
  * The stages exist at rest: with motion off this is still a pipeline.
  */
@@ -41,14 +33,11 @@ export function PipelineFlow() {
   const reduceMotion = useReducedMotion();
 
   return (
-    /* Wider than tall on purpose. The hero's object slot is 160% of the
-       hero's own height, so a square drawing runs off the top and bottom of
-       the band the reader can actually see. */
-    <div className="relative aspect-[3/2] w-full">
+    <div className="relative aspect-[6/5] w-full">
       {/* The spine every stage hangs from. */}
       <span
         aria-hidden="true"
-        className="absolute bottom-[16%] left-[8%] top-[16%] w-px bg-white/20"
+        className="absolute bottom-[12%] left-[8%] top-[12%] w-px bg-white/20"
       />
 
       {!reduceMotion && (
@@ -56,8 +45,8 @@ export function PipelineFlow() {
           aria-hidden="true"
           className="bg-signal absolute left-[8%] h-2 w-2 -translate-x-1/2 rounded-full"
           style={{ boxShadow: "0 0 14px 3px rgba(77,225,255,0.45)" }}
-          initial={{ top: "16%", opacity: 0 }}
-          animate={{ top: ["16%", "84%"], opacity: [0, 1, 1, 0] }}
+          initial={{ top: "12%", opacity: 0 }}
+          animate={{ top: ["12%", "88%"], opacity: [0, 1, 1, 0] }}
           transition={{
             duration: 6,
             repeat: Infinity,

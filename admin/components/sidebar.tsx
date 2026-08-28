@@ -3,17 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FileText, LogOut, Mail, Menu, X } from "lucide-react";
+import { FileText, LogOut, Mail, Menu, Users, X } from "lucide-react";
 
 const NAV = [
   { label: "Messages", href: "/dashboard/messages", icon: Mail },
   { label: "Quotes", href: "/dashboard/quotes", icon: FileText },
+  { label: "Subscribers", href: "/dashboard/subscribers", icon: Users },
 ] as const;
 
 /**
  * Dashboard navigation: a console rail on desktop, a slide-over on mobile.
  *
- * Two lists and a sign-out. An admin over two tables does not need a
+ * Three lists and a sign-out. An admin over three tables does not need a
  * navigation hierarchy stacked on top of them.
  */
 export function Sidebar() {

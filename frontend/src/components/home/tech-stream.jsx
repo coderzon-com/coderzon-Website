@@ -74,9 +74,6 @@ const STACK = [
   "Flutter",
   "React Native",
   "Swift",
-  // Commerce and content platforms
-  "Shopify",
-  "WordPress",
 ];
 
 /** Perspective. Focal length sets how sharply the tunnel converges. */

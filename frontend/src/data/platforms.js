@@ -659,6 +659,7 @@ export const platforms = [
   {
     slug: "Microsoft-Fabric",
     navLabel: "Microsoft Fabric",
+    shortTitle: "Microsoft Fabric Consulting Services",
     title:
       "Microsoft Fabric Consulting: One Platform for the Whole Data Estate",
     intro:
@@ -727,6 +728,7 @@ export const platforms = [
   {
     slug: "snowflake",
     navLabel: "Snowflake",
+    shortTitle: "Snowflake Data Platform Services",
     title:
       "Snowflake Consulting: Separate Storage, Separate Compute, Separate Bills",
     intro:
@@ -795,6 +797,7 @@ export const platforms = [
   {
     slug: "google-bigquery",
     navLabel: "BigQuery",
+    shortTitle: "Google BigQuery Warehouse Services",
     title: "BigQuery Consulting: Serverless Analytics, Priced by the Byte",
     intro:
       "BigQuery removes the warehouse-sizing question entirely \u2014 there is no cluster to provision. What it introduces instead is a pricing model where a careless query can scan a terabyte and a well-partitioned one can scan a gigabyte for the same answer. Design decisions show up directly on the bill.",
@@ -862,6 +865,7 @@ export const platforms = [
   {
     slug: "amazon-redshift",
     navLabel: "Redshift",
+    shortTitle: "Amazon Redshift Warehouse Services",
     title: "Amazon Redshift Consulting: The Warehouse Inside Your AWS Estate",
     intro:
       "Where the rest of the estate already runs on AWS, Redshift removes a lot of movement: it reads directly from S3, shares data across clusters without copying, and sits inside the same IAM model as everything else. The trade is that distribution and sort keys are decisions you make early and feel for years.",
@@ -927,280 +931,278 @@ export const platforms = [
     },
   },
   {
-    slug: "shopify",
-    title: "Shopify Development Company",
-    shortTitle: "Shopify Development Company",
-    navLabel: "Shopify",
+    slug: "databricks",
+    navLabel: "Databricks",
+    shortTitle: "Databricks Lakehouse Consulting Services",
+    title: "Databricks Consulting: Governed Data and ML on One Lakehouse",
     intro:
-      "On a mission to grow your ecommerce business? Our Shopify development company delivers revenue-generating, growth-focused shopping experiences — from first click to checkout — to elevate your entire customer journey.",
+      "Databricks is where a data platform and a machine-learning platform stop being two systems. Delta tables, the features built on them, the models trained on those features and the predictions those models produce all sit under Unity Catalog — one permission model, one lineage graph. That is the reason to choose it, and the part most implementations leave switched off.",
     overview: {
-      heading: "Let CoderZon grow your ecommerce business with Shopify",
-      body: "Our Shopify experts build high-performance, brand-aligned online stores, empowering merchants to scale with end-to-end ecommerce solutions. We streamline store setup, customization, integrations, and optimizations to enhance user experience, boost conversions, and drive sustained growth.",
+      heading: "Unity Catalog is the point",
+      body: "Plenty of teams run Databricks as a Spark cluster with notebooks on top, which is a fair way to spend a lot of money on something a warehouse already did. The value arrives when features, models and inference tables are governed alongside the data — because that is what makes a prediction explainable months later, and what makes a data quality problem traceable to the reports and models it touched.",
     },
     highlight: {
-      heading: "Shopify Development Services",
+      heading: "Where ML projects on it actually fail",
+      body: "Almost never on the modelling. They fail on features computed after the event they are meant to predict, on models nobody notices going stale, and on scores that land somewhere the business never opens. Each of those has a specific answer on this platform, and each is a decision made early or not at all.",
       points: [
-        "45% increase in online sales through UX improvements",
-        "60% faster site loading via technical optimization",
-        "70% organic traffic boost using SEO best practices",
-        "35% higher conversion with checkout streamlining",
-        "3x more sales using AR virtual try-ons",
-        "30% inventory cost reduction with stock optimization",
+        "Feature Views with point-in-time joins, so training cannot see the future",
+        "MLflow tracking tied to the Delta version behind each run",
+        "Champion/Challenger by alias, promoted on realised outcomes rather than offline metrics",
+        "Lakehouse Monitoring over inference tables, with drift triggering retraining",
+        "Asset Bundles in CI, so the platform is rebuildable from source",
+        "Job compute over all-purpose, and batch over real-time unless latency is genuinely required",
       ],
     },
     value: {
-      heading: "How CoderZon delivers Shopify success",
-      body: "We provide comprehensive Shopify ecommerce development services including store setup, theme customization, custom app development, third-party integrations, migration, marketing automation, analytics, and ongoing support.",
-      extra:
-        "From design to data and performance to personalization, we ensure every element of your Shopify ecosystem works in harmony to meet your goals.",
+      heading: "When Databricks, and when not",
+      body: "It earns its cost when the same data has to serve analytics and machine learning under one governance model, or when the workload is genuinely large and Spark-shaped. It is the wrong answer for a reporting estate that a warehouse and a BI tool would serve at a fraction of the price. We will say so rather than sell you a lakehouse you do not need.",
     },
     workflow: {
-      heading:
-        "Explore our Shopify ecommerce capabilities tailored to your business",
+      heading: "How we work in it.",
       steps: [
         {
-          title: "Store Setup & Custom Development",
+          title: "Assessment",
           items: [
-            "Custom Shopify store creation and configuration",
-            "Theme selection, branding, and UX optimization",
-            "Payment, checkout, shipping setup and SEO basics",
-            "Custom Shopify app and feature development",
+            "Existing estate, workloads and where governance currently stops",
+            "Whether the problem is genuinely Spark-shaped",
+            "Unity Catalog and workspace topology",
+            "Cost model: job versus all-purpose, batch versus serving",
           ],
         },
         {
-          title: "Performance & Optimization",
+          title: "Platform Design",
           items: [
-            "Lazy loading, image compression, and cart optimization",
-            "Code audit and device compatibility improvements",
-            "Faster page speeds and improved mobile UX",
+            "Catalog per environment, with dev, staging and production separated",
+            "Medallion layering and table design",
+            "Feature Views where features are shared across models",
+            "Access control, lineage and audit expectations",
           ],
         },
         {
-          title: "Migration to Shopify",
+          title: "Build",
           items: [
-            "Seamless transition from platforms like Magento, WooCommerce, Wix, and others",
-            "Zero data loss and minimal downtime",
-            "Full product, customer, and order migration",
+            "Pipelines and tested transformations, versioned with the code",
+            "Training pipelines logged to MLflow with data versions captured",
+            "Deployment by alias, with a quality gate before promotion",
+            "Asset Bundles promoted through environments in CI",
           ],
         },
         {
-          title: "Data Analytics & Reporting",
+          title: "Operate",
           items: [
-            "Customer behavior analysis and segmentation",
-            "Custom dashboard creation and conversion tracking",
-            "Integration with analytics platforms like Google Analytics and Geckoboard",
+            "Inference profiling and drift metrics with alerting",
+            "Automated retraining, manual promotion",
+            "Cost monitoring against the original forecast",
+            "Handover, documentation and training",
           ],
         },
-        {
-          title: "Third-Party Integrations",
-          items: [
-            "Connect Shopify with payment gateways like PayPal, Stripe, Square",
-            "ERP/CRM systems, inventory tools, and warehouse software",
-            "Marketing and SEO tools such as Hubspot, Semrush, Tidio",
-          ],
-        },
-        {
-          title: "Marketing Automation",
-          items: [
-            "Email automation with Mailchimp, SendGrid, Hubspot",
-            "Personalized campaigns via segmentation tools",
-            "Loyalty and SEO automation with minimal manual effort",
-          ],
-        },
-      ],
-    },
-    useCases: {
-      DigitalProductEngineering: [
-        "Build and scale robust Shopify-powered storefronts",
-        "End-to-end ecommerce product lifecycle support",
-      ],
-      SaaSDevelopment: [
-        "Custom SaaS apps and modules on Shopify",
-        "Secure, cloud-native Shopify integrations",
-      ],
-      MVPDevelopment: [
-        "Rapid Shopify store prototyping and go-to-market",
-        "Cost-effective development of proof of concept features",
-      ],
-    },
-    mobileAndEmbedded: {
-      mobile:
-        "Mobile-optimized and responsive Shopify themes and storefronts for seamless user experience on all devices.",
-      embedded:
-        "Custom APIs and integrations embed Shopify features into your business systems and workflows.",
-    },
-    predictiveAnalytics: {
-      capabilities: [
-        "Customer behavior prediction and journey insights",
-        "Sales forecasting and inventory optimization",
-        "Advanced ecommerce performance tracking",
-      ],
-      platforms: [
-        "Google Analytics",
-        "Geckoboard",
-        "Custom Shopify dashboards",
-      ],
-    },
-    realTimeAnalytics: {
-      description:
-        "Enable real-time sales tracking, order status, and customer engagement insights by integrating Shopify with live reporting and alerting systems.",
-      components: [
-        "Shopify Analytics and Admin APIs",
-        "Google Analytics for real-time behavior data",
-        "Integrated dashboards and custom alerts",
-      ],
-    },
-    dataArchitecture: {
-      dataTypes: [
-        "Structured: Customer profiles, orders, transactions",
-        "Semi-Structured: Product data, reviews, tags",
-        "Unstructured: Images, social media content",
-        "Streaming: Live inventory updates, sales feeds",
-      ],
-      flow: [
-        "Ingest: Shopify APIs, third-party connectors",
-        "Store: Shopify data store, custom databases",
-        "Process: Data analytics tools, automation scripts",
-        "Serve: Reports, dashboards, marketing tools",
       ],
     },
   },
   {
-    slug: "WordPress",
-    title: "WordPress Outsourcing Services",
-    shortTitle: "WordPress Outsourcing Services",
-    navLabel: "WordPress",
+    slug: "azure-data-factory",
+    navLabel: "Azure Data Factory",
+    shortTitle: "Azure Data Factory Pipeline Services",
+    title: "Azure Data Factory: Metadata-Driven Pipelines That Scale",
     intro:
-      "Looking to build a robust and scalable online presence? Our WordPress outsourcing services help your website grow in sync with your evolving business goals.",
+      "Data Factory is the orchestrator underneath most Azure data estates. Built the usual way, it becomes one pipeline per source and a maintenance burden that grows with every request. Built as a metadata-driven framework, adding a new source is a config change — no new pipeline, no redeploy, no regression testing of the feeds that already work.",
     overview: {
-      heading: "Let CoderZon elevate your website with WordPress",
-      body: "CoderZon WordPress experts deliver high-performance websites with scalable architectures, fast delivery, and optimized costs. From online marketplaces to corporate websites and educational platforms — we empower you with tailored WordPress solutions.",
+      heading: "One pipeline, every source",
+      body: "The pattern is a master pipeline that reads a metadata config and a single parameterised child pipeline that serves every object in it. Object names, schemas, load type, column mappings and watermarks live in configuration, not in code. It costs more to design and repays from the second source onward — and keeps repaying with every one after that.",
     },
     highlight: {
-      heading: "WordPress Development Services",
+      heading: "What separates a framework from a pile of pipelines",
+      body: "Most of the difficulty in ingestion is not moving rows. It is knowing what changed, coping with a source that will not hand over everything at once, and being certain a run that failed halfway did not quietly report success.",
       points: [
-        "Faster time-to-market with agile delivery",
-        "Reduced development cost via optimized outsourcing",
-        "Information security ensured across all project phases",
-        "High-quality, scalable architecture implementation",
-        "Flexible team scaling based on business needs",
-        "Full website functionality powered by WooCommerce and plugins",
+        "Metadata-driven master/child pattern, so onboarding a source is a config drop",
+        "Incremental loads bounded by a watermark, with full loads still available",
+        "Pagination for sources that cap rows per response, terminating on a short page",
+        "Watermarks committed only after the final page, so a partial run is retried not skipped",
+        "Credentials resolved from Key Vault at runtime, never stored in the pipeline",
+        "Medallion layering in ADLS Gen2 and promotion through Azure DevOps",
       ],
     },
     value: {
-      heading: "How CoderZon delivers WordPress excellence",
-      body: "We offer full-cycle WordPress development services including custom theme and plugin development, third-party integrations, performance optimization, website migration, and ongoing support.",
-      extra:
-        "From migration to customization and maintenance, we ensure your WordPress solution is tailored to your exact requirements and optimized for performance.",
+      heading: "When Data Factory, and when not",
+      body: "It is the right tool for orchestrating movement across an Azure estate, especially where sources are varied and governance matters. If the whole estate is already Fabric, Fabric pipelines remove a moving part; if the work is heavy transformation rather than movement, that belongs in Databricks or the warehouse rather than in ADF activities.",
     },
     workflow: {
-      heading:
-        "Explore our WordPress capabilities crafted to support your long-term digital growth",
+      heading: "How we work in it.",
       steps: [
         {
-          title: "Theme & Plugin Development",
+          title: "Assessment",
           items: [
-            "Custom WordPress theme design and development",
-            "Optimization of existing themes for speed and performance",
-            "Plugin customization and new plugin development",
-            "Integration of necessary features without redundant code",
+            "Source inventory: systems, owners, update cadence and access route",
+            "Which sources support incremental extraction, and on what column",
+            "Response limits, pagination behaviour and rate constraints",
+            "Existing pipelines and what can be retired",
           ],
         },
         {
-          title: "Performance & Optimization",
+          title: "Framework Design",
           items: [
-            "Speed optimization by removing unnecessary components",
-            "SEO best practices implementation",
-            "Custom code for fast-loading pages and responsiveness",
+            "Metadata schema: object, target, load type, mapping, watermark",
+            "Master and child pipeline split",
+            "Linked services and datasets, fully parameterised",
+            "Secrets, managed identity and network access",
           ],
         },
         {
-          title: "Migration to WordPress",
+          title: "Build",
           items: [
-            "Seamless migration from builders like Wix or Tilda",
-            "Design retention or redesign as per user preference",
-            "Custom CMS implementation based on business needs",
+            "Landing to bronze, then merged onward on the business key",
+            "Per-source page sizes tuned against real payloads",
+            "Per-iteration logging, so a failure is diagnosable to the page",
+            "Bundled and promoted through Dev, Test and Production",
           ],
         },
         {
-          title: "Data Analytics & Reporting",
+          title: "Operate",
           items: [
-            "Integration with analytics tools like Google Analytics",
-            "Custom dashboard development for performance monitoring",
-            "Behavior tracking and data reporting",
-          ],
-        },
-        {
-          title: "Third-Party Integrations",
-          items: [
-            "WooCommerce setup and enhancement",
-            "Payment gateway and marketing tool integration",
-            "CRM/ERP connections through plugins or custom solutions",
-          ],
-        },
-        {
-          title: "Maintenance & Support",
-          items: [
-            "Manual updates for custom themes/plugins",
-            "Automatic backups and system stability",
-            "24/7 helpdesk and admin training for internal teams",
+            "Run monitoring with row counts per source and per page",
+            "Retries on transient failures, alerts on the rest",
+            "Onboarding new sources by configuration",
+            "Cost review and schedule tuning",
           ],
         },
       ],
     },
-    useCases: {
-      DigitalProductEngineering: [
-        "Develop scalable WordPress CMS and ecommerce sites",
-        "Implement full product lifecycle support for websites",
-      ],
-      SaaSDevelopment: [
-        "Build SaaS platforms integrated with WordPress",
-        "Secure and customized WordPress functionality",
-      ],
-      MVPDevelopment: [
-        "Launch MVPs using rapid WordPress prototyping",
-        "Validate features with flexible theme/plugin development",
+  },
+  {
+    slug: "salesforce",
+    navLabel: "Salesforce",
+    shortTitle: "Salesforce Data Integration Services",
+    title: "Salesforce Data Integration: CRM Data in the Warehouse",
+    intro:
+      "Salesforce is excellent at running a sales process and awkward to report across. The API limits what you can pull and how often, the object model is not shaped for analytics, and exports by hand stop being viable the moment anyone asks for the numbers weekly. This is the work of getting that data out reliably and into a warehouse the business can query.",
+    overview: {
+      heading: "Integration, not implementation",
+      body: "We are not a Salesforce implementation partner and will not pretend otherwise — we do not configure your sales process or build Apex. What we do is move Salesforce data into a governed warehouse on a schedule, incrementally and traceably, so reporting stops depending on someone running an export.",
+    },
+    highlight: {
+      heading: "What the work actually involves",
+      body: "The connector is the easy part. The difficulty is doing it incrementally, staying inside API limits, and surviving schema changes without silently dropping fields.",
+      points: [
+        "Standard and custom objects, driven from configuration rather than one pipeline each",
+        "Incremental extraction on LastModifiedDate, so only changes cross the wire",
+        "Field selection and mapping held in config, so a schema change is an edit not a redeploy",
+        "Merge on the business key, so a re-run updates rather than duplicates",
+        "Credentials in Key Vault, resolved at runtime",
+        "Landing preserved, so downstream fixes never require re-pulling from the API",
       ],
     },
-    mobileAndEmbedded: {
-      mobile:
-        "Mobile-optimized and responsive WordPress themes for seamless experience across all devices.",
-      embedded:
-        "Custom APIs and plugin-based integrations to embed WordPress capabilities into your existing business systems.",
+    value: {
+      heading: "What you get",
+      body: "CRM data queryable in SQL alongside finance, product and support data — with the analytical load off the system your sales team is working in. Reporting stops competing with the CRM for capacity, and nobody has to raise a request to see last month's numbers.",
     },
-    predictiveAnalytics: {
-      capabilities: [
-        "User behavior analysis and traffic segmentation",
-        "Performance monitoring and conversion tracking",
-        "Custom reporting on ecommerce and site usage",
-      ],
-      platforms: [
-        "Google Analytics",
-        "Custom WordPress dashboards",
-        "Third-party plugin analytics tools",
+    workflow: {
+      heading: "How we work in it.",
+      steps: [
+        {
+          title: "Scoping",
+          items: [
+            "Which objects and fields reporting genuinely needs",
+            "Volumes, change rates and API limit headroom",
+            "Refresh cadence the business actually requires",
+            "Security and PII handling",
+          ],
+        },
+        {
+          title: "Design",
+          items: [
+            "Connection and authentication through the supported API",
+            "Watermark column per object",
+            "Target schema and business keys",
+            "Mapping from technical field names to reportable columns",
+          ],
+        },
+        {
+          title: "Build",
+          items: [
+            "Configuration-driven extraction",
+            "Landing, cleansing and merge into the warehouse",
+            "Reconciliation against Salesforce record counts",
+            "Release through the existing CI process",
+          ],
+        },
+        {
+          title: "Operate",
+          items: [
+            "Daily runs with row counts and failure alerting",
+            "New objects onboarded by configuration",
+            "Schema drift surfaced rather than swallowed",
+            "Handover and documentation",
+          ],
+        },
       ],
     },
-    realTimeAnalytics: {
-      description:
-        "Enable real-time tracking and insights with integrated analytics tools and custom dashboards tailored for WordPress.",
-      components: [
-        "Google Analytics real-time tracking",
-        "WordPress admin and plugin APIs",
-        "Custom notification and alerting dashboards",
+  },
+  {
+    slug: "sap",
+    navLabel: "SAP",
+    shortTitle: "SAP Data Integration Services",
+    title: "SAP Data Integration: Getting Data Out of the ERP",
+    intro:
+      "SAP holds the operational heart of a business and is famously hard to get data out of. There is usually no direct database access, the OData services cap how much they will return in one response, and the tables are large enough that a nightly full extract is not an option. Every design decision here exists to work within those limits rather than against them.",
+    overview: {
+      heading: "The cap is the whole problem",
+      body: "Ask an SAP OData service for a large result set and you will not get it. You will get a capped response, an error, or — worst of all — a truncated response that the pipeline reports as a success. A design that ignores this does not fail loudly; it produces confidently incomplete data that nobody questions until a number looks wrong.",
+    },
+    highlight: {
+      heading: "How this is built",
+      body: "Two mechanisms compose. A watermark decides what is in scope; a bounded loop decides how that scope is carried across. Neither alone is sufficient — a filter without paging still overruns the cap on a heavy day, and paging without a filter walks the entire entity every night.",
+      points: [
+        "Extraction through the supported OData service layer, not around it",
+        "Incremental loads bounded by a change-date watermark",
+        "A pagination loop that requests a page at a time and stops when the source runs dry",
+        "Termination on a short page or an absent next link, never on a fixed iteration count",
+        "Per-page row counts logged, so silent truncation is visible rather than assumed",
+        "Merge on the business key, which makes a repeated row harmless",
       ],
     },
-    dataArchitecture: {
-      dataTypes: [
-        "Structured: User accounts, orders, comments",
-        "Semi-Structured: Post metadata, plugin settings",
-        "Unstructured: Blog content, media files",
-        "Streaming: Live user interactions, form submissions",
-      ],
-      flow: [
-        "Ingest: WordPress APIs, plugin data collectors",
-        "Store: MySQL databases, plugin data tables",
-        "Process: PHP scripts, plugin logic, cron jobs",
-        "Serve: WP Admin panels, frontend display, reports",
+    value: {
+      heading: "Integration, not implementation",
+      body: "We are not an SAP implementation partner and do not configure your ERP. We move its data into a warehouse the business can report on, without adding analytical load to a live operational system, and without anyone needing an SAP licence to look at a number.",
+    },
+    workflow: {
+      heading: "How we work in it.",
+      steps: [
+        {
+          title: "Scoping",
+          items: [
+            "Which entities reporting needs, and which fields within them",
+            "Available OData services and authorisation model",
+            "Response caps, page sizes and gateway load tolerance",
+            "Change-date columns available per entity",
+          ],
+        },
+        {
+          title: "Design",
+          items: [
+            "Metadata configuration per entity, including page size",
+            "Watermark strategy and full-load fallback",
+            "Field projection, so only required fields cross the wire",
+            "Target schema and business keys",
+          ],
+        },
+        {
+          title: "Build",
+          items: [
+            "Bounded pagination with a safety ceiling",
+            "Each page landed before the next is requested",
+            "Watermark advanced only after the final page commits",
+            "Deduplication on the business key at the cleansing layer",
+          ],
+        },
+        {
+          title: "Operate",
+          items: [
+            "Iteration counts monitored, not just run-level totals",
+            "Retries on transient gateway failures",
+            "Page sizes tuned per entity against real payloads",
+            "New entities onboarded by configuration",
+          ],
+        },
       ],
     },
   },

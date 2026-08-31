@@ -17,6 +17,27 @@ import { RevealGrid } from "@/components/ui/reveal-grid";
  * server HTML where a crawler and a reader with no JavaScript can both reach
  * it; only the staggered reveals are handed to the client.
  */
+/**
+ * Fades the outer edges so the picture dissolves into the page.
+ *
+ * Two linear gradients intersected, not one radial. A radial vignette is the
+ * obvious choice and the wrong one here: this drawing runs all the way into
+ * its corners — pipeline top-left, bottle top-right — and any ellipse tight
+ * enough to fade the edges eats them. Crossing a horizontal fade with a
+ * vertical one softens all four sides while leaving the middle 84% untouched.
+ *
+ * Sized in the box, not around it. A first attempt used
+ * `radial-gradient(118% 118% ...)`, whose transparent stop therefore sat well
+ * outside the element — the mask was there and did nothing.
+ *
+ * Where `mask-composite` is unsupported the layers combine additively, which
+ * means no fade rather than a broken one.
+ */
+const BLEND = [
+  "linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%)",
+  "linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%)",
+].join(", ");
+
 export function ProjectNarrative({ project }) {
   const n = project.narrative;
 
@@ -24,68 +45,74 @@ export function ProjectNarrative({ project }) {
     <>
       {/* Hero */}
       <section className="bg-ink px-x-default relative isolate overflow-hidden pb-16 pt-10 text-white sm:pb-20">
-        <p className="text-signal font-mono text-[11px] uppercase tracking-label">
-          {projectLabel(project)}
-        </p>
+        {/* Name on the left, object on the right. The title and the image are
+            the two things this header is for, and side by side each gets the
+            room the other was taking. Below `lg` they stack, title first —
+            the words are what the page is, the picture is what it looks
+            like. */}
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
+          <div className="lg:col-span-6">
+            <p className="text-signal font-mono text-[11px] uppercase tracking-label">
+              {projectLabel(project)}
+            </p>
 
-        <h1 className="mt-5 max-w-[18ch] break-words text-display font-bold [font-stretch:96%]">
-          {project.name}
-        </h1>
+            <h1 className="mt-5 max-w-[18ch] break-words text-display font-bold [font-stretch:96%]">
+              {project.name}
+            </h1>
 
-        <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/70">
-          {n.hero.intro}
-        </p>
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/70">
+              {n.hero.intro}
+            </p>
+          </div>
 
-        {n.hero.image && (
-          /* Full width rather than beside the title. The headline is the
-             largest type on the site and halving its measure would cost it
-             three extra lines; as a band the image gets its own room and the
-             title keeps its impact. It is also the sturdier arrangement on a
-             phone, where a two-column hero collapses to the same stack anyway
-             but with a cramped image in the middle of it. */
-          <figure className="mt-10 sm:mt-12">
-            {/* Capped and centred. This is a 1.42:1 image, so an unbounded
-                width made it 1743x1225 at 1920 — taller than the viewport it
-                was introducing. The cap holds its height near 640px on any
-                large screen and it stays fluid below that. Centred within the
-                content column rather than aligned to the text's left edge:
-                the image is the header's own object, not a continuation of
-                the paragraph above it. */}
-            <a
-              href={n.hero.image.src}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="focus-visible:ring-offset-ink ease-power mx-auto block max-w-[920px] overflow-hidden rounded-3xl border border-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
-            >
-              <Image
-                src={n.hero.image.src}
-                alt={n.hero.image.alt}
-                width={n.hero.image.width}
-                height={n.hero.image.height}
-                sizes="(min-width: 920px) 920px, 100vw"
-                className="h-auto w-full"
-                priority
-              />
-            </a>
-
-            {/* The pipeline and capability labels inside are illegible below
-                about 700px wide, so the way to read them is offered rather
-                than assumed. */}
-            <figcaption className="mx-auto mt-4 flex max-w-[920px] justify-end">
+          {n.hero.image && (
+            <figure className="lg:col-span-6">
+              {/* No frame. The image is already black-grounded, so a border
+                  and a rounded corner were the only things making it read as
+                  a pasted rectangle; without them it sits in the page. The
+                  mask carries the last of it — the outer edges dissolve into
+                  the background instead of stopping at a line. */}
               <a
                 href={n.hero.image.src}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="focus-visible:ring-offset-ink group/hero ease-power inline-flex items-center gap-2 rounded-sm font-mono text-[10px] uppercase tracking-label text-white/55 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                className="focus-visible:ring-offset-ink ease-power block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4"
               >
-                <Maximize2 aria-hidden="true" className="h-3.5 w-3.5" />
-                Open full size
+                <Image
+                  src={n.hero.image.src}
+                  alt={n.hero.image.alt}
+                  width={n.hero.image.width}
+                  height={n.hero.image.height}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="h-auto w-full"
+                  style={{
+                    maskImage: BLEND,
+                    WebkitMaskImage: BLEND,
+                    maskComposite: "intersect",
+                    WebkitMaskComposite: "source-in",
+                  }}
+                  priority
+                />
               </a>
-            </figcaption>
-          </figure>
-        )}
 
-        <dl className="mt-10 grid gap-x-8 gap-y-7 border-t border-white/12 pt-8 sm:mt-12 sm:grid-cols-3">
+              {/* Smaller here than it was full width, so the labels inside are
+                  further out of reach — the way to read them stays offered. */}
+              <figcaption className="mt-2 flex justify-end">
+                <a
+                  href={n.hero.image.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="focus-visible:ring-offset-ink group/hero ease-power inline-flex items-center gap-2 rounded-sm font-mono text-[10px] uppercase tracking-label text-white/45 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                >
+                  <Maximize2 aria-hidden="true" className="h-3.5 w-3.5" />
+                  Open full size
+                </a>
+              </figcaption>
+            </figure>
+          )}
+        </div>
+
+        <dl className="mt-12 grid gap-x-8 gap-y-7 border-t border-white/12 pt-8 sm:grid-cols-3">
           {n.hero.meta.map((entry) => (
             <div key={entry.label}>
               <dt className="font-mono text-[10px] uppercase tracking-label text-white/50">

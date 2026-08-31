@@ -65,6 +65,7 @@ const PLATFORM_GROUPS = [
     label: "Warehouse & lakehouse",
     slugs: [
       "Microsoft-Fabric",
+      "databricks",
       "snowflake",
       "google-bigquery",
       "amazon-redshift",
@@ -78,7 +79,14 @@ const PLATFORM_GROUPS = [
     label: "Business intelligence",
     slugs: ["Microsoft-BI", "Open-Source-BI"],
   },
-  { label: "Commerce & content", slugs: ["shopify", "WordPress"] },
+  {
+    /* What replaced "Commerce & content". Shopify and WordPress were the only
+       two platforms here that no case study, service or homepage claim
+       supported. These three are named in the write-ups of work actually
+       delivered — which is the standard the rest of this list is held to. */
+    label: "Integration & pipelines",
+    slugs: ["azure-data-factory", "salesforce", "sap"],
+  },
 ];
 
 /** Turn a group definition into resolved menu entries, dropping unknown slugs. */

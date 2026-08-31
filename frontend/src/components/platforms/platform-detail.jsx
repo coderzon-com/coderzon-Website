@@ -81,8 +81,11 @@ export function PlatformDetail({ platform }) {
                   Already using it?
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-white/75">
-                  We take over systems someone else built \u2014 upgrading,
-                  migrating and supporting them without starting over.
+                  {/* A real em dash, not an escape. JSX text is not a string
+                      literal, so `\u2014` here rendered as those six characters
+                      on every platform page. */}
+                  We take over systems someone else built — upgrading, migrating
+                  and supporting them without starting over.
                 </p>
                 <Link
                   href="/request-quote"

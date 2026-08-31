@@ -10,7 +10,7 @@ import { ContactCta } from "@/components/contact/contact-cta";
 export const metadata = buildMetadata({
   title: "Platforms",
   description:
-    "The products and platforms Coderzon implements and supports: Microsoft BI and Azure, AWS, Google Cloud, open-source BI, Shopify and WordPress.",
+    "The products and platforms Coderzon implements and supports: Microsoft Fabric, Snowflake, BigQuery and Redshift, Azure, AWS and Google Cloud, Microsoft and open-source BI.",
   path: "/platforms",
 });
 

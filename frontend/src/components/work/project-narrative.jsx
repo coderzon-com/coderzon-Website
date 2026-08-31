@@ -36,6 +36,55 @@ export function ProjectNarrative({ project }) {
           {n.hero.intro}
         </p>
 
+        {n.hero.image && (
+          /* Full width rather than beside the title. The headline is the
+             largest type on the site and halving its measure would cost it
+             three extra lines; as a band the image gets its own room and the
+             title keeps its impact. It is also the sturdier arrangement on a
+             phone, where a two-column hero collapses to the same stack anyway
+             but with a cramped image in the middle of it. */
+          <figure className="mt-10 sm:mt-12">
+            {/* Capped and centred. This is a 1.42:1 image, so an unbounded
+                width made it 1743x1225 at 1920 — taller than the viewport it
+                was introducing. The cap holds its height near 640px on any
+                large screen and it stays fluid below that. Centred within the
+                content column rather than aligned to the text's left edge:
+                the image is the header's own object, not a continuation of
+                the paragraph above it. */}
+            <a
+              href={n.hero.image.src}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-visible:ring-offset-ink ease-power mx-auto block max-w-[920px] overflow-hidden rounded-3xl border border-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+            >
+              <Image
+                src={n.hero.image.src}
+                alt={n.hero.image.alt}
+                width={n.hero.image.width}
+                height={n.hero.image.height}
+                sizes="(min-width: 920px) 920px, 100vw"
+                className="h-auto w-full"
+                priority
+              />
+            </a>
+
+            {/* The pipeline and capability labels inside are illegible below
+                about 700px wide, so the way to read them is offered rather
+                than assumed. */}
+            <figcaption className="mx-auto mt-4 flex max-w-[920px] justify-end">
+              <a
+                href={n.hero.image.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-visible:ring-offset-ink group/hero ease-power inline-flex items-center gap-2 rounded-sm font-mono text-[10px] uppercase tracking-label text-white/55 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+              >
+                <Maximize2 aria-hidden="true" className="h-3.5 w-3.5" />
+                Open full size
+              </a>
+            </figcaption>
+          </figure>
+        )}
+
         <dl className="mt-10 grid gap-x-8 gap-y-7 border-t border-white/12 pt-8 sm:mt-12 sm:grid-cols-3">
           {n.hero.meta.map((entry) => (
             <div key={entry.label}>
@@ -169,14 +218,14 @@ export function ProjectNarrative({ project }) {
               href={n.architecture.diagram.src}
               target="_blank"
               rel="noopener noreferrer"
-              className="focus-visible:ring-offset-ink group ease-power block overflow-hidden rounded-2xl bg-white p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] transition-transform duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:p-3"
+              className="focus-visible:ring-offset-ink group ease-power mx-auto block max-w-[1160px] overflow-hidden rounded-2xl bg-white p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] transition-transform duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:p-3"
             >
               <Image
                 src={n.architecture.diagram.src}
                 alt={n.architecture.diagram.alt}
                 width={n.architecture.diagram.width}
                 height={n.architecture.diagram.height}
-                sizes="(min-width: 1280px) 1200px, 100vw"
+                sizes="(min-width: 1160px) 1160px, 100vw"
                 className="h-auto w-full rounded-lg"
                 priority={false}
               />
@@ -185,7 +234,7 @@ export function ProjectNarrative({ project }) {
             {/* At 390px the labels inside are about three pixels tall, so the
                 caption offers the only thing that actually helps: the full
                 image, where the browser's own zoom works. */}
-            <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+            <figcaption className="mx-auto mt-4 flex max-w-[1160px] flex-wrap items-center justify-between gap-x-6 gap-y-2">
               <span className="text-[13px] text-white/55">
                 {n.architecture.diagram.caption}
               </span>

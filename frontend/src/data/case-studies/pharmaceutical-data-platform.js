@@ -65,6 +65,20 @@ export const pharmaceuticalDataPlatform = {
       eyebrow: "Pharmaceutical data engineering",
       intro:
         "Connecting manufacturing, inventory, distribution, sales, pharmacies, hospitals and commercial operations through a modern enterprise data platform.",
+      /* The header image. Dark-grounded, which is why it needs no frame: the
+         architecture diagram further down is white-on-blue and has to sit on
+         its own light panel, but this one is already the page's colour and can
+         run edge to edge as part of it.
+
+         `priority` at the render site — it is the largest thing above the fold
+         and would otherwise be the page's slowest paint. */
+      image: {
+        src: "/images/pharmaceutical-data-platform-header.jpg",
+        width: 1496,
+        height: 1051,
+        alt: "A pharmaceutical data platform, illustrated as a spilled bottle of capsules each labelled with a capability — supply chain analytics, inventory management, distributor analytics, financial data integration, product analytics, CRM integration, cloud data engineering, data quality and business intelligence. Above them a pipeline runs from data sources through ingestion, ETL/ELT, a data lake and warehouse to analytics and BI, over a foundation of data integration, transformation, governance, observability and orchestration.",
+      },
+
       meta: [
         { label: "Industry", value: "Pharmaceutical / medical products" },
         { label: "Project", value: "Enterprise data engineering & analytics" },

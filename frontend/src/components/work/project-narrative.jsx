@@ -160,6 +160,41 @@ export function ProjectNarrative({ project }) {
         </RevealGrid>
       </Section>
 
+      {n.principles && (
+        <Section eyebrow={n.principles.eyebrow} heading={n.principles.heading}>
+          {n.principles.intro && (
+            <p className="max-w-2xl text-sm leading-relaxed text-white/65">
+              {n.principles.intro}
+            </p>
+          )}
+
+          {/* Numbered, because these are the rules the design is held to and
+              the order is the argument: assist before context, context before
+              traceability, traceability before failure behaviour. */}
+          <RevealGrid className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {n.principles.points.map((point, index) => (
+              <div
+                key={point.title}
+                className="h-full rounded-2xl border border-white/12 bg-white/[0.035] p-5"
+              >
+                <span
+                  aria-hidden="true"
+                  className="text-signal font-mono text-[11px] font-bold tabular-nums"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 break-words text-base font-bold leading-tight">
+                  {point.title}
+                </h3>
+                <p className="mt-2.5 text-[13px] leading-relaxed text-white/60">
+                  {point.body}
+                </p>
+              </div>
+            ))}
+          </RevealGrid>
+        </Section>
+      )}
+
       {/* Value chain */}
       <Section eyebrow={n.valueChain.eyebrow} heading={n.valueChain.heading}>
         <p className="max-w-2xl text-sm leading-relaxed text-white/65">
@@ -190,16 +225,20 @@ export function ProjectNarrative({ project }) {
               <p className="mt-1.5 text-[13px] leading-snug text-white/55">
                 {stage.sub}
               </p>
-              <ul className="mt-4 space-y-1.5 border-t border-white/10 pt-4">
-                {stage.items.map((item) => (
-                  <li
-                    key={item}
-                    className="text-[13px] leading-snug text-white/70"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              {/* A stage is sometimes just a named step. An empty list would
+                  still draw its rule and padding. */}
+              {stage.items?.length > 0 && (
+                <ul className="mt-4 space-y-1.5 border-t border-white/10 pt-4">
+                  {stage.items.map((item) => (
+                    <li
+                      key={item}
+                      className="text-[13px] leading-snug text-white/70"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </RevealGrid>
@@ -286,8 +325,17 @@ export function ProjectNarrative({ project }) {
 
         {/* Read left to right on a wide screen, top to bottom on a phone —
             the same direction the data travels either way. */}
+        {/* Sized to the number of columns. A six-column pipeline and a
+            three-column one are both architectures; a fixed six-track grid
+            left the three-column case half empty. */}
         <RevealGrid
-          className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+          className={`mt-5 grid gap-3 sm:grid-cols-2 ${
+            n.architecture.columns.length <= 3
+              ? "lg:grid-cols-3"
+              : n.architecture.columns.length === 4
+                ? "lg:grid-cols-4"
+                : "lg:grid-cols-3 xl:grid-cols-6"
+          }`}
           amount={0.05}
         >
           {n.architecture.columns.map((column) => {
@@ -348,11 +396,14 @@ export function ProjectNarrative({ project }) {
               key={band.title}
               className="rounded-2xl border border-white/12 bg-white/[0.05] p-5"
             >
-              <div className="flex items-baseline justify-between gap-3">
+              {/* Wraps rather than refusing to shrink. `shrink-0` held this
+                  label at full width beside the title, so a sub longer than
+                  pharma's two words pushed the page 37px wide at 320. */}
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                 <p className="font-mono text-[10px] uppercase tracking-label text-white/55">
                   {band.title}
                 </p>
-                <p className="shrink-0 font-mono text-[10px] uppercase tracking-label text-white/35">
+                <p className="font-mono text-[10px] uppercase tracking-label text-white/35">
                   {band.sub}
                 </p>
               </div>

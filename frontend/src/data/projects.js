@@ -1,5 +1,6 @@
 import { ACCENTS, interactiveProjects } from "./case-studies/interactive";
 import { pharmaceuticalDataPlatform } from "./case-studies/pharmaceutical-data-platform";
+import { vrRoboticSurgeryAssistant } from "./case-studies/vr-robotic-surgery-assistant";
 
 /**
  * Case studies.
@@ -20,7 +21,11 @@ import { pharmaceuticalDataPlatform } from "./case-studies/pharmaceutical-data-p
  */
 export { ACCENTS };
 
-export const projects = [...interactiveProjects, pharmaceuticalDataPlatform];
+export const projects = [
+  ...interactiveProjects,
+  pharmaceuticalDataPlatform,
+  vrRoboticSurgeryAssistant,
+];
 
 /**
  * How an entry introduces itself.
